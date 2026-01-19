@@ -39,7 +39,8 @@ export default function RootLayout({
               jobTitle: "Frontend Developer",
               sameAs: [
                 "https://instagram.com/lucasezequielriera",
-                "https://tiktok.com/lucasezequielriera"
+                "https://tiktok.com/lucasezequielriera",
+                "https://github.com/lucasezequielriera"
               ]
             })
           }}

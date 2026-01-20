@@ -175,7 +175,7 @@ export default function Home() {
               <span className="h-8 w-px bg-neutral-800" />
               <span>
                 7+ años construyendo interfaces
-                <br />
+          <br />
                 Compartiendo mi proceso de healthy lifestyle
               </span>
             </div>
@@ -303,7 +303,7 @@ export default function Home() {
                   <p className="mt-1 text-base font-semibold text-neutral-100">
                     <AnimatedCounter end={7} />+ años
                   </p>
-                </div>
+        </div>
                 <div>
                   <p className="text-[0.7rem] uppercase tracking-[0.18em] text-neutral-500">
                     Países
@@ -434,9 +434,9 @@ export default function Home() {
                 <p className="text-sm text-neutral-400">
                   Hábitos diarios que sostienen resultados a largo plazo. Nada de
                   explosiones de motivación; solo consistencia medible.
-                </p>
-              </CardContent>
-            </Card>
+              </p>
+            </CardContent>
+          </Card>
           </ScrollAnimation>
 
           <ScrollAnimation delay={0.1}>
@@ -471,6 +471,218 @@ export default function Home() {
         </div>
       </section>
 
+      {/* TIMELINE DE EXPERIENCIA */}
+      <section className="mx-auto max-w-6xl px-6 pb-24 overflow-visible">
+        <ScrollAnimation>
+          <div className="space-y-8 overflow-visible">
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500">
+                Experiencia profesional
+              </p>
+              <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
+                Empresas que confiaron en mí.
+              </h2>
+            </div>
+
+            <div className="relative py-8 overflow-visible">
+              {/* Línea horizontal del timeline */}
+              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-neutral-800 to-transparent hidden md:block transform -translate-y-1/2" />
+
+              {/* Timeline items */}
+              <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-8 overflow-x-auto overflow-y-visible pb-8 pt-8 snap-x snap-mandatory md:snap-none">
+                {/* 2019 - ITAcademy */}
+                <ScrollAnimation delay={0.05}>
+                  <div className="flex flex-col items-center min-w-[120px] snap-center">
+                    <div className="relative z-10 flex flex-col items-center group">
+                      <div className="w-5 h-5 rounded-full bg-emerald-500 border-4 border-neutral-950 mb-3 transition-transform group-hover:scale-125" />
+                      <div className="text-center">
+                        <p className="text-xs font-medium text-emerald-400 mb-1">2019</p>
+                        <p className="text-sm font-semibold text-neutral-100">ITAcademy</p>
+                        <p className="text-[0.7rem] text-neutral-500 mt-0.5">(2019–2021)</p>
+                      </div>
+                    </div>
+                  </div>
+                </ScrollAnimation>
+
+                {/* 2021 - Terrand */}
+                <ScrollAnimation delay={0.1}>
+                  <a
+                    href="https://www.terrand.app/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex flex-col items-center min-w-[120px] snap-center group cursor-pointer"
+                  >
+                    <div className="relative z-10 flex flex-col items-center">
+                      <div className="relative w-16 h-16 mb-3 overflow-visible">
+                        <div className="relative w-full h-full rounded-lg overflow-hidden border border-neutral-800 bg-neutral-900 transition-transform group-hover:scale-110 group-hover:border-sky-500/50">
+                          <Image
+                            src="/terrand_logo.jpeg"
+                            alt="Terrand Logo"
+                            fill
+                            sizes="64px"
+                            className="object-contain p-2"
+                          />
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-xs font-medium text-sky-400 mb-1 group-hover:text-sky-300">2021</p>
+                        <p className="text-sm font-semibold text-neutral-100 group-hover:text-neutral-50">Terrand</p>
+                        <p className="text-[0.7rem] text-neutral-500 mt-0.5">(2021–2023)</p>
+                      </div>
+                    </div>
+                  </a>
+                </ScrollAnimation>
+
+                {/* 2022 - United Airlines */}
+                <ScrollAnimation delay={0.15}>
+                  <a
+                    href="https://www.united.com/es/us/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex flex-col items-center min-w-[120px] snap-center group cursor-pointer"
+                  >
+                    <div className="relative z-10 flex flex-col items-center">
+                      <div className="relative w-16 h-16 mb-3 overflow-visible">
+                        <div className="relative w-full h-full rounded-lg overflow-hidden border border-neutral-800 bg-neutral-900 transition-transform group-hover:scale-110 group-hover:border-blue-500/50">
+                          <Image
+                            src="/united-logo.jpeg"
+                            alt="United Airlines Logo"
+                            fill
+                            sizes="64px"
+                            className="object-contain p-2"
+                          />
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-xs font-medium text-blue-400 mb-1 group-hover:text-blue-300">2022</p>
+                        <p className="text-sm font-semibold text-neutral-100 group-hover:text-neutral-50">United Airlines</p>
+                        <p className="text-[0.7rem] text-neutral-500 mt-0.5">(2022–2025)</p>
+                      </div>
+                    </div>
+                  </a>
+                </ScrollAnimation>
+
+                {/* 2023 - YPF */}
+                <ScrollAnimation delay={0.2}>
+                  <a
+                    href="https://www.ypf.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex flex-col items-center min-w-[120px] snap-center group cursor-pointer"
+                  >
+                    <div className="relative z-10 flex flex-col items-center">
+                      <div className="relative w-16 h-16 mb-3 overflow-visible">
+                        <div className="relative w-full h-full rounded-lg overflow-hidden border border-neutral-800 bg-neutral-900 transition-transform group-hover:scale-110 group-hover:border-purple-500/50">
+                          <Image
+                            src="/ypf-logo.jpeg"
+                            alt="YPF Logo"
+                            fill
+                            sizes="64px"
+                            className="object-contain p-2"
+                          />
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-xs font-medium text-purple-400 mb-1 group-hover:text-purple-300">2023</p>
+                        <p className="text-sm font-semibold text-neutral-100 group-hover:text-neutral-50">YPF</p>
+                        <p className="text-[0.7rem] text-neutral-500 mt-0.5">(2023–2024)</p>
+                      </div>
+                    </div>
+                  </a>
+                </ScrollAnimation>
+
+                {/* 2024 - WebFinanceLab */}
+                <ScrollAnimation delay={0.25}>
+                  <a
+                    href="https://www.webfinancelab.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex flex-col items-center min-w-[120px] snap-center group cursor-pointer"
+                  >
+                    <div className="relative z-10 flex flex-col items-center">
+                      <div className="relative w-16 h-16 mb-3 overflow-visible">
+                        <div className="relative w-full h-full rounded-lg overflow-hidden border border-neutral-800 bg-neutral-900 transition-transform group-hover:scale-110 group-hover:border-emerald-500/50">
+                          <Image
+                            src="/webfinancelab-logo.png"
+                            alt="WebFinanceLab Logo"
+                            fill
+                            sizes="64px"
+                            className="object-contain p-2"
+                          />
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-xs font-medium text-emerald-400 mb-1 group-hover:text-emerald-300">2024</p>
+                        <p className="text-sm font-semibold text-neutral-100 group-hover:text-neutral-50">WebFinanceLab</p>
+                        <p className="text-[0.7rem] text-neutral-500 mt-0.5">(desde 2024)</p>
+                      </div>
+                    </div>
+                  </a>
+                </ScrollAnimation>
+
+                {/* 2025 - FitPlan AI */}
+                <ScrollAnimation delay={0.3}>
+                  <a
+                    href="https://www.fitplan-ai.com/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex flex-col items-center min-w-[120px] snap-center group cursor-pointer"
+                  >
+                    <div className="relative z-10 flex flex-col items-center">
+                      <div className="relative w-16 h-16 mb-3 overflow-visible">
+                        <div className="relative w-full h-full rounded-lg overflow-hidden border border-neutral-800 bg-neutral-900 transition-transform group-hover:scale-110 group-hover:border-sky-500/50">
+                          <Image
+                            src="/fitplan-ai-logo.png"
+                            alt="FitPlan AI Logo"
+                            fill
+                            sizes="64px"
+                            className="object-contain p-2"
+                          />
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-xs font-medium text-sky-400 mb-1 group-hover:text-sky-300">2025</p>
+                        <p className="text-sm font-semibold text-neutral-100 group-hover:text-neutral-50">FitPlan AI</p>
+                        <p className="text-[0.7rem] text-neutral-500 mt-0.5">(desde 2025)</p>
+                      </div>
+                    </div>
+                  </a>
+                </ScrollAnimation>
+
+                {/* 2025 - Synapsis */}
+                <ScrollAnimation delay={0.35}>
+                  <a
+                    href="https://www.synapsis.team/"
+                    target="_blank"
+                    rel="noreferrer"
+                    className="flex flex-col items-center min-w-[120px] snap-center group cursor-pointer"
+                  >
+                    <div className="relative z-10 flex flex-col items-center">
+                      <div className="relative w-16 h-16 mb-3 overflow-visible">
+                        <div className="relative w-full h-full rounded-lg overflow-hidden border border-neutral-800 bg-neutral-900 transition-transform group-hover:scale-110 group-hover:border-sky-500/50">
+                          <Image
+                            src="/synapsis-logo.png"
+                            alt="Synapsis Logo"
+                            fill
+                            sizes="64px"
+                            className="object-contain p-2"
+                          />
+                        </div>
+                      </div>
+                      <div className="text-center">
+                        <p className="text-xs font-medium text-sky-400 mb-1 group-hover:text-sky-300">2025</p>
+                        <p className="text-sm font-semibold text-neutral-100 group-hover:text-neutral-50">Synapsis</p>
+                        <p className="text-[0.7rem] text-neutral-500 mt-0.5">(desde 2025)</p>
+                      </div>
+                    </div>
+                  </a>
+                </ScrollAnimation>
+              </div>
+            </div>
+          </div>
+        </ScrollAnimation>
+      </section>
+
       {/* STACK TECNOLÓGICO */}
       <section className="mx-auto max-w-6xl px-6 pb-24">
         <ScrollAnimation>
@@ -484,7 +696,7 @@ export default function Home() {
               </h2>
             </div>
             <div className="flex flex-wrap gap-3">
-              {["React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Node.js", "PostgreSQL", "Git"].map((tech, idx) => (
+              {["HTML5", "CSS3", "JavaScript", "React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Node.js", "PostgreSQL", "Git", "AI", "Figma", "Firebase", "AntDesign", "Jira", "Teams", "Slack", "Vercel", "MongoDB", "Docker"].map((tech, idx) => (
                 <motion.div
                   key={tech}
                   initial={{ opacity: 0, scale: 0.8 }}

@@ -310,7 +310,7 @@ export default function Home() {
             const IconComponent = project.icon === "graduation-cap" ? GraduationCap : project.icon === "palette" ? Palette : null;
             return (
               <ScrollAnimation key={project.slug} delay={idx * 0.05}>
-                <a href={project.url} target="_blank" rel="noreferrer" className="block h-full">
+                <Link href={`/${locale}/proyectos/${project.slug}`} className="block h-full">
                   <Card className={`group relative h-full overflow-hidden border-neutral-800 bg-neutral-900/70 transition-all duration-500 ${colors.border} hover:shadow-2xl ${colors.shadow}`}>
                     <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100`} />
                     <CardContent className="relative flex h-full flex-col justify-between space-y-5 p-6">
@@ -339,7 +339,7 @@ export default function Home() {
                       </div>
                     </CardContent>
                   </Card>
-                </a>
+                </Link>
               </ScrollAnimation>
             );
           })}

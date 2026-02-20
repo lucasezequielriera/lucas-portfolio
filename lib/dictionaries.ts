@@ -100,6 +100,18 @@ export interface Dictionary {
     backHome: string;
     inicio: string;
   };
+  caseStudy: {
+    problem: string;
+    solution: string;
+    techStack: string;
+    screenshots: string;
+    visitSite: string;
+    contactCta: string;
+    contactCtaSub: string;
+    backToProjects: string;
+    builtIn: string;
+    createdBy: string;
+  };
   notFound: {
     title: string;
     description: string;
@@ -220,6 +232,18 @@ const es: Dictionary = {
     goToFitTravel: "Ir a FitTravel",
     backHome: "← Volver al inicio",
     inicio: "Inicio",
+  },
+  caseStudy: {
+    problem: "El problema",
+    solution: "La solución",
+    techStack: "Stack técnico",
+    screenshots: "El producto en acción",
+    visitSite: "Visitar sitio",
+    contactCta: "¿Necesitás algo similar?",
+    contactCtaSub: "Desarrollo productos a medida con la misma obsesión que pongo en los míos.",
+    backToProjects: "← Todos los proyectos",
+    builtIn: "Construido en",
+    createdBy: "Creado por Lucas Riera",
   },
   notFound: {
     title: "Página no encontrada",
@@ -356,6 +380,18 @@ const en: Dictionary = {
     goToFitTravel: "Go to FitTravel",
     backHome: "← Back to home",
     inicio: "Home",
+  },
+  caseStudy: {
+    problem: "The problem",
+    solution: "The solution",
+    techStack: "Tech stack",
+    screenshots: "The product in action",
+    visitSite: "Visit site",
+    contactCta: "Need something similar?",
+    contactCtaSub: "I build custom products with the same obsession I put into my own.",
+    backToProjects: "← All projects",
+    builtIn: "Built in",
+    createdBy: "Created by Lucas Riera",
   },
   notFound: {
     title: "Page not found",

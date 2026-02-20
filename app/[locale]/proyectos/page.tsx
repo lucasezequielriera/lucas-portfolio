@@ -96,7 +96,7 @@ export default async function ProyectosPage({
             const colors = colorStyles[project.color];
             const IconComponent = getIcon(project.icon, project.color);
             return (
-              <a key={project.slug} href={project.url} target="_blank" rel="noreferrer" className="group block">
+              <Link key={project.slug} href={`/${locale}/proyectos/${project.slug}`} className="group block">
                 <div className={`relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/70 p-6 transition-all duration-500 ${colors.border} hover:shadow-2xl ${colors.shadow} md:p-8`}>
                   <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100`} />
                   <div className="relative flex flex-col gap-6 md:flex-row md:items-start md:gap-8">
@@ -122,7 +122,7 @@ export default async function ProyectosPage({
                     </div>
                   </div>
                 </div>
-              </a>
+              </Link>
             );
           })}
         </div>

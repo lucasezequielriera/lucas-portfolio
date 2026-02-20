@@ -3,28 +3,26 @@
 import { motion, useInView } from "framer-motion";
 import { useRef, useState, useEffect } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import {
-  Activity,
-  Dumbbell,
-  Target,
-  Clock,
   Globe2,
   Instagram,
   Linkedin,
   Mail,
   Code,
-  ExternalLink,
-  Zap,
-  TrendingUp,
   MapPin,
-  Video,
-  Users,
-  CheckCircle2,
-  BarChart3,
   MessageCircle,
   Calendar,
+  Terminal,
+  Layers,
+  Palette,
+  ArrowUpRight,
+  GraduationCap,
+  Menu,
+  X,
+  ChevronUp,
 } from "lucide-react";
 
 const fadeInUp = {
@@ -32,7 +30,6 @@ const fadeInUp = {
   animate: { opacity: 1, y: 0 },
 };
 
-// Componente para animaciones al hacer scroll
 function ScrollAnimation({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
@@ -49,7 +46,6 @@ function ScrollAnimation({ children, delay = 0 }: { children: React.ReactNode; d
   );
 }
 
-// Componente de contador animado
 function AnimatedCounter({ end, duration = 2000, prefix = "", suffix = "" }: { end: number; duration?: number; prefix?: string; suffix?: string }) {
   const [count, setCount] = useState(0);
   const ref = useRef<HTMLSpanElement>(null);
@@ -74,16 +70,34 @@ function AnimatedCounter({ end, duration = 2000, prefix = "", suffix = "" }: { e
 }
 
 export default function Home() {
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [showScrollTop, setShowScrollTop] = useState(false);
+
   const scrollToId = (id: string) => {
     const el = document.getElementById(id);
     if (el) {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
+    setMobileMenuOpen(false);
   };
+
+  useEffect(() => {
+    const handleScroll = () => setShowScrollTop(window.scrollY > 500);
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-100">
-      {/* TOP NAV */}
+      {/* SKIP TO CONTENT */}
+      <a
+        href="#trabajos"
+        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-emerald-500 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-neutral-950"
+      >
+        Ir al contenido principal
+      </a>
+
+      {/* NAV */}
       <header className="sticky top-0 z-30 border-b border-neutral-900/60 bg-neutral-950/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
@@ -91,388 +105,434 @@ export default function Home() {
               Lucas Riera
             </span>
             <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">
-              Disciplina · Salud · Código
+              Software Developer
             </span>
             <span className="hidden items-center gap-1.5 rounded-full border border-neutral-800 bg-neutral-900/60 px-2.5 py-1 text-xs text-neutral-400 md:flex">
               <MapPin className="h-3 w-3" />
-              España
+              Madrid, España
             </span>
           </div>
-          <nav className="hidden gap-4 text-sm text-neutral-400 md:flex">
-            <button
-              onClick={() => scrollToId("filosofia")}
-              className="transition hover:text-neutral-100"
-            >
-              Filosofía
+          <nav aria-label="Navegación principal" className="hidden gap-4 text-sm text-neutral-400 md:flex">
+            <button onClick={() => scrollToId("trabajos")} className="rounded-md px-1 transition hover:text-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/70">
+              Trabajos
             </button>
-            <button
-              onClick={() => scrollToId("pilares")}
-              className="transition hover:text-neutral-100"
-            >
-              Pilares
-            </button>
-            <button
-              onClick={() => scrollToId("experiencia")}
-              className="transition hover:text-neutral-100"
-            >
+            <button onClick={() => scrollToId("experiencia")} className="rounded-md px-1 transition hover:text-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/70">
               Experiencia
             </button>
-            <button
-              onClick={() => scrollToId("contacto")}
-              className="transition hover:text-neutral-100"
-            >
+            <button onClick={() => scrollToId("stack")} className="rounded-md px-1 transition hover:text-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/70">
+              Stack
+            </button>
+            <Link href="/proyectos" className="rounded-md px-1 transition hover:text-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/70">
+              Proyectos
+            </Link>
+            <button onClick={() => scrollToId("contacto")} className="rounded-md px-1 transition hover:text-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/70">
               Contacto
             </button>
           </nav>
+          <button
+            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+            className="md:hidden rounded-lg border border-neutral-800 bg-neutral-900/60 p-2 text-neutral-400 transition hover:text-neutral-100"
+            aria-label="Abrir menú de navegación"
+          >
+            {mobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+          </button>
         </div>
+
+        {/* Mobile menu */}
+        {mobileMenuOpen && (
+          <motion.nav
+            aria-label="Navegación móvil"
+            initial={{ opacity: 0, y: -10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.2 }}
+            className="flex flex-col gap-1 border-t border-neutral-900/60 bg-neutral-950/95 px-6 pb-4 pt-2 text-sm md:hidden"
+          >
+            <button onClick={() => scrollToId("trabajos")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">
+              Trabajos
+            </button>
+            <button onClick={() => scrollToId("experiencia")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">
+              Experiencia
+            </button>
+            <button onClick={() => scrollToId("stack")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">
+              Stack
+            </button>
+            <Link href="/proyectos" onClick={() => setMobileMenuOpen(false)} className="rounded-lg px-3 py-2.5 text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">
+              Proyectos
+            </Link>
+            <button onClick={() => scrollToId("contacto")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">
+              Contacto
+            </button>
+          </motion.nav>
+        )}
       </header>
 
       {/* HERO */}
-      <section className="mx-auto grid max-w-6xl gap-12 px-6 pb-24 pt-20 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:pt-28">
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.7 }}
-          className="space-y-8"
-        >
-          <div className="flex flex-wrap items-center gap-2">
-            <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 text-xs text-neutral-300">
-              <span className="h-2 w-2 rounded-full bg-emerald-400" />
-              Abierto a colaboraciones intencionales 2026
+      <section className="relative overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(16,185,129,0.08),transparent)]" />
+        <div className="relative mx-auto grid max-w-6xl gap-12 px-6 pb-24 pt-20 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:pt-28">
+          <motion.div
+            initial={{ opacity: 0, y: 24 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7 }}
+            className="space-y-8"
+          >
+            <div className="flex flex-wrap items-center gap-2">
+              <div className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 text-xs text-neutral-300">
+                <span className="h-2 w-2 rounded-full bg-emerald-400" />
+                Full-Stack Developer · Disponible 2026
+              </div>
+              <div className="inline-flex items-center gap-1.5 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 text-xs text-neutral-400">
+                <MapPin className="h-3 w-3" />
+                España
+              </div>
             </div>
-            <div className="inline-flex items-center gap-1.5 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 text-xs text-neutral-400">
-              <MapPin className="h-3 w-3" />
-              Actualmente en España
+
+            <h1 className="text-balance text-4xl font-semibold leading-tight md:text-6xl">
+              Construyo productos digitales
+              <span className="text-neutral-400"> que funcionan de verdad.</span>
+            </h1>
+
+            <p className="max-w-xl text-lg text-neutral-300">
+              Programador y desarrollador full-stack con más de 7 años de experiencia.
+              Informático especializado en crear plataformas, sistemas y webs desde cero
+              con código limpio, arquitectura sólida y una atención al detalle que se nota
+              en cada pixel. Si lo hago, lo hago bien.
+            </p>
+
+            <div className="flex flex-wrap items-center gap-4">
+              <Button size="lg" onClick={() => scrollToId("trabajos")}>
+                Ver lo que construyo
+              </Button>
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => scrollToId("contacto")}
+                className="!border-neutral-700 !bg-transparent !text-neutral-100 hover:!bg-neutral-800 hover:!text-neutral-50"
+              >
+                Contactar
+              </Button>
             </div>
-          </div>
 
-          <h1 className="text-balance text-4xl font-semibold leading-tight md:text-6xl">
-            Disciplina, claridad
-            <span className="text-neutral-400">, pasión y trabajo profundo</span>.
-          </h1>
-
-          <p className="max-w-xl text-lg text-neutral-300">
-            Programador de profesión e influencer de healthy lifestyle.
-            Construyo sistemas: en código, en hábitos y en la forma de vivir. Comparto
-            mi proceso de disciplina, entrenamiento y nutrición con una comunidad que
-            valora la coherencia sobre la motivación vacía. Si lo hago, doy lo mejor de mí;
-            si no, prefiero no hacerlo.
-          </p>
-
-          <div className="flex flex-wrap items-center gap-4">
-            <Button size="lg" onClick={() => scrollToId("filosofia")}>
-              Ver filosofía de vida
-            </Button>
-            <Button
-              variant="outline"
-              size="lg"
-              onClick={() => scrollToId("contacto")}
-              className="!border-neutral-700 !bg-transparent !text-neutral-100 hover:!bg-neutral-800 hover:!text-neutral-50"
-            >
-              Proponer colaboración
-            </Button>
             <div className="flex flex-wrap items-center gap-3 text-sm text-neutral-400">
-              <span className="h-8 w-px bg-neutral-800" />
-              <span>
-                7+ años construyendo interfaces
-          <br />
-                Compartiendo mi proceso de healthy lifestyle
+              <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">
+                Presencia
               </span>
+              <a
+                href="https://github.com/lucasezequielriera"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 hover:border-neutral-600 hover:text-neutral-100"
+              >
+                <Code className="h-3.5 w-3.5" />
+                GitHub
+              </a>
+              <a
+                href="https://linkedin.com"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 hover:border-neutral-600 hover:text-neutral-100"
+              >
+                <Linkedin className="h-3.5 w-3.5" />
+                LinkedIn
+              </a>
+              <a
+                href="https://instagram.com/lucasezequielriera"
+                target="_blank"
+                rel="noreferrer"
+                className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 hover:border-neutral-600 hover:text-neutral-100"
+              >
+                <Instagram className="h-3.5 w-3.5" />
+                Instagram
+              </a>
             </div>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-wrap items-center gap-4 text-sm text-neutral-400">
-            <span className="text-xs uppercase tracking-[0.2em] text-neutral-500">
-              Presencia
-            </span>
-            <a
-              href="https://instagram.com/lucasezequielriera"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 hover:border-neutral-600 hover:text-neutral-100"
-            >
-              <Instagram className="h-3.5 w-3.5" />
-              Instagram
-            </a>
-            <a
-              href="https://tiktok.com/@lucasezequielriera"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 hover:border-neutral-600 hover:text-neutral-100"
-            >
-              <Video className="h-3.5 w-3.5" />
-              TikTok
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 hover:border-neutral-600 hover:text-neutral-100"
-            >
-              <Linkedin className="h-3.5 w-3.5" />
-              LinkedIn
-            </a>
-            <a
-              href="https://github.com/lucasezequielriera"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 hover:border-neutral-600 hover:text-neutral-100"
-            >
-              <Code className="h-3.5 w-3.5" />
-              GitHub
-            </a>
-          </div>
-        </motion.div>
-
-        <motion.div
-          {...fadeInUp}
-          transition={{ duration: 0.7, delay: 0.1 }}
-          className="space-y-4"
-        >
-          {/* Video personal */}
-          <div className="relative aspect-square overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/60">
-            <video
-              src="/lucas.mov"
-              autoPlay
-              loop
-              muted
-              playsInline
-              className="h-full w-full object-cover"
-            />
-            <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/60 via-transparent to-transparent" />
-          </div>
-
-          <Card className="bg-neutral-900/60 border-neutral-800">
-            <CardContent className="space-y-5 p-6">
-              <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-500">
-                Rutina base
-              </p>
-              <div className="space-y-3 text-sm text-neutral-300">
-                <div className="flex items-start gap-3">
-                  <Clock className="mt-0.5 h-4 w-4 text-neutral-500" />
-                  <div>
-                    <p className="font-medium text-neutral-100">
-                      Mañanas sin distracciones
-                    </p>
-                    <p className="text-neutral-400">
-                      Entrenamiento, journaling y revisión de objetivos antes
-                      de abrir redes.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Activity className="mt-0.5 h-4 w-4 text-emerald-400" />
-                  <div>
-                    <p className="font-medium text-neutral-100">
-                      Bloques de trabajo profundo
-                    </p>
-                    <p className="text-neutral-400">
-                      Sesiones enfocadas de 90 minutos de código sin
-                      interrupciones.
-                    </p>
-                  </div>
-                </div>
-                <div className="flex items-start gap-3">
-                  <Dumbbell className="mt-0.5 h-4 w-4 text-sky-400" />
-                  <div>
-                    <p className="font-medium text-neutral-100">
-                      Cuerpo alineado con el objetivo
-                    </p>
-                    <p className="text-neutral-400">
-                      Entrenamiento de fuerza y movimiento para sostener el
-                      rendimiento. Planifico entrenamientos y nutrición con{" "}
-                      <a
-                        href="https://www.fitplan-ai.com"
-                        target="_blank"
-                        rel="noreferrer"
-                        className="text-sky-400 hover:text-sky-300 underline underline-offset-2"
-                      >
-                        FitPlan AI
-                      </a>
-                      .
-                    </p>
-                  </div>
-                </div>
-              </div>
-
-              <div className="grid grid-cols-3 gap-3 text-xs text-neutral-400">
-                <div>
-                  <p className="text-[0.7rem] uppercase tracking-[0.18em] text-neutral-500">
-                    Código
-                  </p>
-                  <p className="mt-1 text-base font-semibold text-neutral-100">
-                    <AnimatedCounter end={7} />+ años
-                  </p>
-        </div>
-                <div>
-                  <p className="text-[0.7rem] uppercase tracking-[0.18em] text-neutral-500">
-                    Países
-                  </p>
-                  <p className="mt-1 text-base font-semibold text-neutral-100">
-                    <AnimatedCounter end={16} /> vividos
-                  </p>
-                </div>
-                <div>
-                  <p className="text-[0.7rem] uppercase tracking-[0.18em] text-neutral-500">
-                    Constancia
-                  </p>
-                  <p className="mt-1 text-base font-semibold text-neutral-100">
-                    +<AnimatedCounter end={850} /> días
-                  </p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </motion.div>
-      </section>
-
-      {/* FILOSOFÍA */}
-      <section
-        id="filosofia"
-        className="mx-auto max-w-6xl px-6 pb-12 pt-10 md:pt-4"
-      >
-        <ScrollAnimation>
-          <div className="grid gap-8 md:grid-cols-2 md:items-start">
-            {/* Columna izquierda: 4 imágenes */}
-            <div className="grid grid-cols-2 gap-3">
-              <div className="relative aspect-square overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900">
-                <Image
-                  src="/gym-park.jpeg"
-                  alt="Lucas Riera - Proceso"
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="relative aspect-square overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900">
-                <Image
-                  src="/work.jpeg"
-                  alt="Lucas Riera - Disciplina"
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="relative aspect-square overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900">
-                <Image
-                  src="/food.jpeg"
-                  alt="Lucas Riera - Entrenamiento"
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover"
-                />
-              </div>
-              <div className="relative aspect-square overflow-hidden rounded-lg border border-neutral-800 bg-neutral-900">
-                <Image
-                  src="/lucas-photo-1.jpeg"
-                  alt="Lucas Riera - Trabajo"
-                  fill
-                  sizes="(max-width: 768px) 50vw, 25vw"
-                  className="object-cover"
-                />
-              </div>
+          <motion.div
+            {...fadeInUp}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="space-y-4"
+          >
+            <div className="relative aspect-square overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/60">
+              <video
+                src="/lucas.mov"
+                autoPlay
+                loop
+                muted
+                playsInline
+                aria-label="Video de Lucas Riera"
+                className="h-full w-full object-cover"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/60 via-transparent to-transparent" />
             </div>
 
-            {/* Columna derecha: Título y texto */}
-            <div className="space-y-6">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">
-                  Filosofía
+            <Card className="bg-neutral-900/60 border-neutral-800">
+              <CardContent className="p-6">
+                <p className="text-xs font-medium uppercase tracking-[0.2em] text-neutral-500 mb-4">
+                  Actualmente
                 </p>
-                <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
-                  No vendo una imagen. Vivo un proceso que disfruto.
-                </h2>
-              </div>
-              <p className="text-lg leading-relaxed text-neutral-300">
-                Durante años trabajé como desarrollador frontend en entornos
-                exigentes. Viajé, cambié de equipo, cambié de país. Lo único que se
-                mantuvo fue la disciplina y las ganas genuinas de mejorar: entrenar,
-                aprender, escribir y construir, incluso cuando nadie mira.
-              </p>
-              <p className="text-neutral-300">
-                Hoy mi foco está en mantener una vida ordenada: entrenamiento,
-                nutrición, enfoque mental y trabajo honesto, pero también hecha con
-                gusto. La misma mentalidad que aplico a mi cuerpo y a mi día a día,
-                la aplico al código: si entro, entro en serio y doy lo mejor que tengo.
-              </p>
-            </div>
+                <div className="space-y-3 text-sm text-neutral-300">
+                  <div className="flex items-start gap-3">
+                    <Terminal className="mt-0.5 h-4 w-4 text-emerald-400" />
+                    <span>Construyendo plataformas SaaS desde cero</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Layers className="mt-0.5 h-4 w-4 text-sky-400" />
+                    <span>Desarrollando sistemas web a medida</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <Palette className="mt-0.5 h-4 w-4 text-purple-400" />
+                    <span>Creando portfolios y webs profesionales</span>
+                  </div>
+                </div>
+
+                <div className="mt-5 grid grid-cols-3 gap-3 border-t border-neutral-800 pt-4 text-xs text-neutral-400">
+                  <div>
+                    <p className="text-[0.7rem] uppercase tracking-[0.18em] text-neutral-500">
+                      Código
+                    </p>
+                    <p className="mt-1 text-base font-semibold text-neutral-100">
+                      <AnimatedCounter end={7} />+ años
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[0.7rem] uppercase tracking-[0.18em] text-neutral-500">
+                      Productos
+                    </p>
+                    <p className="mt-1 text-base font-semibold text-neutral-100">
+                      <AnimatedCounter end={5} />+ creados
+                    </p>
+                  </div>
+                  <div>
+                    <p className="text-[0.7rem] uppercase tracking-[0.18em] text-neutral-500">
+                      Países
+                    </p>
+                    <p className="mt-1 text-base font-semibold text-neutral-100">
+                      <AnimatedCounter end={16} /> vividos
+                    </p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </motion.div>
         </div>
-        </ScrollAnimation>
       </section>
 
-      {/* PILARES */}
-      <section
-        id="pilares"
-        className="mx-auto max-w-6xl px-6 py-24 space-y-10"
-      >
+      {/* PRODUCTOS QUE CONSTRUÍ */}
+      <section id="trabajos" className="mx-auto max-w-6xl px-6 pb-24 space-y-10">
         <ScrollAnimation>
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">
-                Pilares
-              </p>
-              <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
-                Las tres bases que sostienen todo.
-              </h2>
-            </div>
-            <p className="max-w-xl text-sm text-neutral-400">
-              No busco equilibrio perfecto, sino coherencia diaria. Estos pilares
-              se reflejan tanto en cómo entreno como en cómo diseño productos
-              digitales.
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">
+              Trabajos
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
+              Productos que construí desde cero.
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm text-neutral-400">
+              Cada proyecto es una solución real, pensada desde la arquitectura hasta el último
+              detalle visual. Esto es lo que pasa cuando combino obsesión por el código con
+              libertad creativa.
             </p>
           </div>
         </ScrollAnimation>
 
-        <div className="grid gap-6 md:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2">
+          {/* WebFinanceLab */}
           <ScrollAnimation delay={0}>
-            <Card className="group bg-neutral-900/70 border-neutral-800 transition-all duration-300 hover:border-emerald-500/50 hover:bg-neutral-900/90 hover:shadow-lg hover:shadow-emerald-500/10">
-              <CardContent className="space-y-4 p-6">
-                <div className="transition-transform duration-300 group-hover:scale-110">
-                  <Target className="h-6 w-6 text-emerald-400" />
-                </div>
-                <h3 className="text-xl font-semibold text-neutral-100">Disciplina</h3>
-                <p className="text-sm text-neutral-400">
-                  Hábitos diarios que sostienen resultados a largo plazo. Nada de
-                  explosiones de motivación; solo consistencia medible.
-              </p>
-            </CardContent>
-          </Card>
+            <a href="https://www.webfinancelab.com" target="_blank" rel="noreferrer" className="block h-full">
+              <Card className="group relative h-full overflow-hidden border-neutral-800 bg-neutral-900/70 transition-all duration-500 hover:border-emerald-500/40 hover:shadow-2xl hover:shadow-emerald-500/5">
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/[0.03] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <CardContent className="relative flex h-full flex-col justify-between space-y-5 p-6">
+                  <div className="flex items-start justify-between">
+                    <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900">
+                      <Image src="/webfinancelab-logo.png" alt="WebFinanceLab" fill sizes="48px" className="object-contain p-1.5" />
+                    </div>
+                    <div className="rounded-full border border-neutral-800 bg-neutral-900/80 p-2 transition group-hover:border-emerald-500/50 group-hover:text-emerald-400">
+                      <ArrowUpRight className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-neutral-100">WebFinanceLab</h3>
+                    <p className="mt-2 text-sm text-neutral-400">
+                      Plataforma completa de control financiero personal. Registro de ingresos y gastos,
+                      análisis de hábitos financieros, gráficos en tiempo real y exportación de datos.
+                      Diseñada para quienes quieren claridad total sobre su dinero.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {["React", "Node.js", "Firebase", "Tailwind CSS"].map((tag) => (
+                      <span key={tag} className="rounded-full border border-neutral-800 bg-neutral-950/60 px-2.5 py-1 text-xs text-neutral-400">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </a>
           </ScrollAnimation>
 
+          {/* FitPlan AI */}
           <ScrollAnimation delay={0.1}>
-            <Card className="group bg-neutral-900/70 border-neutral-800 transition-all duration-300 hover:border-sky-500/50 hover:bg-neutral-900/90 hover:shadow-lg hover:shadow-sky-500/10">
-              <CardContent className="space-y-4 p-6">
-                <div className="transition-transform duration-300 group-hover:scale-110">
-                  <Dumbbell className="h-6 w-6 text-sky-400" />
+            <a href="https://www.fitplan-ai.com" target="_blank" rel="noreferrer" className="block h-full">
+              <Card className="group relative h-full overflow-hidden border-neutral-800 bg-neutral-900/70 transition-all duration-500 hover:border-sky-500/40 hover:shadow-2xl hover:shadow-sky-500/5">
+                <div className="absolute inset-0 bg-gradient-to-br from-sky-500/[0.03] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <CardContent className="relative flex h-full flex-col justify-between space-y-5 p-6">
+                  <div className="flex items-start justify-between">
+                    <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900">
+                      <Image src="/fitplan-ai-logo.png" alt="FitPlan AI" fill sizes="48px" className="object-contain p-1.5" />
+                    </div>
+                    <div className="rounded-full border border-neutral-800 bg-neutral-900/80 p-2 transition group-hover:border-sky-500/50 group-hover:text-sky-400">
+                      <ArrowUpRight className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-neutral-100">FitPlan AI</h3>
+                    <p className="mt-2 text-sm text-neutral-400">
+                      Planificación inteligente de entrenamiento y nutrición con inteligencia artificial.
+                      Rutinas personalizadas, seguimiento de progreso y recomendaciones adaptativas.
+                      De la idea al producto funcional con usuarios reales.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {["Next.js", "OpenAI", "PostgreSQL", "Tailwind CSS"].map((tag) => (
+                      <span key={tag} className="rounded-full border border-neutral-800 bg-neutral-950/60 px-2.5 py-1 text-xs text-neutral-400">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </a>
+          </ScrollAnimation>
+
+          {/* WebEducationLab */}
+          <ScrollAnimation delay={0.15}>
+            <a href="https://web-education-lab.vercel.app/es" target="_blank" rel="noreferrer" className="block h-full">
+              <Card className="group relative h-full overflow-hidden border-neutral-800 bg-neutral-900/70 transition-all duration-500 hover:border-violet-500/40 hover:shadow-2xl hover:shadow-violet-500/5">
+                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/[0.03] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <CardContent className="relative flex h-full flex-col justify-between space-y-5 p-6">
+                  <div className="flex items-start justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900">
+                      <GraduationCap className="h-6 w-6 text-violet-400" />
+                    </div>
+                    <div className="rounded-full border border-neutral-800 bg-neutral-900/80 p-2 transition group-hover:border-violet-500/50 group-hover:text-violet-400">
+                      <ArrowUpRight className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-neutral-100">WebEducationLab</h3>
+                    <p className="mt-2 text-sm text-neutral-400">
+                      Plataforma educativa con IA. 14 escuelas, cientos de cursos y un tutor
+                      virtual 24/7. Desde programación hasta finanzas, nutrición y marketing.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {["Next.js", "TypeScript", "Tailwind CSS", "Firebase"].map((tag) => (
+                      <span key={tag} className="rounded-full border border-neutral-800 bg-neutral-950/60 px-2.5 py-1 text-xs text-neutral-400">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </a>
+          </ScrollAnimation>
+
+          {/* Synapsis */}
+          <ScrollAnimation delay={0.2}>
+            <a href="https://www.synapsis.team" target="_blank" rel="noreferrer" className="block h-full">
+              <Card className="group relative h-full overflow-hidden border-neutral-800 bg-neutral-900/70 transition-all duration-500 hover:border-amber-500/40 hover:shadow-2xl hover:shadow-amber-500/5">
+                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/[0.03] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <CardContent className="relative flex h-full flex-col justify-between space-y-5 p-6">
+                  <div className="flex items-start justify-between">
+                    <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900">
+                      <Image src="/synapsis-logo.png" alt="Synapsis" fill sizes="48px" className="object-contain p-1.5" />
+                    </div>
+                    <div className="rounded-full border border-neutral-800 bg-neutral-900/80 p-2 transition group-hover:border-amber-500/50 group-hover:text-amber-400">
+                      <ArrowUpRight className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-neutral-100">Synapsis</h3>
+                    <p className="mt-2 text-sm text-neutral-400">
+                      Plataforma de colaboración y gestión de equipos de trabajo.
+                      Organización de proyectos, comunicación centralizada y flujos
+                      de trabajo optimizados.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {["React", "Node.js", "MongoDB", "Tailwind CSS"].map((tag) => (
+                      <span key={tag} className="rounded-full border border-neutral-800 bg-neutral-950/60 px-2.5 py-1 text-xs text-neutral-400">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </a>
+          </ScrollAnimation>
+
+          {/* Sandra Lorden */}
+          <ScrollAnimation delay={0.25}>
+            <a href="https://www.sandralorden.com" target="_blank" rel="noreferrer" className="block h-full">
+              <Card className="group relative h-full overflow-hidden border-neutral-800 bg-neutral-900/70 transition-all duration-500 hover:border-rose-500/40 hover:shadow-2xl hover:shadow-rose-500/5">
+                <div className="absolute inset-0 bg-gradient-to-br from-rose-500/[0.03] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
+                <CardContent className="relative flex h-full flex-col justify-between space-y-5 p-6">
+                  <div className="flex items-start justify-between">
+                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900">
+                      <Palette className="h-6 w-6 text-rose-400" />
+                    </div>
+                    <div className="rounded-full border border-neutral-800 bg-neutral-900/80 p-2 transition group-hover:border-rose-500/50 group-hover:text-rose-400">
+                      <ArrowUpRight className="h-4 w-4" />
+                    </div>
+                  </div>
+                  <div>
+                    <h3 className="text-xl font-semibold text-neutral-100">Sandra Lorden</h3>
+                    <p className="mt-2 text-sm text-neutral-400">
+                      Portfolio profesional y web personal diseñada a medida. Diseño limpio,
+                      rendimiento optimizado y animaciones que cuidan cada detalle de la
+                      experiencia de usuario.
+                    </p>
+                  </div>
+                  <div className="flex flex-wrap gap-2">
+                    {["Next.js", "Tailwind CSS", "Framer Motion"].map((tag) => (
+                      <span key={tag} className="rounded-full border border-neutral-800 bg-neutral-950/60 px-2.5 py-1 text-xs text-neutral-400">
+                        {tag}
+                      </span>
+                    ))}
+                  </div>
+                </CardContent>
+              </Card>
+            </a>
+          </ScrollAnimation>
+
+          {/* CTA Card */}
+          <ScrollAnimation delay={0.3}>
+            <Card className="group relative h-full overflow-hidden border-2 border-dashed border-neutral-800 bg-neutral-900/40 transition-all duration-500 hover:border-emerald-500/40 hover:bg-neutral-900/70">
+              <CardContent className="relative flex h-full flex-col items-center justify-center space-y-5 p-6 text-center">
+                <div className="rounded-full bg-emerald-500/10 p-4 transition-transform duration-300 group-hover:scale-110">
+                  <Code className="h-7 w-7 text-emerald-400" />
                 </div>
-                <h3 className="text-xl font-semibold text-neutral-100">Salud</h3>
-                <p className="text-sm text-neutral-400">
-                  Cuerpo fuerte, mente estable, energía real. Entrenamiento de
-                  fuerza, sueño priorizado y nutrición alineada con objetivos.
-                </p>
+                <div>
+                  <h3 className="text-xl font-semibold text-neutral-100">Tu próximo proyecto</h3>
+                  <p className="mt-2 text-sm text-neutral-400">
+                    Desarrollo productos a medida con la misma obsesión que pongo en los míos.
+                    Plataformas, sistemas, portfolios.
+                  </p>
+                </div>
+                <button
+                  onClick={() => scrollToId("contacto")}
+                  className="text-sm font-medium text-emerald-400 transition hover:text-emerald-300"
+                >
+                  Hablemos &rarr;
+                </button>
               </CardContent>
             </Card>
-          </ScrollAnimation>
-
-          <ScrollAnimation delay={0.2}>
-            <Card className="group bg-neutral-900/70 border-neutral-800 transition-all duration-300 hover:border-purple-500/50 hover:bg-neutral-900/90 hover:shadow-lg hover:shadow-purple-500/10">
-              <CardContent className="space-y-4 p-6">
-                <div className="transition-transform duration-300 group-hover:scale-110">
-                  <Activity className="h-6 w-6 text-purple-400" />
-                </div>
-                <h3 className="text-xl font-semibold text-neutral-100">Trabajo profundo</h3>
-                <p className="text-sm text-neutral-400">
-                  Enfoque sin distracciones para avanzar en lo importante: código,
-                  sistemas y decisiones que mueven la aguja.
-              </p>
-            </CardContent>
-          </Card>
           </ScrollAnimation>
         </div>
       </section>
 
       {/* TIMELINE DE EXPERIENCIA */}
-      <section className="mx-auto max-w-6xl px-6 pb-24 overflow-visible">
+      <section id="experiencia" className="mx-auto max-w-6xl px-6 pb-24 overflow-visible">
         <ScrollAnimation>
           <div className="space-y-8 overflow-visible">
             <div>
@@ -484,199 +544,133 @@ export default function Home() {
               </h2>
             </div>
 
-            <div className="relative py-8 overflow-visible">
-              {/* Línea horizontal del timeline */}
-              <div className="absolute top-1/2 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-neutral-800 to-transparent hidden md:block transform -translate-y-1/2" />
-
-              {/* Timeline items */}
-              <div className="flex flex-col md:flex-row md:items-center gap-6 md:gap-8 overflow-x-auto overflow-y-visible pb-8 pt-8 snap-x snap-mandatory md:snap-none">
-                {/* 2019 - ITAcademy */}
-                <ScrollAnimation delay={0.05}>
-                  <div className="flex flex-col items-center min-w-[120px] snap-center">
-                    <div className="relative z-10 flex flex-col items-center group">
-                      <div className="w-5 h-5 rounded-full bg-emerald-500 border-4 border-neutral-950 mb-3 transition-transform group-hover:scale-125" />
-                      <div className="text-center">
-                        <p className="text-xs font-medium text-emerald-400 mb-1">2019</p>
-                        <p className="text-sm font-semibold text-neutral-100">ITAcademy</p>
-                        <p className="text-[0.7rem] text-neutral-500 mt-0.5">(2019–2021)</p>
+            {/* Gantt chart */}
+            <div className="space-y-3 pt-4">
+              {/* ITAcademy */}
+              <ScrollAnimation delay={0}>
+                <div className="flex items-center gap-4 group">
+                  <div className="w-28 shrink-0 text-right md:w-36">
+                    <p className="text-sm font-semibold text-neutral-100">ITAcademy</p>
+                    <p className="text-[0.7rem] text-neutral-500">2019–2021</p>
+                  </div>
+                  <div className="relative h-10 flex-1 rounded-lg bg-neutral-900/50">
+                    <motion.div
+                      initial={{ width: 0 }}
+                      whileInView={{ width: "33.33%" }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.8, delay: 0, ease: "easeOut" }}
+                      className="absolute top-0 h-full rounded-lg bg-emerald-500/20 border border-emerald-500/30 transition-shadow duration-300 group-hover:shadow-lg group-hover:shadow-emerald-500/20"
+                      style={{ left: "0%" }}
+                    >
+                      <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-emerald-500" />
+                      <div className="flex h-full items-center justify-end px-3">
+                        <span className="text-xs font-medium text-emerald-400">2 años</span>
                       </div>
+                    </motion.div>
+                  </div>
+                </div>
+              </ScrollAnimation>
+
+              {/* Terrand */}
+              <ScrollAnimation delay={0.1}>
+                <a href="https://www.terrand.app/" target="_blank" rel="noreferrer" className="block">
+                  <div className="flex items-center gap-4 group">
+                    <div className="w-28 shrink-0 text-right md:w-36">
+                      <p className="text-sm font-semibold text-neutral-100">Terrand</p>
+                      <p className="text-[0.7rem] text-neutral-500">2021–2023</p>
+                    </div>
+                    <div className="relative h-10 flex-1 rounded-lg bg-neutral-900/50">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: "33.33%" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.15, ease: "easeOut" }}
+                        className="absolute top-0 h-full rounded-lg bg-sky-500/20 border border-sky-500/30 transition-shadow duration-300 group-hover:shadow-lg group-hover:shadow-sky-500/20"
+                        style={{ left: "33.33%" }}
+                      >
+                        <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-sky-500" />
+                        <div className="flex h-full items-center justify-between px-3">
+                          <div className="relative h-6 w-6 shrink-0 overflow-hidden rounded">
+                            <Image src="/terrand_logo.jpeg" alt="Terrand" fill sizes="24px" className="object-contain" />
+                          </div>
+                          <span className="text-xs font-medium text-sky-400">2 años</span>
+                        </div>
+                      </motion.div>
                     </div>
                   </div>
-                </ScrollAnimation>
+                </a>
+              </ScrollAnimation>
 
-                {/* 2021 - Terrand */}
-                <ScrollAnimation delay={0.1}>
-                  <a
-                    href="https://www.terrand.app/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex flex-col items-center min-w-[120px] snap-center group cursor-pointer"
-                  >
-                    <div className="relative z-10 flex flex-col items-center">
-                      <div className="relative w-16 h-16 mb-3 overflow-visible">
-                        <div className="relative w-full h-full rounded-lg overflow-hidden border border-neutral-800 bg-neutral-900 transition-transform group-hover:scale-110 group-hover:border-sky-500/50">
-                          <Image
-                            src="/terrand_logo.jpeg"
-                            alt="Terrand Logo"
-                            fill
-                            sizes="64px"
-                            className="object-contain p-2"
-                          />
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-xs font-medium text-sky-400 mb-1 group-hover:text-sky-300">2021</p>
-                        <p className="text-sm font-semibold text-neutral-100 group-hover:text-neutral-50">Terrand</p>
-                        <p className="text-[0.7rem] text-neutral-500 mt-0.5">(2021–2023)</p>
-                      </div>
+              {/* YPF */}
+              <ScrollAnimation delay={0.2}>
+                <a href="https://www.ypf.com/" target="_blank" rel="noreferrer" className="block">
+                  <div className="flex items-center gap-4 group">
+                    <div className="w-28 shrink-0 text-right md:w-36">
+                      <p className="text-sm font-semibold text-neutral-100">YPF</p>
+                      <p className="text-[0.7rem] text-neutral-500">2023–2024</p>
                     </div>
-                  </a>
-                </ScrollAnimation>
+                    <div className="relative h-10 flex-1 rounded-lg bg-neutral-900/50">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: "16.67%" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+                        className="absolute top-0 h-full rounded-lg bg-purple-500/20 border border-purple-500/30 transition-shadow duration-300 group-hover:shadow-lg group-hover:shadow-purple-500/20"
+                        style={{ left: "66.67%" }}
+                      >
+                        <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-purple-500" />
+                        <div className="flex h-full items-center justify-between px-3">
+                          <div className="relative h-6 w-6 shrink-0 overflow-hidden rounded">
+                            <Image src="/ypf-logo.jpeg" alt="YPF" fill sizes="24px" className="object-contain" />
+                          </div>
+                          <span className="text-xs font-medium text-purple-400">1 año</span>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </div>
+                </a>
+              </ScrollAnimation>
 
-                {/* 2022 - United Airlines */}
-                <ScrollAnimation delay={0.15}>
-                  <a
-                    href="https://www.united.com/es/us/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex flex-col items-center min-w-[120px] snap-center group cursor-pointer"
-                  >
-                    <div className="relative z-10 flex flex-col items-center">
-                      <div className="relative w-16 h-16 mb-3 overflow-visible">
-                        <div className="relative w-full h-full rounded-lg overflow-hidden border border-neutral-800 bg-neutral-900 transition-transform group-hover:scale-110 group-hover:border-blue-500/50">
-                          <Image
-                            src="/united-logo.jpeg"
-                            alt="United Airlines Logo"
-                            fill
-                            sizes="64px"
-                            className="object-contain p-2"
-                          />
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-xs font-medium text-blue-400 mb-1 group-hover:text-blue-300">2022</p>
-                        <p className="text-sm font-semibold text-neutral-100 group-hover:text-neutral-50">United Airlines</p>
-                        <p className="text-[0.7rem] text-neutral-500 mt-0.5">(2022–2025)</p>
-                      </div>
+              {/* United Airlines */}
+              <ScrollAnimation delay={0.3}>
+                <a href="https://www.united.com/es/us/" target="_blank" rel="noreferrer" className="block">
+                  <div className="flex items-center gap-4 group">
+                    <div className="w-28 shrink-0 text-right md:w-36">
+                      <p className="text-sm font-semibold text-neutral-100">United Airlines</p>
+                      <p className="text-[0.7rem] text-neutral-500">2022–2025</p>
                     </div>
-                  </a>
-                </ScrollAnimation>
+                    <div className="relative h-10 flex-1 rounded-lg bg-neutral-900/50">
+                      <motion.div
+                        initial={{ width: 0 }}
+                        whileInView={{ width: "50%" }}
+                        viewport={{ once: true }}
+                        transition={{ duration: 0.8, delay: 0.45, ease: "easeOut" }}
+                        className="absolute top-0 h-full rounded-lg bg-blue-500/20 border border-blue-500/30 transition-shadow duration-300 group-hover:shadow-lg group-hover:shadow-blue-500/20"
+                        style={{ left: "50%" }}
+                      >
+                        <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-blue-500" />
+                        <div className="flex h-full items-center justify-between px-3">
+                          <div className="relative h-6 w-6 shrink-0 overflow-hidden rounded">
+                            <Image src="/united-logo.jpeg" alt="United Airlines" fill sizes="24px" className="object-contain" />
+                          </div>
+                          <span className="text-xs font-medium text-blue-400">3 años</span>
+                        </div>
+                      </motion.div>
+                    </div>
+                  </div>
+                </a>
+              </ScrollAnimation>
 
-                {/* 2023 - YPF */}
-                <ScrollAnimation delay={0.2}>
-                  <a
-                    href="https://www.ypf.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex flex-col items-center min-w-[120px] snap-center group cursor-pointer"
-                  >
-                    <div className="relative z-10 flex flex-col items-center">
-                      <div className="relative w-16 h-16 mb-3 overflow-visible">
-                        <div className="relative w-full h-full rounded-lg overflow-hidden border border-neutral-800 bg-neutral-900 transition-transform group-hover:scale-110 group-hover:border-purple-500/50">
-                          <Image
-                            src="/ypf-logo.jpeg"
-                            alt="YPF Logo"
-                            fill
-                            sizes="64px"
-                            className="object-contain p-2"
-                          />
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-xs font-medium text-purple-400 mb-1 group-hover:text-purple-300">2023</p>
-                        <p className="text-sm font-semibold text-neutral-100 group-hover:text-neutral-50">YPF</p>
-                        <p className="text-[0.7rem] text-neutral-500 mt-0.5">(2023–2024)</p>
-                      </div>
-                    </div>
-                  </a>
-                </ScrollAnimation>
-
-                {/* 2024 - WebFinanceLab */}
-                <ScrollAnimation delay={0.25}>
-                  <a
-                    href="https://www.webfinancelab.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex flex-col items-center min-w-[120px] snap-center group cursor-pointer"
-                  >
-                    <div className="relative z-10 flex flex-col items-center">
-                      <div className="relative w-16 h-16 mb-3 overflow-visible">
-                        <div className="relative w-full h-full rounded-lg overflow-hidden border border-neutral-800 bg-neutral-900 transition-transform group-hover:scale-110 group-hover:border-emerald-500/50">
-                          <Image
-                            src="/webfinancelab-logo.png"
-                            alt="WebFinanceLab Logo"
-                            fill
-                            sizes="64px"
-                            className="object-contain p-2"
-                          />
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-xs font-medium text-emerald-400 mb-1 group-hover:text-emerald-300">2024</p>
-                        <p className="text-sm font-semibold text-neutral-100 group-hover:text-neutral-50">WebFinanceLab</p>
-                        <p className="text-[0.7rem] text-neutral-500 mt-0.5">(desde 2024)</p>
-                      </div>
-                    </div>
-                  </a>
-                </ScrollAnimation>
-
-                {/* 2025 - FitPlan AI */}
-                <ScrollAnimation delay={0.3}>
-                  <a
-                    href="https://www.fitplan-ai.com/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex flex-col items-center min-w-[120px] snap-center group cursor-pointer"
-                  >
-                    <div className="relative z-10 flex flex-col items-center">
-                      <div className="relative w-16 h-16 mb-3 overflow-visible">
-                        <div className="relative w-full h-full rounded-lg overflow-hidden border border-neutral-800 bg-neutral-900 transition-transform group-hover:scale-110 group-hover:border-sky-500/50">
-                          <Image
-                            src="/fitplan-ai-logo.png"
-                            alt="FitPlan AI Logo"
-                            fill
-                            sizes="64px"
-                            className="object-contain p-2"
-                          />
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-xs font-medium text-sky-400 mb-1 group-hover:text-sky-300">2025</p>
-                        <p className="text-sm font-semibold text-neutral-100 group-hover:text-neutral-50">FitPlan AI</p>
-                        <p className="text-[0.7rem] text-neutral-500 mt-0.5">(desde 2025)</p>
-                      </div>
-                    </div>
-                  </a>
-                </ScrollAnimation>
-
-                {/* 2025 - Synapsis */}
-                <ScrollAnimation delay={0.35}>
-                  <a
-                    href="https://www.synapsis.team/"
-                    target="_blank"
-                    rel="noreferrer"
-                    className="flex flex-col items-center min-w-[120px] snap-center group cursor-pointer"
-                  >
-                    <div className="relative z-10 flex flex-col items-center">
-                      <div className="relative w-16 h-16 mb-3 overflow-visible">
-                        <div className="relative w-full h-full rounded-lg overflow-hidden border border-neutral-800 bg-neutral-900 transition-transform group-hover:scale-110 group-hover:border-sky-500/50">
-                          <Image
-                            src="/synapsis-logo.png"
-                            alt="Synapsis Logo"
-                            fill
-                            sizes="64px"
-                            className="object-contain p-2"
-                          />
-                        </div>
-                      </div>
-                      <div className="text-center">
-                        <p className="text-xs font-medium text-sky-400 mb-1 group-hover:text-sky-300">2025</p>
-                        <p className="text-sm font-semibold text-neutral-100 group-hover:text-neutral-50">Synapsis</p>
-                        <p className="text-[0.7rem] text-neutral-500 mt-0.5">(desde 2025)</p>
-                      </div>
-                    </div>
-                  </a>
-                </ScrollAnimation>
+              {/* Year markers */}
+              <div className="flex items-center gap-4 pt-2">
+                <div className="w-28 shrink-0 md:w-36" />
+                <div className="relative flex-1">
+                  <div className="flex justify-between text-[0.65rem] text-neutral-600">
+                    {[2019, 2020, 2021, 2022, 2023, 2024, 2025].map((year) => (
+                      <span key={year}>{year}</span>
+                    ))}
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -684,7 +678,7 @@ export default function Home() {
       </section>
 
       {/* STACK TECNOLÓGICO */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      <section id="stack" className="mx-auto max-w-6xl px-6 pb-24">
         <ScrollAnimation>
           <div className="space-y-6">
             <div>
@@ -694,6 +688,9 @@ export default function Home() {
               <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
                 Tecnologías que uso día a día.
               </h2>
+              <p className="mt-3 max-w-2xl text-sm text-neutral-400">
+                Las herramientas con las que construyo productos sólidos y escalables.
+              </p>
             </div>
             <div className="flex flex-wrap gap-3">
               {["HTML5", "CSS3", "JavaScript", "React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Node.js", "PostgreSQL", "Git", "AI", "Figma", "Firebase", "AntDesign", "Jira", "Teams", "Slack", "Vercel", "MongoDB", "Docker"].map((tech, idx) => (
@@ -714,680 +711,71 @@ export default function Home() {
         </ScrollAnimation>
       </section>
 
-      {/* APPS PATROCINADAS */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
+      {/* LO QUE CONSTRUYO */}
+      <section className="mx-auto max-w-6xl px-6 pb-24 space-y-10">
         <ScrollAnimation>
-          <div className="space-y-6">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500">
-                Apps que uso
-              </p>
-              <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
-                Herramientas que sostienen mi día a día.
-              </h2>
-              <p className="mt-3 text-sm text-neutral-400">
-                Estas son las apps que uso para entrenar, comer bien y controlar mis finanzas.
-              </p>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2">
-              <ScrollAnimation delay={0}>
-                <Card className="group bg-neutral-900/70 border-neutral-800 transition-all duration-300 hover:border-emerald-500/50 hover:bg-neutral-900/90 hover:shadow-lg hover:shadow-emerald-500/10">
-                  <CardContent className="space-y-4 p-6">
-                    <div className="relative h-16 w-16 overflow-hidden rounded-xl">
-                      <Image
-                        src="/webfinancelab-logo.png"
-                        alt="WebFinanceLab Logo"
-                        fill
-                        sizes="64px"
-                        className="object-contain"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-neutral-100">WebFinanceLab</h3>
-                      <p className="mt-1 text-sm text-neutral-400">
-                        Control diario de gastos y ganancias. Registro cada movimiento para mantener claridad financiera.
-                      </p>
-                    </div>
-                    <a
-                      href="https://www.webfinancelab.com"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 text-xs text-emerald-400 hover:text-emerald-300"
-                    >
-                      Visitar app
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                  </CardContent>
-                </Card>
-              </ScrollAnimation>
-
-              <ScrollAnimation delay={0.1}>
-                <Card className="group bg-neutral-900/70 border-neutral-800 transition-all duration-300 hover:border-sky-500/50 hover:bg-neutral-900/90 hover:shadow-lg hover:shadow-sky-500/10">
-                  <CardContent className="space-y-4 p-6">
-                    <div className="relative h-16 w-16 overflow-hidden rounded-xl">
-                      <Image
-                        src="/fitplan-ai-logo.png"
-                        alt="FitPlan AI Logo"
-                        fill
-                        sizes="64px"
-                        className="object-contain"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-semibold text-neutral-100">FitPlan AI</h3>
-                      <p className="mt-1 text-sm text-neutral-400">
-                        Planificación de entrenamientos y nutrición con IA. Todo mi entrenamiento y comida estructurados aquí.
-                      </p>
-                    </div>
-                    <a
-                      href="https://www.fitplan-ai.com"
-                      target="_blank"
-                      rel="noreferrer"
-                      className="inline-flex items-center gap-2 text-xs text-sky-400 hover:text-sky-300"
-                    >
-                      Visitar app
-                      <ExternalLink className="h-3 w-3" />
-                    </a>
-                  </CardContent>
-                </Card>
-              </ScrollAnimation>
-            </div>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">
+              Servicios
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
+              Lo que puedo construir para ti.
+            </h2>
+            <p className="mt-3 max-w-2xl text-sm text-neutral-400">
+              Servicios de programación, desarrollo web y consultoría informática para empresas y particulares.
+            </p>
           </div>
         </ScrollAnimation>
-      </section>
 
-      {/* EXPERIENCIA / TECH */}
-      <section
-        id="experiencia"
-        className="mx-auto max-w-6xl px-6 pb-24 space-y-10"
-      >
-        <ScrollAnimation>
-          <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-        <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500">
-                Profesional
-              </p>
-              <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
-                Desarrollo, producto y estilo de vida.
-              </h2>
-            </div>
-            <p className="max-w-xl text-sm text-neutral-400">
-              Uniéndose la parte técnica con la parte humana: rendimiento en
-              código, rendimiento en la vida diaria.
-          </p>
-        </div>
-        </ScrollAnimation>
-
-        <div className="grid gap-6 md:grid-cols-2">
+        <div className="grid gap-6 md:grid-cols-3">
           <ScrollAnimation delay={0}>
-            <Card className="group bg-neutral-900/70 border-neutral-800 transition-all duration-300 hover:border-neutral-700 hover:bg-neutral-900/90 hover:shadow-xl">
+            <Card className="group h-full bg-neutral-900/70 border-neutral-800 transition-all duration-300 hover:border-emerald-500/50 hover:bg-neutral-900/90 hover:shadow-lg hover:shadow-emerald-500/10">
               <CardContent className="space-y-4 p-6">
-                <div className="flex items-center gap-3">
-                  <Code className="h-5 w-5 text-emerald-400" />
-                  <h3 className="text-xl font-semibold text-neutral-100">Base técnica</h3>
+                <div className="rounded-lg bg-emerald-500/10 p-3 w-fit transition-transform duration-300 group-hover:scale-110">
+                  <Terminal className="h-6 w-6 text-emerald-400" />
                 </div>
+                <h3 className="text-xl font-semibold text-neutral-100">Plataformas & SaaS</h3>
                 <p className="text-sm text-neutral-400">
-                  React · Next.js · TypeScript · diseño de sistemas de UI ·
-                  performance en interfaces y experiencias consistentes.
+                  Productos digitales completos desde la arquitectura hasta el deploy.
+                  Autenticación, bases de datos, APIs, panel de control y lógica de negocio.
                 </p>
-                <ul className="space-y-2 text-sm text-neutral-400">
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400/50" />
-                    <span>Diseño y construcción de componentes reutilizables.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400/50" />
-                    <span>Integración con APIs, SSR/SSG y buenas prácticas en Next.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-emerald-400/50" />
-                    <span>Atención obsesiva al detalle visual y microinteracciones.</span>
-                  </li>
-                </ul>
               </CardContent>
             </Card>
           </ScrollAnimation>
 
           <ScrollAnimation delay={0.1}>
-            <Card className="group bg-neutral-900/70 border-neutral-800 transition-all duration-300 hover:border-neutral-700 hover:bg-neutral-900/90 hover:shadow-xl">
+            <Card className="group h-full bg-neutral-900/70 border-neutral-800 transition-all duration-300 hover:border-sky-500/50 hover:bg-neutral-900/90 hover:shadow-lg hover:shadow-sky-500/10">
               <CardContent className="space-y-4 p-6">
-                <div className="flex items-center gap-3">
-                  <TrendingUp className="h-5 w-5 text-sky-400" />
-                  <h3 className="text-xl font-semibold text-neutral-100">Cómo puedo aportar</h3>
+                <div className="rounded-lg bg-sky-500/10 p-3 w-fit transition-transform duration-300 group-hover:scale-110">
+                  <Layers className="h-6 w-6 text-sky-400" />
                 </div>
+                <h3 className="text-xl font-semibold text-neutral-100">Sistemas Web</h3>
                 <p className="text-sm text-neutral-400">
-                  Trabajo bien con marcas y personas que valoran el proceso por
-                  encima del hype y que disfrutan hacer las cosas con cariño. Puedo aportar:
+                  Aplicaciones a medida con frontend moderno y backend robusto.
+                  Integración con servicios externos, dashboards y lógica compleja.
                 </p>
-                <ul className="space-y-2 text-sm text-neutral-400">
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-400/50" />
-                    <span>Aterrizar ideas en interfaces claras y accionables.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-400/50" />
-                    <span>Bajar hábitos y estructura a productos digitales.</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-sky-400/50" />
-                    <span>Colaborar en contenido sobre disciplina, entrenamiento y foco.</span>
-                  </li>
-                </ul>
+              </CardContent>
+            </Card>
+          </ScrollAnimation>
+
+          <ScrollAnimation delay={0.2}>
+            <Card className="group h-full bg-neutral-900/70 border-neutral-800 transition-all duration-300 hover:border-purple-500/50 hover:bg-neutral-900/90 hover:shadow-lg hover:shadow-purple-500/10">
+              <CardContent className="space-y-4 p-6">
+                <div className="rounded-lg bg-purple-500/10 p-3 w-fit transition-transform duration-300 group-hover:scale-110">
+                  <Palette className="h-6 w-6 text-purple-400" />
+                </div>
+                <h3 className="text-xl font-semibold text-neutral-100">Portfolios & Webs</h3>
+                <p className="text-sm text-neutral-400">
+                  Sitios web profesionales con diseño a medida, performance optimizada,
+                  animaciones fluidas y atención obsesiva al detalle visual.
+                </p>
               </CardContent>
             </Card>
           </ScrollAnimation>
         </div>
       </section>
 
-      {/* PORTFOLIO SOCIAL (TikTok / Instagram) */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <ScrollAnimation>
-          <div className="space-y-6">
-            <div className="flex flex-col gap-3 md:flex-row md:items-end md:justify-between">
-              <div>
-                <p className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500">
-                  Contenido
-                </p>
-                <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
-                  Clips de TikTok e Instagram.
-                </h2>
-              </div>
-              <p className="max-w-md text-sm text-neutral-400">
-                Fragmentos de entrenos, rutinas, comida real y procesos de trabajo.
-                Así es como llevo la disciplina y los hábitos a la vida diaria.
-              </p>
-            </div>
-
-            <div className="relative -mx-6">
-              <div className="pointer-events-none absolute inset-y-0 left-0 w-10 bg-gradient-to-r from-neutral-950 to-transparent" />
-              <div className="pointer-events-none absolute inset-y-0 right-0 w-10 bg-gradient-to-l from-neutral-950 to-transparent" />
-
-              <div className="flex gap-4 overflow-x-auto px-6 pb-2 pt-4 scroll-smooth snap-x snap-mandatory">
-                {[
-                  {
-                    platform: "TikTok",
-                    handle: "@lucasezequielriera",
-                    title: "Bloque de trabajo profundo + gym",
-                    tone: "Entreno, código y cierre de día sin ruido.",
-                    color: "from-emerald-500/30 via-emerald-400/10 to-transparent",
-                  },
-                  {
-                    platform: "Instagram",
-                    handle: "@lucasezequielriera",
-                    title: "Día completo de comidas",
-                    tone: "Comida simple, fuerte y coherente con el entrenamiento.",
-                    color: "from-sky-500/30 via-sky-400/10 to-transparent",
-                  },
-                  {
-                    platform: "TikTok",
-                    handle: "@lucasezequielriera",
-                    title: "Rutina de mañana",
-                    tone: "Hidratación, journaling y movimiento antes del móvil.",
-                    color: "from-purple-500/30 via-purple-400/10 to-transparent",
-                  },
-                  {
-                    platform: "Instagram",
-                    handle: "@lucasezequielriera",
-                    title: "Collab en café healthy",
-                    tone: "Trabajo profundo fuera de casa, café y comida real.",
-                    color: "from-amber-500/30 via-amber-400/10 to-transparent",
-                  },
-                  {
-                    platform: "TikTok",
-                    handle: "@lucasezequielriera",
-                    title: "Leg day sin música alta",
-                    tone: "Piernas, respiración y foco interno. Sin distracciones externas.",
-                    color: "from-rose-500/30 via-rose-400/10 to-transparent",
-                  },
-                  {
-                    platform: "Instagram",
-                    handle: "@lucasezequielriera",
-                    title: "Setup de trabajo profundo",
-                    tone: "Escritorio limpio, bloque en calendario y móvil en otra habitación.",
-                    color: "from-teal-500/30 via-teal-400/10 to-transparent",
-                  },
-                  {
-                    platform: "TikTok",
-                    handle: "@lucasezequielriera",
-                    title: "Grocery haul disciplinado",
-                    tone: "Qué compro en el súper para entrenar fuerte y pensar claro.",
-                    color: "from-lime-500/30 via-lime-400/10 to-transparent",
-                  },
-                  {
-                    platform: "Instagram",
-                    handle: "@lucasezequielriera",
-                    title: "Un día off bien aprovechado",
-                    tone: "Descanso activo, paseo, lectura y cero culpa.",
-                    color: "from-indigo-500/30 via-indigo-400/10 to-transparent",
-                  },
-                  {
-                    platform: "TikTok",
-                    handle: "@lucasezequielriera",
-                    title: "Mini vlog: mañana completa",
-                    tone: "Despertar, café, journaling, entreno y primer bloque de código.",
-                    color: "from-orange-500/30 via-orange-400/10 to-transparent",
-                  },
-                ].map((clip, index) => (
-                  <motion.article
-                    key={clip.title}
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.1 * index, duration: 0.4 }}
-                    className="snap-center"
-                  >
-                    <div className="group flex min-w-[240px] max-w-[260px] flex-col gap-3 rounded-2xl border border-neutral-800 bg-neutral-900/70 p-3 shadow-sm transition-transform duration-300 hover:-translate-y-1 hover:shadow-xl hover:shadow-neutral-900/80 md:min-w-[280px] md:max-w-[300px]">
-                      <div className="relative overflow-hidden rounded-xl bg-neutral-900">
-                        <div
-                          className={`absolute inset-0 bg-gradient-to-br ${clip.color} opacity-80 transition-opacity duration-500 group-hover:opacity-100`}
-                        />
-                        <div className="relative flex aspect-[9/16] items-end justify-between p-3">
-                          <div className="space-y-1 text-xs">
-                            <span className="inline-flex items-center rounded-full bg-black/60 px-2 py-0.5 text-[0.65rem] font-medium uppercase tracking-[0.16em] text-neutral-200">
-                              {clip.platform}
-                            </span>
-                            <p className="text-[0.7rem] text-neutral-200">
-                              {clip.handle}
-                            </p>
-                          </div>
-                          <span className="rounded-full bg-black/50 px-2 py-1 text-[0.7rem] text-neutral-200">
-                            9:16
-                          </span>
-                        </div>
-                      </div>
-                      <div className="space-y-1">
-                        <p className="text-sm font-medium text-neutral-100">
-                          {clip.title}
-                        </p>
-                        <p className="text-xs text-neutral-400">
-                          {clip.tone}
-                        </p>
-                      </div>
-                    </div>
-                  </motion.article>
-                ))}
-              </div>
-            </div>
-          </div>
-        </ScrollAnimation>
-      </section>
-
-      {/* PROYECTOS DESTACADOS */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <ScrollAnimation>
-          <div className="space-y-10">
-            <div>
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500">
-                Proyectos
-              </p>
-              <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
-                Trabajos que reflejan mi enfoque.
-              </h2>
-              <p className="mt-3 text-sm text-neutral-400">
-                Cada proyecto es una oportunidad de aplicar disciplina, claridad y atención al detalle,
-                pero también una extensión directa de mis hábitos: entrenar, comer consciente y respetar el cuerpo.
-              </p>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              <ScrollAnimation delay={0}>
-                <Card className="group relative overflow-hidden bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border-neutral-800 transition-all duration-500 hover:border-emerald-500/50 hover:shadow-2xl hover:shadow-emerald-500/10">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  <CardContent className="relative space-y-4 p-6">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-2">
-                        <Zap className="h-5 w-5 text-emerald-400" />
-                        <h3 className="text-xl font-semibold text-neutral-100">Sistema de diseño</h3>
-                      </div>
-                      <ExternalLink className="h-4 w-4 text-neutral-500 transition-colors group-hover:text-emerald-400" />
-                    </div>
-                    <p className="text-sm text-neutral-400">
-                      Biblioteca de componentes reutilizables construida con React y TypeScript.
-                      Enfoque en consistencia, accesibilidad y performance.
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {["React", "TypeScript", "Tailwind"].map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full border border-neutral-800 bg-neutral-950/50 px-2.5 py-1 text-xs text-neutral-400"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </ScrollAnimation>
-
-              <ScrollAnimation delay={0.1}>
-                <Card className="group relative overflow-hidden bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border-neutral-800 transition-all duration-500 hover:border-sky-500/50 hover:shadow-2xl hover:shadow-sky-500/10">
-                  <div className="absolute inset-0 bg-gradient-to-br from-sky-500/0 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  <CardContent className="relative space-y-4 p-6">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-2">
-                        <Activity className="h-5 w-5 text-sky-400" />
-                        <h3 className="text-xl font-semibold text-neutral-100">Plataforma de productividad</h3>
-                      </div>
-                      <ExternalLink className="h-4 w-4 text-neutral-500 transition-colors group-hover:text-sky-400" />
-                    </div>
-                    <p className="text-sm text-neutral-400">
-                      Aplicación web para gestión de hábitos y seguimiento de objetivos.
-                      Integración con APIs, autenticación y dashboard en tiempo real.
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {["Next.js", "PostgreSQL", "Auth"].map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full border border-neutral-800 bg-neutral-950/50 px-2.5 py-1 text-xs text-neutral-400"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </ScrollAnimation>
-
-              <ScrollAnimation delay={0.15}>
-                <Card className="group relative overflow-hidden bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border-neutral-800 transition-all duration-500 hover:border-emerald-400/50 hover:shadow-2xl hover:shadow-emerald-400/10">
-                  <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/0 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  <CardContent className="relative space-y-4 p-6">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-2">
-                        <Dumbbell className="h-5 w-5 text-emerald-300" />
-                        <h3 className="text-xl font-semibold text-neutral-100">
-                          Collabs con espacios healthy
-                        </h3>
-                      </div>
-                    </div>
-                    <p className="text-sm text-neutral-400">
-                      Colaboraciones con gimnasios, cafés saludables y marcas alineadas a un estilo de
-                      vida ordenado: entrenar, comer bien y cuidar la cabeza. Proyectos pensados desde
-                      la disciplina, pero también desde el disfrute, el detalle y las ganas reales de sumar.
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {["Healthy lifestyle", "Contenido", "Eventos", "Marcas conscientes"].map(
-                        (tag) => (
-                          <span
-                            key={tag}
-                            className="rounded-full border border-neutral-800 bg-neutral-950/50 px-2.5 py-1 text-xs text-neutral-400"
-                          >
-                            {tag}
-                          </span>
-                        )
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              </ScrollAnimation>
-
-              <ScrollAnimation delay={0.2}>
-                <Card className="group relative overflow-hidden bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border-neutral-800 transition-all duration-500 hover:border-amber-500/50 hover:shadow-2xl hover:shadow-amber-500/10">
-                  <div className="absolute inset-0 bg-gradient-to-br from-amber-500/0 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  <CardContent className="relative space-y-4 p-6">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-2">
-                        <MapPin className="h-5 w-5 text-amber-400" />
-                        <h3 className="text-xl font-semibold text-neutral-100">Fitness on the road</h3>
-                      </div>
-                      <ExternalLink className="h-4 w-4 text-neutral-500 transition-colors group-hover:text-amber-400" />
-                    </div>
-                    <p className="text-sm text-neutral-400">
-                      Documentación de entrenamientos y rutinas mientras viajo por el mundo. Contenido sobre
-                      cómo mantener disciplina, entrenar en cualquier lugar y comer bien sin importar el país.
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {["Viajes", "Fitness", "Contenido", "16 países"].map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full border border-neutral-800 bg-neutral-950/50 px-2.5 py-1 text-xs text-neutral-400"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </ScrollAnimation>
-
-              <ScrollAnimation delay={0.25}>
-                <Card className="group relative overflow-hidden bg-gradient-to-br from-neutral-900/90 to-neutral-950/90 border-neutral-800 transition-all duration-500 hover:border-purple-500/50 hover:shadow-2xl hover:shadow-purple-500/10">
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/0 via-transparent to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                  <CardContent className="relative space-y-4 p-6">
-                    <div className="flex items-start justify-between">
-                      <div className="flex items-center gap-2">
-                        <Video className="h-5 w-5 text-purple-400" />
-                        <h3 className="text-xl font-semibold text-neutral-100">Plataforma de contenido fitness</h3>
-                      </div>
-                      <ExternalLink className="h-4 w-4 text-neutral-500 transition-colors group-hover:text-purple-400" />
-                    </div>
-                    <p className="text-sm text-neutral-400">
-                      Aplicación MERN para crear, compartir y seguir rutinas de entrenamiento. Integración
-                      con contenido de redes sociales, tracking de progreso y comunidad de personas alineadas.
-                    </p>
-                    <div className="flex flex-wrap gap-2">
-                      {["MongoDB", "Express", "React", "Node.js"].map((tag) => (
-                        <span
-                          key={tag}
-                          className="rounded-full border border-neutral-800 bg-neutral-950/50 px-2.5 py-1 text-xs text-neutral-400"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
-                  </CardContent>
-                </Card>
-              </ScrollAnimation>
-            </div>
-          </div>
-        </ScrollAnimation>
-      </section>
-
-      {/* RUTINA / ESTRUCTURA DIARIA */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <ScrollAnimation>
-          <div className="grid gap-8 md:grid-cols-[minmax(0,1.2fr)_minmax(0,1fr)]">
-          <div className="space-y-4">
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-neutral-500">
-              Rutina
-            </p>
-            <h2 className="text-3xl font-semibold md:text-4xl">
-              Una vida diseñada, no improvisada.
-            </h2>
-            <p className="text-sm text-neutral-400">
-              No se trata de ser perfecto todos los días, sino de tener un
-              sistema que te devuelva al camino cuando te caes. Estas son algunas
-              piezas fijas de mi semana.
-            </p>
-            <div className="mt-4 space-y-3 text-sm text-neutral-300">
-              <p>· 4–5 sesiones de fuerza por semana (planificadas con FitPlan AI).</p>
-              <p>· Bloques de trabajo profundo protegidos del calendario.</p>
-              <p>· Revisión semanal de objetivos personales y profesionales.</p>
-              <p>· Control diario de gastos y ganancias con{" "}
-                <a
-                  href="https://www.webfinancelab.com"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-emerald-400 hover:text-emerald-300 underline underline-offset-2"
-                >
-                  WebFinanceLab
-                </a>
-                .
-              </p>
-            </div>
-          </div>
-
-          <Card className="bg-neutral-900/70 border-neutral-800">
-            <CardContent className="space-y-3 p-6">
-              <div className="flex items-center justify-between text-xs text-neutral-400">
-                <span>Mapa rápido de un día</span>
-                <Globe2 className="h-4 w-4" />
-              </div>
-              <div className="space-y-3 text-sm text-neutral-300">
-                <div className="flex gap-3">
-                  <span className="mt-0.5 w-12 shrink-0 text-xs text-neutral-500">
-                    06:30
-                  </span>
-                  <p>Despertar, hidratación y journaling corto.</p>
-                </div>
-                <div className="flex gap-3">
-                  <span className="mt-0.5 w-12 shrink-0 text-xs text-neutral-500">
-                    07:30
-                  </span>
-                  <p>Entrenamiento de fuerza y movilidad (seguimiento en FitPlan AI).</p>
-                </div>
-                <div className="flex gap-3">
-                  <span className="mt-0.5 w-12 shrink-0 text-xs text-neutral-500">
-                    10:00
-                  </span>
-                  <p>Bloque de trabajo profundo (código / producto).</p>
-                </div>
-                <div className="flex gap-3">
-                  <span className="mt-0.5 w-12 shrink-0 text-xs text-neutral-500">
-                    18:00
-                  </span>
-                  <p>Cierre del día, registro de gastos en WebFinanceLab, reflexión y planificación del siguiente.</p>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-          </div>
-        </ScrollAnimation>
-      </section>
-
-      {/* POR QUÉ COLABORAR CONMIGO */}
-      <section className="mx-auto max-w-6xl px-6 pb-24">
-        <ScrollAnimation>
-          <div className="space-y-10">
-            <div className="text-center">
-              <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">
-                Colaboraciones
-              </p>
-              <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
-                Por qué trabajar conmigo.
-              </h2>
-              <p className="mt-3 text-sm text-neutral-400 max-w-2xl mx-auto">
-                No solo creo contenido: construyo relaciones auténticas y resultados medibles.
-              </p>
-            </div>
-
-            <div className="grid gap-6 md:grid-cols-3">
-              <ScrollAnimation delay={0}>
-                <Card className="group bg-gradient-to-br from-neutral-900/70 to-neutral-950/70 border-neutral-800 transition-all duration-300 hover:border-emerald-500/50 hover:bg-gradient-to-br hover:from-emerald-950/20 hover:to-neutral-900/70 hover:shadow-xl hover:shadow-emerald-500/10">
-                  <CardContent className="space-y-4 p-6">
-                    <div className="flex items-center gap-3">
-                      <div className="rounded-lg bg-emerald-500/20 p-2">
-                        <Users className="h-5 w-5 text-emerald-400" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-neutral-100">Audiencia comprometida</h3>
-                    </div>
-                    <p className="text-sm text-neutral-400">
-                      Comunidad que valora disciplina, salud y contenido auténtico. Engagement real,
-                      no números vacíos.
-                    </p>
-                    <div className="flex items-center gap-4 pt-2 text-xs text-neutral-500">
-                      <span className="flex items-center gap-1">
-                        <BarChart3 className="h-3.5 w-3.5" />
-                        Alto engagement
-                      </span>
-                    </div>
-                  </CardContent>
-                </Card>
-              </ScrollAnimation>
-
-              <ScrollAnimation delay={0.1}>
-                <Card className="group bg-gradient-to-br from-neutral-900/70 to-neutral-950/70 border-neutral-800 transition-all duration-300 hover:border-sky-500/50 hover:bg-gradient-to-br hover:from-sky-950/20 hover:to-neutral-900/70 hover:shadow-xl hover:shadow-sky-500/10">
-                  <CardContent className="space-y-4 p-6">
-                    <div className="flex items-center gap-3">
-                      <div className="rounded-lg bg-sky-500/20 p-2">
-                        <CheckCircle2 className="h-5 w-5 text-sky-400" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-neutral-100">Contenido de calidad</h3>
-                    </div>
-                    <p className="text-sm text-neutral-400">
-                      Producción profesional, storytelling coherente y atención al detalle. Cada
-                      colaboración es pensada, no improvisada.
-                    </p>
-                    <div className="flex items-center gap-4 pt-2 text-xs text-neutral-500">
-                      <span className="flex items-center gap-1">
-                        <Video className="h-3.5 w-3.5" />
-                        Producción propia
-                      </span>
-                    </div>
-                  </CardContent>
-                </Card>
-              </ScrollAnimation>
-
-              <ScrollAnimation delay={0.2}>
-                <Card className="group bg-gradient-to-br from-neutral-900/70 to-neutral-950/70 border-neutral-800 transition-all duration-300 hover:border-purple-500/50 hover:bg-gradient-to-br hover:from-purple-950/20 hover:to-neutral-900/70 hover:shadow-xl hover:shadow-purple-500/10">
-                  <CardContent className="space-y-4 p-6">
-                    <div className="flex items-center gap-3">
-                      <div className="rounded-lg bg-purple-500/20 p-2">
-                        <TrendingUp className="h-5 w-5 text-purple-400" />
-                      </div>
-                      <h3 className="text-lg font-semibold text-neutral-100">Alcance internacional</h3>
-                    </div>
-                    <p className="text-sm text-neutral-400">
-                      Experiencia en 16 países. Contenido que resuena en diferentes culturas y
-                      mercados. Actualmente en España.
-                    </p>
-                    <div className="flex items-center gap-4 pt-2 text-xs text-neutral-500">
-                      <span className="flex items-center gap-1">
-                        <Globe2 className="h-3.5 w-3.5" />
-                        16 países
-                      </span>
-                    </div>
-                  </CardContent>
-                </Card>
-              </ScrollAnimation>
-            </div>
-
-            <ScrollAnimation delay={0.3}>
-              <Card className="border-2 border-emerald-500/30 bg-gradient-to-br from-emerald-950/30 to-neutral-900/90">
-                <CardContent className="space-y-6 p-8 text-center">
-                  <div className="mx-auto flex h-16 w-16 items-center justify-center rounded-full bg-emerald-500/20">
-                    <Zap className="h-8 w-8 text-emerald-400" />
-                  </div>
-                  <div className="space-y-2">
-                    <h3 className="text-2xl font-semibold text-neutral-100">Lo que ofrezco</h3>
-                    <p className="text-sm text-neutral-400">
-                      Contenido auténtico, producción profesional y compromiso real con tu marca.
-                    </p>
-                  </div>
-                  <div className="grid gap-3 text-left sm:grid-cols-2">
-                    <div className="flex items-start gap-2 text-sm text-neutral-300">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                      <span>Reels y contenido para Instagram/TikTok</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-sm text-neutral-300">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                      <span>Fotografía y video profesional</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-sm text-neutral-300">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                      <span>Stories y contenido en tiempo real</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-sm text-neutral-300">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                      <span>Colaboraciones a largo plazo</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-sm text-neutral-300">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                      <span>Eventos y activaciones presenciales</span>
-                    </div>
-                    <div className="flex items-start gap-2 text-sm text-neutral-300">
-                      <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-emerald-400" />
-                      <span>Desarrollo web para marcas (MERN)</span>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </ScrollAnimation>
-          </div>
-        </ScrollAnimation>
-      </section>
-
-      {/* CTA / CONTACTO */}
+      {/* CONTACTO */}
       <section
         id="contacto"
         className="mx-auto max-w-6xl px-6 pb-28 pt-10"
@@ -1396,17 +784,16 @@ export default function Home() {
           <div className="space-y-8 text-center">
             <div className="space-y-4">
               <h2 className="text-3xl font-semibold md:text-4xl">
-                Colaboraciones conscientes solamente.
+                Hablemos de tu próximo proyecto.
               </h2>
               <p className="mx-auto max-w-2xl text-neutral-400">
-                Si tu marca o proyecto está alineado con disciplina, salud,
-                claridad mental y respeto por el proceso, podemos construir algo
-                juntos.
+                Si necesitás un programador que se involucra de verdad en tu proyecto,
+                un desarrollador web que entienda tu visión o un informático que te resuelva
+                de principio a fin — escribime. Construyamos algo que funcione.
               </p>
             </div>
 
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              {/* Email / Google Form */}
               <a
                 href="https://docs.google.com/forms/d/e/1FAIpQLSc7Zeogt62nWmHnScN2uCRYPmCe0hmSbjxI_N4XEXZV5bMKNQ/viewform"
                 target="_blank"
@@ -1422,7 +809,7 @@ export default function Home() {
                       <div>
                         <p className="font-medium text-neutral-100">Formulario</p>
                         <p className="mt-1 text-xs text-neutral-400">
-                          Proponer colaboración
+                          Contame tu proyecto
                         </p>
                       </div>
                     </div>
@@ -1430,7 +817,6 @@ export default function Home() {
                 </Card>
               </a>
 
-              {/* WhatsApp */}
               <a
                 href="https://wa.me/34627043397"
                 target="_blank"
@@ -1454,7 +840,6 @@ export default function Home() {
                 </Card>
               </a>
 
-              {/* Calendly */}
               <a
                 href="https://calendly.com/lucasezequielriera-phfi/30min"
                 target="_blank"
@@ -1480,7 +865,6 @@ export default function Home() {
                 </Card>
               </a>
 
-              {/* Instagram */}
               <a
                 href="https://instagram.com/lucasezequielriera"
                 target="_blank"
@@ -1496,7 +880,7 @@ export default function Home() {
                       <div>
                         <p className="font-medium text-neutral-100">Instagram</p>
                         <p className="mt-1 text-xs text-neutral-400">
-                          Red social
+                          @lucasezequielriera
                         </p>
                       </div>
                     </div>
@@ -1508,48 +892,24 @@ export default function Home() {
         </ScrollAnimation>
       </section>
 
+      {/* SCROLL TO TOP */}
+      <motion.button
+        initial={{ opacity: 0, scale: 0.8 }}
+        animate={showScrollTop ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }}
+        transition={{ duration: 0.2 }}
+        onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+        className="fixed bottom-6 right-6 z-40 rounded-full border border-neutral-800 bg-neutral-900/90 p-3 text-neutral-400 shadow-lg backdrop-blur transition hover:border-emerald-500/50 hover:text-emerald-400"
+        aria-label="Volver arriba"
+        style={{ pointerEvents: showScrollTop ? "auto" : "none" }}
+      >
+        <ChevronUp className="h-5 w-5" />
+      </motion.button>
+
       {/* FOOTER */}
       <footer className="border-t border-neutral-900/80 py-10">
         <div className="mx-auto flex max-w-6xl flex-col items-center justify-between gap-6 px-6 text-sm text-neutral-500 md:flex-row">
-          <p>© 2026 Lucas Riera. Disciplina sobre motivación.</p>
-          <div className="flex items-center gap-4">
-            <a
-              href="https://docs.google.com/forms/d/e/1FAIpQLSc7Zeogt62nWmHnScN2uCRYPmCe0hmSbjxI_N4XEXZV5bMKNQ/viewform"
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex items-center gap-2 hover:text-neutral-200"
-            >
-              <Mail className="h-4 w-4" />
-              <span>Formulario de contacto</span>
-            </a>
-            <a
-              href="https://instagram.com/lucasezequielriera"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="Instagram de Lucas Riera"
-              className="hover:text-neutral-200"
-            >
-              <Instagram className="h-5 w-5" />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="LinkedIn de Lucas Riera"
-              className="hover:text-neutral-200"
-            >
-              <Linkedin className="h-5 w-5" />
-            </a>
-            <a
-              href="https://github.com/lucasezequielriera"
-              target="_blank"
-              rel="noreferrer"
-              aria-label="GitHub de Lucas Riera"
-              className="hover:text-neutral-200"
-            >
-              <Code className="h-5 w-5" />
-            </a>
-          </div>
+          <p>© 2025 Lucas Riera. Todos los derechos reservados.</p>
+          <p className="text-neutral-600 text-center md:text-right">Sitio web por Lucas Riera · Desarrollo & Diseño Web</p>
         </div>
       </footer>
     </main>

@@ -1,5 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -13,56 +15,78 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Lucas Riera — Programador e Influencer de Healthy Lifestyle",
+  title: "Lucas Riera — Software Developer",
   description:
-    "Lucas Riera. Programador frontend e influencer de healthy lifestyle. Desarrollo web, disciplina, entrenamiento y nutrición. Abierto a colaboraciones con marcas alineadas a un estilo de vida saludable y consciente.",
+    "Programador y desarrollador full-stack con +7 años de experiencia. Informático especializado en crear plataformas, sistemas y webs desde cero. Creador de WebFinanceLab, FitPlan AI, WebEducationLab, Synapsis y más.",
   keywords: [
     "Lucas Riera",
-    "programador frontend",
-    "influencer healthy lifestyle",
+    "programador",
+    "programador web",
+    "programador Madrid",
+    "programador freelance",
+    "informático",
+    "informático Madrid",
+    "ingeniero de software",
+    "ingeniero informático",
+    "software developer",
+    "desarrollador",
+    "desarrollador web",
+    "desarrollador full-stack",
+    "desarrollador frontend",
+    "desarrollador backend",
+    "desarrollador Madrid",
+    "desarrollador España",
     "desarrollo web",
+    "desarrollo web Madrid",
+    "crear página web",
+    "hacer página web",
+    "diseño web",
     "React",
     "Next.js",
-    "fitness influencer",
-    "vida saludable",
-    "disciplina",
-    "entrenamiento",
-    "nutrición",
-    "colaboraciones fitness",
-    "desarrollador España",
-    "MERN stack",
-    "contenido fitness",
+    "TypeScript",
+    "Node.js",
+    "portfolio developer",
+    "WebFinanceLab",
+    "FitPlan AI",
+    "WebEducationLab",
+    "Synapsis",
+    "freelance developer",
+    "plataformas SaaS",
+    "sistemas web",
+    "técnico en programación",
+    "experto en programación",
+    "developer España",
   ],
   authors: [{ name: "Lucas Riera" }],
   creator: "Lucas Riera",
   publisher: "Lucas Riera",
-  metadataBase: new URL("https://lucas-riera.vercel.app"),
+  metadataBase: new URL("https://lucasriera.com"),
   alternates: {
     canonical: "/",
   },
   openGraph: {
     type: "website",
     locale: "es_ES",
-    url: "https://lucas-riera.vercel.app",
-    title: "Lucas Riera — Programador e Influencer de Healthy Lifestyle",
+    url: "https://lucasriera.com",
+    title: "Lucas Riera — Programador & Desarrollador Web",
     description:
-      "Programador frontend e influencer de healthy lifestyle. Desarrollo web, disciplina, entrenamiento y nutrición. Abierto a colaboraciones.",
+      "Programador, informático y desarrollador full-stack en Madrid. +7 años creando plataformas, sistemas y webs desde cero.",
     siteName: "Lucas Riera",
     images: [
       {
-        url: "/lucas-photo-1.jpeg",
+        url: "/og-image.png",
         width: 1200,
         height: 630,
-        alt: "Lucas Riera - Programador e Influencer de Healthy Lifestyle",
+        alt: "Lucas Riera - Software Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Lucas Riera — Programador e Influencer de Healthy Lifestyle",
+    title: "Lucas Riera — Programador & Desarrollador Web",
     description:
-      "Programador frontend e influencer de healthy lifestyle. Desarrollo web, disciplina, entrenamiento y nutrición.",
-    images: ["/lucas-photo-1.jpeg"],
+      "Programador, informático y desarrollador full-stack en Madrid. +7 años creando plataformas, sistemas y webs desde cero.",
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
@@ -76,7 +100,7 @@ export const metadata: Metadata = {
     },
   },
   verification: {
-    google: "0aoNBc42fDhMA4zXgd21qFLWMWLCnwabRQICZsuDkFY",
+    google: "g9zTaPzWmNcD2i7stLDHt2TwXNWSAkl2M8j8vLsTIOg",
   },
 };
 
@@ -97,35 +121,53 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Person",
               name: "Lucas Riera",
-              url: "https://lucas-riera.vercel.app",
-              jobTitle: ["Frontend Developer", "Influencer"],
+              alternateName: ["Lucas Ezequiel Riera"],
+              url: "https://lucasriera.com",
+              jobTitle: [
+                "Software Developer",
+                "Programador",
+                "Desarrollador Web",
+                "Informático",
+                "Ingeniero de Software",
+                "Full-Stack Developer",
+              ],
               description:
-                "Programador frontend e influencer de healthy lifestyle. Desarrollo web, disciplina, entrenamiento y nutrición.",
+                "Programador, informático y desarrollador full-stack con +7 años de experiencia. Creo plataformas, sistemas y webs desde cero.",
               knowsAbout: [
-                "Frontend Development",
+                "Programación",
+                "Desarrollo Web",
+                "Informática",
+                "Full-Stack Development",
                 "React",
                 "Next.js",
                 "TypeScript",
-                "Healthy Lifestyle",
-                "Fitness",
-                "Nutrition",
-                "Discipline",
+                "Node.js",
+                "PostgreSQL",
+                "MongoDB",
+                "Firebase",
+                "Tailwind CSS",
+                "SaaS Development",
+                "Diseño Web",
+                "Desarrollo Frontend",
+                "Desarrollo Backend",
               ],
               address: {
                 "@type": "PostalAddress",
+                addressLocality: "Madrid",
                 addressCountry: "ES",
               },
               sameAs: [
-                "https://instagram.com/lucasezequielriera",
-                "https://tiktok.com/@lucasezequielriera",
                 "https://github.com/lucasezequielriera",
                 "https://linkedin.com/in/lucasezequielriera",
+                "https://instagram.com/lucasezequielriera",
               ],
-              image: "https://lucas-riera.vercel.app/lucas-photo-1.jpeg",
-            })
+              image: "https://lucasriera.com/og-image.png",
+            }),
           }}
         />
         {children}
+        <Analytics />
+        <SpeedInsights />
       </body>
     </html>
   );

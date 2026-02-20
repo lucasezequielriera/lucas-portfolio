@@ -122,4 +122,8 @@
   body {
     @apply bg-background text-foreground;
   }
+  a:focus-visible,
+  button:focus-visible {
+    @apply outline-none ring-2 ring-emerald-500/70 ring-offset-2 ring-offset-neutral-950 rounded-sm;
+  }
 }

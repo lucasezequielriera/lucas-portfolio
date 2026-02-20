@@ -1,10 +1,13 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import Image from "next/image";
+import { ArrowUpRight, GraduationCap, Palette } from "lucide-react";
+import { projects } from "@/lib/projects";
 
 export const metadata: Metadata = {
   title: "Proyectos — Lucas Riera | Software Developer",
   description:
-    "Proyectos de Lucas Riera: FitTravel y más. Desarrollo web, plataformas y aplicaciones construidas desde cero.",
+    "Proyectos de Lucas Riera: plataformas, sistemas web y aplicaciones construidas desde cero.",
   openGraph: {
     title: "Proyectos — Lucas Riera",
     description: "Proyectos de Lucas Riera: desarrollo web, plataformas y aplicaciones.",
@@ -12,15 +15,64 @@ export const metadata: Metadata = {
   },
 };
 
+const colorStyles = {
+  emerald: {
+    border: "hover:border-emerald-500/40",
+    shadow: "hover:shadow-emerald-500/5",
+    gradient: "from-emerald-500/[0.03]",
+    iconBorder: "group-hover:border-emerald-500/50 group-hover:text-emerald-400",
+    tag: "border-emerald-500/20 text-emerald-400/80",
+    icon: "text-emerald-400",
+  },
+  sky: {
+    border: "hover:border-sky-500/40",
+    shadow: "hover:shadow-sky-500/5",
+    gradient: "from-sky-500/[0.03]",
+    iconBorder: "group-hover:border-sky-500/50 group-hover:text-sky-400",
+    tag: "border-sky-500/20 text-sky-400/80",
+    icon: "text-sky-400",
+  },
+  violet: {
+    border: "hover:border-violet-500/40",
+    shadow: "hover:shadow-violet-500/5",
+    gradient: "from-violet-500/[0.03]",
+    iconBorder: "group-hover:border-violet-500/50 group-hover:text-violet-400",
+    tag: "border-violet-500/20 text-violet-400/80",
+    icon: "text-violet-400",
+  },
+  amber: {
+    border: "hover:border-amber-500/40",
+    shadow: "hover:shadow-amber-500/5",
+    gradient: "from-amber-500/[0.03]",
+    iconBorder: "group-hover:border-amber-500/50 group-hover:text-amber-400",
+    tag: "border-amber-500/20 text-amber-400/80",
+    icon: "text-amber-400",
+  },
+  rose: {
+    border: "hover:border-rose-500/40",
+    shadow: "hover:shadow-rose-500/5",
+    gradient: "from-rose-500/[0.03]",
+    iconBorder: "group-hover:border-rose-500/50 group-hover:text-rose-400",
+    tag: "border-rose-500/20 text-rose-400/80",
+    icon: "text-rose-400",
+  },
+};
+
+function getIcon(icon: string | undefined, color: keyof typeof colorStyles) {
+  if (icon === "graduation-cap") return <GraduationCap className={`h-7 w-7 ${colorStyles[color].icon}`} />;
+  if (icon === "palette") return <Palette className={`h-7 w-7 ${colorStyles[color].icon}`} />;
+  return null;
+}
+
 export default function ProyectosPage() {
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-100">
       <header className="sticky top-0 z-30 border-b border-neutral-900/60 bg-neutral-950/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">
-            <span className="text-sm font-medium tracking-[0.2em] text-neutral-400 uppercase">
+            <Link href="/" className="text-sm font-medium tracking-[0.2em] text-neutral-400 uppercase transition hover:text-neutral-100">
               Lucas Riera
-            </span>
+            </Link>
             <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">
               Proyectos
             </span>
@@ -46,36 +98,92 @@ export default function ProyectosPage() {
       </header>
 
       <section className="mx-auto max-w-6xl px-6 pb-24 pt-16 md:pt-24">
-        <div className="space-y-6">
-          <div>
-            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">
-              Proyectos
-            </p>
-            <h1 className="mt-2 text-3xl font-semibold md:text-4xl">
-              Espacio para tus proyectos.
-            </h1>
-            <p className="mt-3 max-w-2xl text-sm text-neutral-400">
-              Aquí puedes mostrar en detalle tus proyectos de código, colaboraciones con marcas,
-              casos de estudio o cualquier trabajo que quieras destacar con más profundidad.
-            </p>
-          </div>
+        <div className="space-y-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">
+            {projects.length} proyectos
+          </p>
+          <h1 className="text-3xl font-semibold md:text-4xl">
+            Todo lo que construí desde cero.
+          </h1>
+          <p className="max-w-2xl text-sm text-neutral-400">
+            Cada proyecto es una solución real, pensada desde la arquitectura hasta el último
+            detalle visual. Acá están todos.
+          </p>
+        </div>
 
-          <div className="mt-8 flex flex-wrap gap-4">
-            <Link
-              href="/proyectos/fit-travel"
-              className="inline-flex items-center justify-center rounded-lg border border-emerald-500/50 bg-emerald-500/10 px-5 py-2.5 text-sm font-medium text-emerald-300 transition hover:border-emerald-500/70 hover:bg-emerald-500/20"
-            >
-              Ir a FitTravel
-            </Link>
-          </div>
+        <div className="mt-12 grid gap-6">
+          {projects.map((project) => {
+            const colors = colorStyles[project.color];
+            const IconComponent = getIcon(project.icon, project.color);
+            return (
+              <a
+                key={project.slug}
+                href={project.url}
+                target="_blank"
+                rel="noreferrer"
+                className="group block"
+              >
+                <div
+                  className={`relative overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/70 p-6 transition-all duration-500 ${colors.border} hover:shadow-2xl ${colors.shadow} md:p-8`}
+                >
+                  <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100`} />
+                  <div className="relative flex flex-col gap-6 md:flex-row md:items-start md:gap-8">
+                    <div className="shrink-0">
+                      {project.logo ? (
+                        <div className="relative h-16 w-16 overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900">
+                          <Image src={project.logo} alt={project.name} fill sizes="64px" className="object-contain p-2" />
+                        </div>
+                      ) : IconComponent ? (
+                        <div className="flex h-16 w-16 items-center justify-center rounded-2xl border border-neutral-800 bg-neutral-900">
+                          {IconComponent}
+                        </div>
+                      ) : null}
+                    </div>
 
-          <div className="mt-8 rounded-2xl border border-dashed border-neutral-800 bg-neutral-900/40 p-8 text-sm text-neutral-400">
-            <p>
-              Este es un lienzo vacío listo para que metas tu contenido. Puedes copiar bloques de
-              la home (como tarjetas de proyectos, grids, etc.) o crear nuevos componentes para
-              cada proyecto.
-            </p>
-          </div>
+                    <div className="flex-1 space-y-3">
+                      <div className="flex items-start justify-between">
+                        <h2 className="text-xl font-semibold text-neutral-100 md:text-2xl">
+                          {project.name}
+                        </h2>
+                        <div className={`rounded-full border border-neutral-800 bg-neutral-900/80 p-2 transition ${colors.iconBorder}`}>
+                          <ArrowUpRight className="h-4 w-4" />
+                        </div>
+                      </div>
+                      <p className="text-sm leading-relaxed text-neutral-400 md:text-base">
+                        {project.longDescription}
+                      </p>
+                      <div className="flex flex-wrap gap-2 pt-1">
+                        {project.tags.map((tag) => (
+                          <span
+                            key={tag}
+                            className={`rounded-full border bg-neutral-950/60 px-3 py-1 text-xs ${colors.tag}`}
+                          >
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                      <p className="text-xs text-neutral-600">{project.url.replace("https://", "")}</p>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            );
+          })}
+        </div>
+
+        <div className="mt-12 flex flex-wrap gap-4">
+          <Link
+            href="/proyectos/fit-travel"
+            className="inline-flex items-center justify-center rounded-lg border border-emerald-500/50 bg-emerald-500/10 px-5 py-2.5 text-sm font-medium text-emerald-300 transition hover:border-emerald-500/70 hover:bg-emerald-500/20"
+          >
+            Ir a FitTravel
+          </Link>
+          <Link
+            href="/"
+            className="inline-flex items-center justify-center rounded-lg border border-neutral-800 bg-neutral-900/60 px-5 py-2.5 text-sm font-medium text-neutral-300 transition hover:border-neutral-700 hover:text-neutral-100"
+          >
+            &larr; Volver al inicio
+          </Link>
         </div>
       </section>
     </main>

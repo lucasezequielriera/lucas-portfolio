@@ -24,6 +24,49 @@ import {
   X,
   ChevronUp,
 } from "lucide-react";
+import { projects } from "@/lib/projects";
+import type { Project } from "@/lib/projects";
+
+const colorMap = {
+  emerald: {
+    border: "hover:border-emerald-500/40",
+    shadow: "hover:shadow-emerald-500/5",
+    gradient: "from-emerald-500/[0.03]",
+    iconBorder: "group-hover:border-emerald-500/50 group-hover:text-emerald-400",
+  },
+  sky: {
+    border: "hover:border-sky-500/40",
+    shadow: "hover:shadow-sky-500/5",
+    gradient: "from-sky-500/[0.03]",
+    iconBorder: "group-hover:border-sky-500/50 group-hover:text-sky-400",
+  },
+  violet: {
+    border: "hover:border-violet-500/40",
+    shadow: "hover:shadow-violet-500/5",
+    gradient: "from-violet-500/[0.03]",
+    iconBorder: "group-hover:border-violet-500/50 group-hover:text-violet-400",
+  },
+  amber: {
+    border: "hover:border-amber-500/40",
+    shadow: "hover:shadow-amber-500/5",
+    gradient: "from-amber-500/[0.03]",
+    iconBorder: "group-hover:border-amber-500/50 group-hover:text-amber-400",
+  },
+  rose: {
+    border: "hover:border-rose-500/40",
+    shadow: "hover:shadow-rose-500/5",
+    gradient: "from-rose-500/[0.03]",
+    iconBorder: "group-hover:border-rose-500/50 group-hover:text-rose-400",
+  },
+};
+
+const iconColors: Record<Project["color"], string> = {
+  emerald: "text-emerald-400",
+  sky: "text-sky-400",
+  violet: "text-violet-400",
+  amber: "text-amber-400",
+  rose: "text-rose-400",
+};
 
 const fadeInUp = {
   initial: { opacity: 0, y: 24 },
@@ -80,6 +123,8 @@ export default function Home() {
     }
     setMobileMenuOpen(false);
   };
+
+  const yearsOfExperience = new Date().getFullYear() - 2020;
 
   useEffect(() => {
     const handleScroll = () => setShowScrollTop(window.scrollY > 500);
@@ -193,7 +238,7 @@ export default function Home() {
             </h1>
 
             <p className="max-w-xl text-lg text-neutral-300">
-              Programador y desarrollador full-stack con más de 7 años de experiencia.
+              Programador y desarrollador full-stack con +{yearsOfExperience} años de experiencia.
               Informático especializado en crear plataformas, sistemas y webs desde cero
               con código limpio, arquitectura sólida y una atención al detalle que se nota
               en cada pixel. Si lo hago, lo hago bien.
@@ -273,15 +318,19 @@ export default function Home() {
                 <div className="space-y-3 text-sm text-neutral-300">
                   <div className="flex items-start gap-3">
                     <Terminal className="mt-0.5 h-4 w-4 text-emerald-400" />
-                    <span>Construyendo plataformas SaaS desde cero</span>
+                    <span>Consultoría frontend & soluciones con IA</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <Layers className="mt-0.5 h-4 w-4 text-sky-400" />
-                    <span>Desarrollando sistemas web a medida</span>
+                    <span>Construyendo plataformas SaaS y sistemas web</span>
                   </div>
                   <div className="flex items-start gap-3">
                     <Palette className="mt-0.5 h-4 w-4 text-purple-400" />
                     <span>Creando portfolios y webs profesionales</span>
+                  </div>
+                  <div className="flex items-start gap-3">
+                    <GraduationCap className="mt-0.5 h-4 w-4 text-amber-400" />
+                    <span>Lic. Informática — UADE · Tec. Programación & Full Stack MERN — UTN</span>
                   </div>
                 </div>
 
@@ -291,7 +340,7 @@ export default function Home() {
                       Código
                     </p>
                     <p className="mt-1 text-base font-semibold text-neutral-100">
-                      <AnimatedCounter end={7} />+ años
+                      <AnimatedCounter end={yearsOfExperience} />+ años
                     </p>
                   </div>
                   <div>
@@ -299,7 +348,7 @@ export default function Home() {
                       Productos
                     </p>
                     <p className="mt-1 text-base font-semibold text-neutral-100">
-                      <AnimatedCounter end={5} />+ creados
+                      <AnimatedCounter end={projects.length} />+ creados
                     </p>
                   </div>
                   <div>
@@ -336,174 +385,46 @@ export default function Home() {
         </ScrollAnimation>
 
         <div className="grid gap-4 md:grid-cols-2">
-          {/* WebFinanceLab */}
-          <ScrollAnimation delay={0}>
-            <a href="https://www.webfinancelab.com" target="_blank" rel="noreferrer" className="block h-full">
-              <Card className="group relative h-full overflow-hidden border-neutral-800 bg-neutral-900/70 transition-all duration-500 hover:border-emerald-500/40 hover:shadow-2xl hover:shadow-emerald-500/5">
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/[0.03] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <CardContent className="relative flex h-full flex-col justify-between space-y-5 p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900">
-                      <Image src="/webfinancelab-logo.png" alt="WebFinanceLab" fill sizes="48px" className="object-contain p-1.5" />
-                    </div>
-                    <div className="rounded-full border border-neutral-800 bg-neutral-900/80 p-2 transition group-hover:border-emerald-500/50 group-hover:text-emerald-400">
-                      <ArrowUpRight className="h-4 w-4" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-neutral-100">WebFinanceLab</h3>
-                    <p className="mt-2 text-sm text-neutral-400">
-                      Plataforma completa de control financiero personal. Registro de ingresos y gastos,
-                      análisis de hábitos financieros, gráficos en tiempo real y exportación de datos.
-                      Diseñada para quienes quieren claridad total sobre su dinero.
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {["React", "Node.js", "Firebase", "Tailwind CSS"].map((tag) => (
-                      <span key={tag} className="rounded-full border border-neutral-800 bg-neutral-950/60 px-2.5 py-1 text-xs text-neutral-400">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </a>
-          </ScrollAnimation>
-
-          {/* FitPlan AI */}
-          <ScrollAnimation delay={0.1}>
-            <a href="https://www.fitplan-ai.com" target="_blank" rel="noreferrer" className="block h-full">
-              <Card className="group relative h-full overflow-hidden border-neutral-800 bg-neutral-900/70 transition-all duration-500 hover:border-sky-500/40 hover:shadow-2xl hover:shadow-sky-500/5">
-                <div className="absolute inset-0 bg-gradient-to-br from-sky-500/[0.03] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <CardContent className="relative flex h-full flex-col justify-between space-y-5 p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900">
-                      <Image src="/fitplan-ai-logo.png" alt="FitPlan AI" fill sizes="48px" className="object-contain p-1.5" />
-                    </div>
-                    <div className="rounded-full border border-neutral-800 bg-neutral-900/80 p-2 transition group-hover:border-sky-500/50 group-hover:text-sky-400">
-                      <ArrowUpRight className="h-4 w-4" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-neutral-100">FitPlan AI</h3>
-                    <p className="mt-2 text-sm text-neutral-400">
-                      Planificación inteligente de entrenamiento y nutrición con inteligencia artificial.
-                      Rutinas personalizadas, seguimiento de progreso y recomendaciones adaptativas.
-                      De la idea al producto funcional con usuarios reales.
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {["Next.js", "OpenAI", "PostgreSQL", "Tailwind CSS"].map((tag) => (
-                      <span key={tag} className="rounded-full border border-neutral-800 bg-neutral-950/60 px-2.5 py-1 text-xs text-neutral-400">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </a>
-          </ScrollAnimation>
-
-          {/* WebEducationLab */}
-          <ScrollAnimation delay={0.15}>
-            <a href="https://web-education-lab.vercel.app/es" target="_blank" rel="noreferrer" className="block h-full">
-              <Card className="group relative h-full overflow-hidden border-neutral-800 bg-neutral-900/70 transition-all duration-500 hover:border-violet-500/40 hover:shadow-2xl hover:shadow-violet-500/5">
-                <div className="absolute inset-0 bg-gradient-to-br from-violet-500/[0.03] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <CardContent className="relative flex h-full flex-col justify-between space-y-5 p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900">
-                      <GraduationCap className="h-6 w-6 text-violet-400" />
-                    </div>
-                    <div className="rounded-full border border-neutral-800 bg-neutral-900/80 p-2 transition group-hover:border-violet-500/50 group-hover:text-violet-400">
-                      <ArrowUpRight className="h-4 w-4" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-neutral-100">WebEducationLab</h3>
-                    <p className="mt-2 text-sm text-neutral-400">
-                      Plataforma educativa con IA. 14 escuelas, cientos de cursos y un tutor
-                      virtual 24/7. Desde programación hasta finanzas, nutrición y marketing.
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {["Next.js", "TypeScript", "Tailwind CSS", "Firebase"].map((tag) => (
-                      <span key={tag} className="rounded-full border border-neutral-800 bg-neutral-950/60 px-2.5 py-1 text-xs text-neutral-400">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </a>
-          </ScrollAnimation>
-
-          {/* Synapsis */}
-          <ScrollAnimation delay={0.2}>
-            <a href="https://www.synapsis.team" target="_blank" rel="noreferrer" className="block h-full">
-              <Card className="group relative h-full overflow-hidden border-neutral-800 bg-neutral-900/70 transition-all duration-500 hover:border-amber-500/40 hover:shadow-2xl hover:shadow-amber-500/5">
-                <div className="absolute inset-0 bg-gradient-to-br from-amber-500/[0.03] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <CardContent className="relative flex h-full flex-col justify-between space-y-5 p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900">
-                      <Image src="/synapsis-logo.png" alt="Synapsis" fill sizes="48px" className="object-contain p-1.5" />
-                    </div>
-                    <div className="rounded-full border border-neutral-800 bg-neutral-900/80 p-2 transition group-hover:border-amber-500/50 group-hover:text-amber-400">
-                      <ArrowUpRight className="h-4 w-4" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-neutral-100">Synapsis</h3>
-                    <p className="mt-2 text-sm text-neutral-400">
-                      Plataforma de colaboración y gestión de equipos de trabajo.
-                      Organización de proyectos, comunicación centralizada y flujos
-                      de trabajo optimizados.
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {["React", "Node.js", "MongoDB", "Tailwind CSS"].map((tag) => (
-                      <span key={tag} className="rounded-full border border-neutral-800 bg-neutral-950/60 px-2.5 py-1 text-xs text-neutral-400">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </a>
-          </ScrollAnimation>
-
-          {/* Sandra Lorden */}
-          <ScrollAnimation delay={0.25}>
-            <a href="https://www.sandralorden.com" target="_blank" rel="noreferrer" className="block h-full">
-              <Card className="group relative h-full overflow-hidden border-neutral-800 bg-neutral-900/70 transition-all duration-500 hover:border-rose-500/40 hover:shadow-2xl hover:shadow-rose-500/5">
-                <div className="absolute inset-0 bg-gradient-to-br from-rose-500/[0.03] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
-                <CardContent className="relative flex h-full flex-col justify-between space-y-5 p-6">
-                  <div className="flex items-start justify-between">
-                    <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900">
-                      <Palette className="h-6 w-6 text-rose-400" />
-                    </div>
-                    <div className="rounded-full border border-neutral-800 bg-neutral-900/80 p-2 transition group-hover:border-rose-500/50 group-hover:text-rose-400">
-                      <ArrowUpRight className="h-4 w-4" />
-                    </div>
-                  </div>
-                  <div>
-                    <h3 className="text-xl font-semibold text-neutral-100">Sandra Lorden</h3>
-                    <p className="mt-2 text-sm text-neutral-400">
-                      Portfolio profesional y web personal diseñada a medida. Diseño limpio,
-                      rendimiento optimizado y animaciones que cuidan cada detalle de la
-                      experiencia de usuario.
-                    </p>
-                  </div>
-                  <div className="flex flex-wrap gap-2">
-                    {["Next.js", "Tailwind CSS", "Framer Motion"].map((tag) => (
-                      <span key={tag} className="rounded-full border border-neutral-800 bg-neutral-950/60 px-2.5 py-1 text-xs text-neutral-400">
-                        {tag}
-                      </span>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-            </a>
-          </ScrollAnimation>
+          {projects.map((project, idx) => {
+            const colors = colorMap[project.color];
+            const IconComponent = project.icon === "graduation-cap" ? GraduationCap : project.icon === "palette" ? Palette : null;
+            return (
+              <ScrollAnimation key={project.slug} delay={idx * 0.05}>
+                <a href={project.url} target="_blank" rel="noreferrer" className="block h-full">
+                  <Card className={`group relative h-full overflow-hidden border-neutral-800 bg-neutral-900/70 transition-all duration-500 ${colors.border} hover:shadow-2xl ${colors.shadow}`}>
+                    <div className={`absolute inset-0 bg-gradient-to-br ${colors.gradient} to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100`} />
+                    <CardContent className="relative flex h-full flex-col justify-between space-y-5 p-6">
+                      <div className="flex items-start justify-between">
+                        {project.logo ? (
+                          <div className="relative h-12 w-12 overflow-hidden rounded-xl border border-neutral-800 bg-neutral-900">
+                            <Image src={project.logo} alt={project.name} fill sizes="48px" className="object-contain p-1.5" />
+                          </div>
+                        ) : IconComponent ? (
+                          <div className="flex h-12 w-12 items-center justify-center rounded-xl border border-neutral-800 bg-neutral-900">
+                            <IconComponent className={`h-6 w-6 ${iconColors[project.color]}`} />
+                          </div>
+                        ) : null}
+                        <div className={`rounded-full border border-neutral-800 bg-neutral-900/80 p-2 transition ${colors.iconBorder}`}>
+                          <ArrowUpRight className="h-4 w-4" />
+                        </div>
+                      </div>
+                      <div>
+                        <h3 className="text-xl font-semibold text-neutral-100">{project.name}</h3>
+                        <p className="mt-2 text-sm text-neutral-400">{project.longDescription}</p>
+                      </div>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tags.map((tag) => (
+                          <span key={tag} className="rounded-full border border-neutral-800 bg-neutral-950/60 px-2.5 py-1 text-xs text-neutral-400">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </a>
+              </ScrollAnimation>
+            );
+          })}
 
           {/* CTA Card */}
           <ScrollAnimation delay={0.3}>
@@ -556,7 +477,7 @@ export default function Home() {
                   <div className="relative h-10 flex-1 rounded-lg bg-neutral-900/50">
                     <motion.div
                       initial={{ width: 0 }}
-                      whileInView={{ width: "33.33%" }}
+                      whileInView={{ width: "47%" }}
                       viewport={{ once: true }}
                       transition={{ duration: 0.8, delay: 0, ease: "easeOut" }}
                       className="absolute top-0 h-full rounded-lg bg-emerald-500/20 border border-emerald-500/30 transition-shadow duration-300 group-hover:shadow-lg group-hover:shadow-emerald-500/20"
@@ -564,7 +485,7 @@ export default function Home() {
                     >
                       <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-emerald-500" />
                       <div className="flex h-full items-center justify-end px-3">
-                        <span className="text-xs font-medium text-emerald-400">2 años</span>
+                        <span className="text-xs font-medium text-emerald-400">3 años</span>
                       </div>
                     </motion.div>
                   </div>
@@ -612,18 +533,18 @@ export default function Home() {
                     <div className="relative h-10 flex-1 rounded-lg bg-neutral-900/50">
                       <motion.div
                         initial={{ width: 0 }}
-                        whileInView={{ width: "16.67%" }}
+                        whileInView={{ width: "31%" }}
                         viewport={{ once: true }}
                         transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
                         className="absolute top-0 h-full rounded-lg bg-purple-500/20 border border-purple-500/30 transition-shadow duration-300 group-hover:shadow-lg group-hover:shadow-purple-500/20"
                         style={{ left: "66.67%" }}
-                      >
-                        <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-purple-500" />
-                        <div className="flex h-full items-center justify-between px-3">
+                    >
+                      <div className="absolute left-0 top-0 h-full w-1 rounded-l-lg bg-purple-500" />
+                      <div className="flex h-full items-center justify-between px-3">
                           <div className="relative h-6 w-6 shrink-0 overflow-hidden rounded">
                             <Image src="/ypf-logo.jpeg" alt="YPF" fill sizes="24px" className="object-contain" />
                           </div>
-                          <span className="text-xs font-medium text-purple-400">1 año</span>
+                          <span className="text-xs font-medium text-purple-400">2 años</span>
                         </div>
                       </motion.div>
                     </div>
@@ -693,7 +614,7 @@ export default function Home() {
               </p>
             </div>
             <div className="flex flex-wrap gap-3">
-              {["HTML5", "CSS3", "JavaScript", "React", "Next.js", "TypeScript", "Tailwind CSS", "Framer Motion", "Node.js", "PostgreSQL", "Git", "AI", "Figma", "Firebase", "AntDesign", "Jira", "Teams", "Slack", "Vercel", "MongoDB", "Docker"].map((tech, idx) => (
+              {["HTML5", "CSS3", "SASS", "JavaScript", "TypeScript", "React", "Next.js", "Vue.js", "Redux", "Vite", "Express", "Node.js", "GraphQL", "Tailwind CSS", "Framer Motion", "AntDesign", "Webflow", "PostgreSQL", "MongoDB", "Firebase", "Supabase", "Azure", "Docker", "Vercel", "Git", "GitHub Actions", "Jest", "React Testing Library", "Storybook", "Figma", "Zeplin", "Jira", "Cursor", "AI", "CMS", "Teams", "Slack"].map((tech, idx) => (
                 <motion.div
                   key={tech}
                   initial={{ opacity: 0, scale: 0.8 }}
@@ -769,6 +690,86 @@ export default function Home() {
                   Sitios web profesionales con diseño a medida, performance optimizada,
                   animaciones fluidas y atención obsesiva al detalle visual.
                 </p>
+              </CardContent>
+            </Card>
+          </ScrollAnimation>
+        </div>
+      </section>
+
+      {/* TESTIMONIOS */}
+      <section className="mx-auto max-w-6xl px-6 pb-24 space-y-10">
+        <ScrollAnimation>
+          <div>
+            <p className="text-xs font-semibold uppercase tracking-[0.25em] text-emerald-400">
+              Testimonios
+            </p>
+            <h2 className="mt-2 text-3xl font-semibold md:text-4xl">
+              Lo que dicen quienes trabajaron conmigo.
+            </h2>
+          </div>
+        </ScrollAnimation>
+
+        <div className="grid gap-6 md:grid-cols-2">
+          <ScrollAnimation delay={0}>
+            <Card className="h-full border-neutral-800 bg-neutral-900/70">
+              <CardContent className="flex h-full flex-col justify-between space-y-6 p-6">
+                <div className="space-y-4">
+                  <div className="flex gap-1 text-emerald-400">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="h-4 w-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                    ))}
+                  </div>
+                  <blockquote className="text-sm leading-relaxed text-neutral-300">
+                    &ldquo;Lucas is a highly capable developer and analyst who consistently demonstrated
+                    strong leadership and deep technical insight regarding best practices. He excels at
+                    troubleshooting complex issues and effectively conveying clear timelines to business
+                    partners. His most valuable analytical skill is his ability to discern true urgency in
+                    high-pressure environments, allowing him to successfully prioritize critical efforts.&rdquo;
+                  </blockquote>
+                  <p className="text-xs text-neutral-500">
+                    Sobre su rol en el Chase Partnership y el Starlink Wi-Fi Portal &mdash; iniciativas
+                    enterprise de alto impacto donde lideró el desarrollo frontend, generó POCs para
+                    campañas promocionales y logró un aumento del 13% en productividad del equipo.
+                  </p>
+                </div>
+                <div className="flex items-center gap-3 border-t border-neutral-800 pt-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-blue-500/10 text-sm font-semibold text-blue-400">
+                    MS
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-neutral-100">Mary Sanchez</p>
+                    <p className="text-xs text-neutral-500">Senior Analyst / Developer · United Airlines</p>
+                    <p className="text-[0.65rem] text-neutral-600">Supervisora directa de Lucas</p>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
+          </ScrollAnimation>
+
+          <ScrollAnimation delay={0.1}>
+            <Card className="h-full border-neutral-800 bg-neutral-900/70">
+              <CardContent className="flex h-full flex-col justify-between space-y-6 p-6">
+                <div className="space-y-4">
+                  <div className="flex gap-1 text-emerald-400">
+                    {[...Array(5)].map((_, i) => (
+                      <svg key={i} className="h-4 w-4 fill-current" viewBox="0 0 20 20"><path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" /></svg>
+                    ))}
+                  </div>
+                  <blockquote className="text-sm leading-relaxed text-neutral-300">
+                    &ldquo;I strongly recommend Lucas based on our collaboration across multiple projects.
+                    His excellent communication skills, collaborative mindset, and meticulous attention to
+                    detail consistently lead to positive and successful outcomes.&rdquo;
+                  </blockquote>
+                </div>
+                <div className="flex items-center gap-3 border-t border-neutral-800 pt-4">
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-emerald-500/10 text-sm font-semibold text-emerald-400">
+                    NS
+                  </div>
+                  <div>
+                    <p className="text-sm font-medium text-neutral-100">Nicolas Soroka</p>
+                    <p className="text-xs text-neutral-500">Frontend Engineer · Compañero de equipo</p>
+                  </div>
+                </div>
               </CardContent>
             </Card>
           </ScrollAnimation>

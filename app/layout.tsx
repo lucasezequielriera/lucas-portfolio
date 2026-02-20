@@ -207,13 +207,26 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "WebSite",
-              name: "Lucas Riera",
+              "@type": "ProfessionalService",
+              name: "Lucas Riera — Desarrollo Web",
               url: "https://lucasriera.com",
-              description: `Programador, informático y desarrollador full-stack con +${yearsExp} años de experiencia.`,
-              author: {
-                "@type": "Person",
-                name: "Lucas Riera",
+              description: `Programador, informático y desarrollador full-stack con +${yearsExp} años de experiencia. Creo plataformas, sistemas y webs desde cero.`,
+              priceRange: "$$",
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: "Madrid",
+                addressCountry: "ES",
+              },
+              areaServed: {
+                "@type": "Country",
+                name: "España",
+              },
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "5",
+                bestRating: "5",
+                ratingCount: "2",
+                reviewCount: "2",
               },
               review: [
                 {
@@ -221,14 +234,9 @@ export default function RootLayout({
                   author: {
                     "@type": "Person",
                     name: "Mary Sanchez",
-                    jobTitle: "Senior Analyst / Developer",
-                    worksFor: {
-                      "@type": "Organization",
-                      name: "United Airlines",
-                    },
                   },
                   reviewBody:
-                    "Lucas is a highly capable developer and analyst who consistently demonstrated strong leadership and deep technical insight regarding best practices. He excels at troubleshooting complex issues and effectively conveying clear timelines to business partners. His most valuable analytical skill is his ability to discern true urgency in high-pressure environments, allowing him to successfully prioritize critical efforts.",
+                    "Lucas is a highly capable developer and analyst who consistently demonstrated strong leadership and deep technical insight regarding best practices. He excels at troubleshooting complex issues and effectively conveying clear timelines to business partners.",
                   reviewRating: {
                     "@type": "Rating",
                     ratingValue: "5",
@@ -241,7 +249,6 @@ export default function RootLayout({
                   author: {
                     "@type": "Person",
                     name: "Nicolas Soroka",
-                    jobTitle: "Frontend Engineer",
                   },
                   reviewBody:
                     "I strongly recommend Lucas based on our collaboration across multiple projects. His excellent communication skills, collaborative mindset, and meticulous attention to detail consistently lead to positive and successful outcomes.",

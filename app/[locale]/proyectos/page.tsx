@@ -21,7 +21,7 @@ export async function generateMetadata({
       : "Lucas Riera's projects: platforms, web systems and applications built from scratch.",
     openGraph: {
       title: isEs ? "Proyectos — Lucas Riera" : "Projects — Lucas Riera",
-      url: `https://lucasriera.com/${locale}/proyectos`,
+      url: `https://www.lucasriera.com/${locale}/proyectos`,
     },
     alternates: {
       languages: { es: "/es/proyectos", en: "/en/proyectos" },

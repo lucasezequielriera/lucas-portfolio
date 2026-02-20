@@ -28,7 +28,7 @@ export async function generateMetadata({
     openGraph: {
       title: `${project.name} — Lucas Riera`,
       description: project.longDescription[loc],
-      url: `https://lucasriera.com/${locale}/proyectos/${slug}`,
+      url: `https://www.lucasriera.com/${locale}/proyectos/${slug}`,
       images: project.media.length > 0 && project.media[0].type === "image"
         ? [{ url: project.media[0].src, width: 1280, height: 720, alt: project.name }]
         : [{ url: "/og-image.png", width: 1200, height: 630 }],
@@ -131,18 +131,18 @@ export default async function ProjectPage({
             author: {
               "@type": "Person",
               name: "Lucas Riera",
-              url: "https://lucasriera.com",
+              url: "https://www.lucasriera.com",
             },
             ...(project.media.filter((m) => m.type === "image").length > 0 && {
               screenshot: project.media
                 .filter((m) => m.type === "image")
-                .map((m) => `https://lucasriera.com${m.src}`),
+                .map((m) => `https://www.lucasriera.com${m.src}`),
             }),
             ...(project.media.some((m) => m.type === "video") && {
               video: {
                 "@type": "VideoObject",
                 name: `${project.name} demo`,
-                contentUrl: `https://lucasriera.com${project.media.find((m) => m.type === "video")!.src}`,
+                contentUrl: `https://www.lucasriera.com${project.media.find((m) => m.type === "video")!.src}`,
               },
             }),
           }),

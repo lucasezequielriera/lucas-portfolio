@@ -23,7 +23,7 @@ export async function generateMetadata({
     authors: [{ name: "Lucas Riera" }],
     creator: "Lucas Riera",
     publisher: "Lucas Riera",
-    metadataBase: new URL("https://lucasriera.com"),
+    metadataBase: new URL("https://www.lucasriera.com"),
     alternates: {
       canonical: `/${locale}`,
       languages: {
@@ -34,7 +34,7 @@ export async function generateMetadata({
     openGraph: {
       type: "website",
       locale: isEs ? "es_ES" : "en_US",
-      url: `https://lucasriera.com/${locale}`,
+      url: `https://www.lucasriera.com/${locale}`,
       title: t.meta.ogTitle,
       description: t.meta.ogDescription(yearsExp),
       siteName: "Lucas Riera",
@@ -96,7 +96,7 @@ export default async function LocaleLayout({
             "@type": "Person",
             name: "Lucas Riera",
             alternateName: ["Lucas Ezequiel Riera"],
-            url: "https://lucasriera.com",
+            url: "https://www.lucasriera.com",
             jobTitle: [
               "Software Developer",
               "Programador",
@@ -143,7 +143,7 @@ export default async function LocaleLayout({
               "https://linkedin.com/in/lucasezequielriera",
               "https://instagram.com/lucasezequielriera",
             ],
-            image: "https://lucasriera.com/og-image.png",
+            image: "https://www.lucasriera.com/og-image.png",
           }),
         }}
       />
@@ -154,7 +154,7 @@ export default async function LocaleLayout({
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
             name: isEs ? "Lucas Riera — Desarrollo Web" : "Lucas Riera — Web Development",
-            url: "https://lucasriera.com",
+            url: "https://www.lucasriera.com",
             description: t.meta.ogDescription(yearsExp),
             priceRange: "$$",
             address: {

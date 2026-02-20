@@ -2,7 +2,7 @@ import { MetadataRoute } from "next";
 import { projects } from "@/lib/projects";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://lucasriera.com";
+  const base = "https://www.lucasriera.com";
   const now = new Date();
 
   const projectUrls = projects.flatMap((p) => [

@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://lucasriera.com/sitemap.xml
+Sitemap: https://www.lucasriera.com/sitemap.xml

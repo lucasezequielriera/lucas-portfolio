@@ -92,12 +92,15 @@ function ScrollAnimation({ children, delay = 0 }: { children: React.ReactNode; d
 }
 
 function AnimatedCounter({ end, duration = 2000 }: { end: number; duration?: number }) {
-  const [count, setCount] = useState(0);
+  const [count, setCount] = useState(end);
+  const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef<HTMLSpanElement>(null);
   const isInView = useInView(ref, { once: true });
 
   useEffect(() => {
-    if (!isInView) return;
+    if (!isInView || hasAnimated) return;
+    setHasAnimated(true);
+    setCount(0);
     let startTime: number;
     const animate = (currentTime: number) => {
       if (!startTime) startTime = currentTime;
@@ -106,7 +109,7 @@ function AnimatedCounter({ end, duration = 2000 }: { end: number; duration?: num
       if (progress < 1) requestAnimationFrame(animate);
     };
     requestAnimationFrame(animate);
-  }, [isInView, end, duration]);
+  }, [isInView, hasAnimated, end, duration]);
 
   return <span ref={ref}>{count}</span>;
 }
@@ -252,7 +255,7 @@ export default function Home() {
               <a href="https://github.com/lucasezequielriera" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 hover:border-neutral-600 hover:text-neutral-100">
                 <Code className="h-3.5 w-3.5" /> GitHub
               </a>
-              <a href="https://linkedin.com" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 hover:border-neutral-600 hover:text-neutral-100">
+              <a href="https://linkedin.com/in/lucasezequielriera" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 hover:border-neutral-600 hover:text-neutral-100">
                 <Linkedin className="h-3.5 w-3.5" /> LinkedIn
               </a>
               <a href="https://instagram.com/lucasezequielriera" target="_blank" rel="noreferrer" className="inline-flex items-center gap-2 rounded-full border border-neutral-800 bg-neutral-900/60 px-3 py-1 hover:border-neutral-600 hover:text-neutral-100">

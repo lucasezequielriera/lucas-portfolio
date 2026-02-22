@@ -86,6 +86,16 @@ export interface Dictionary {
     whatsappSub: string;
     scheduleCall: string;
     minutes: string;
+    nameLabel: string;
+    namePlaceholder: string;
+    emailLabel: string;
+    emailPlaceholder: string;
+    messageLabel: string;
+    messagePlaceholder: string;
+    send: string;
+    sending: string;
+    success: string;
+    error: string;
   };
   footer: {
     rights: string;
@@ -218,6 +228,16 @@ const es: Dictionary = {
     whatsappSub: "Mensaje directo",
     scheduleCall: "Agendar llamada",
     minutes: "30 minutos",
+    nameLabel: "Nombre",
+    namePlaceholder: "Tu nombre",
+    emailLabel: "Email",
+    emailPlaceholder: "tu@email.com",
+    messageLabel: "Mensaje",
+    messagePlaceholder: "Contame sobre tu proyecto...",
+    send: "Enviar mensaje",
+    sending: "Enviando...",
+    success: "Mensaje enviado. Te respondo pronto.",
+    error: "Error al enviar. Intentá de nuevo.",
   },
   footer: {
     rights: "© 2025 Lucas Riera. Todos los derechos reservados.",
@@ -366,6 +386,16 @@ const en: Dictionary = {
     whatsappSub: "Direct message",
     scheduleCall: "Schedule a call",
     minutes: "30 minutes",
+    nameLabel: "Name",
+    namePlaceholder: "Your name",
+    emailLabel: "Email",
+    emailPlaceholder: "you@email.com",
+    messageLabel: "Message",
+    messagePlaceholder: "Tell me about your project...",
+    send: "Send message",
+    sending: "Sending...",
+    success: "Message sent. I'll get back to you soon.",
+    error: "Failed to send. Please try again.",
   },
   footer: {
     rights: "© 2025 Lucas Riera. All rights reserved.",

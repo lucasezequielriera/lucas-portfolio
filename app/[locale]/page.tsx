@@ -24,6 +24,10 @@ import {
   Menu,
   X,
   ChevronUp,
+  Send,
+  Loader2,
+  CheckCircle2,
+  AlertCircle,
 } from "lucide-react";
 import { projects } from "@/lib/projects";
 import type { Project } from "@/lib/projects";
@@ -75,13 +79,14 @@ const fadeInUp = {
   animate: { opacity: 1, y: 0 },
 };
 
-function ScrollAnimation({ children, delay = 0 }: { children: React.ReactNode; delay?: number }) {
+function ScrollAnimation({ children, delay = 0, className }: { children: React.ReactNode; delay?: number; className?: string }) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
     <motion.div
       ref={ref}
+      className={className}
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 30 }}
       transition={{ duration: 0.6, delay }}
@@ -112,6 +117,127 @@ function AnimatedCounter({ end, duration = 2000 }: { end: number; duration?: num
   }, [isInView, hasAnimated, end, duration]);
 
   return <span ref={ref}>{count}</span>;
+}
+
+function ContactForm({ t }: { t: ReturnType<typeof getDictionary> }) {
+  const [form, setForm] = useState({ name: "", email: "", message: "" });
+  const [status, setStatus] = useState<"idle" | "sending" | "success" | "error">("idle");
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setStatus("sending");
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(form),
+      });
+      if (!res.ok) throw new Error();
+      setStatus("success");
+      setForm({ name: "", email: "", message: "" });
+    } catch {
+      setStatus("error");
+    }
+  };
+
+  return (
+    <Card className="h-full border-neutral-800 bg-neutral-900/70">
+      <CardContent className="p-6 md:p-8">
+        <form onSubmit={handleSubmit} className="space-y-5">
+          <div className="grid gap-5 sm:grid-cols-2">
+            <div className="space-y-2">
+              <label htmlFor="name" className="text-sm font-medium text-neutral-300">{t.contact.nameLabel}</label>
+              <input
+                id="name"
+                type="text"
+                required
+                value={form.name}
+                onChange={(e) => setForm({ ...form, name: e.target.value })}
+                placeholder={t.contact.namePlaceholder}
+                className="w-full rounded-lg border border-neutral-800 bg-neutral-950/60 px-4 py-3 text-sm text-neutral-100 placeholder-neutral-600 outline-none transition-colors focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/25"
+              />
+            </div>
+            <div className="space-y-2">
+              <label htmlFor="email" className="text-sm font-medium text-neutral-300">{t.contact.emailLabel}</label>
+              <input
+                id="email"
+                type="email"
+                required
+                value={form.email}
+                onChange={(e) => setForm({ ...form, email: e.target.value })}
+                placeholder={t.contact.emailPlaceholder}
+                className="w-full rounded-lg border border-neutral-800 bg-neutral-950/60 px-4 py-3 text-sm text-neutral-100 placeholder-neutral-600 outline-none transition-colors focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/25"
+              />
+            </div>
+          </div>
+          <div className="space-y-2">
+            <label htmlFor="message" className="text-sm font-medium text-neutral-300">{t.contact.messageLabel}</label>
+            <textarea
+              id="message"
+              required
+              rows={5}
+              value={form.message}
+              onChange={(e) => setForm({ ...form, message: e.target.value })}
+              placeholder={t.contact.messagePlaceholder}
+              className="w-full resize-none rounded-lg border border-neutral-800 bg-neutral-950/60 px-4 py-3 text-sm text-neutral-100 placeholder-neutral-600 outline-none transition-colors focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/25"
+            />
+          </div>
+
+          {status === "success" && (
+            <div className="flex items-center gap-2 rounded-lg border border-emerald-800/50 bg-emerald-950/30 px-4 py-3 text-sm text-emerald-300">
+              <CheckCircle2 className="h-4 w-4 shrink-0" /> {t.contact.success}
+            </div>
+          )}
+          {status === "error" && (
+            <div className="flex items-center gap-2 rounded-lg border border-red-800/50 bg-red-950/30 px-4 py-3 text-sm text-red-300">
+              <AlertCircle className="h-4 w-4 shrink-0" /> {t.contact.error}
+            </div>
+          )}
+
+          <Button
+            type="submit"
+            disabled={status === "sending"}
+            className="w-full bg-emerald-600 text-white hover:bg-emerald-500 disabled:opacity-60 h-12 text-sm font-medium transition-all"
+          >
+            {status === "sending" ? (
+              <><Loader2 className="mr-2 h-4 w-4 animate-spin" />{t.contact.sending}</>
+            ) : (
+              <><Send className="mr-2 h-4 w-4" />{t.contact.send}</>
+            )}
+          </Button>
+        </form>
+      </CardContent>
+    </Card>
+  );
+}
+
+function WhatsAppFab() {
+  const [show, setShow] = useState(false);
+
+  useEffect(() => {
+    const timer = setTimeout(() => setShow(true), 2000);
+    return () => clearTimeout(timer);
+  }, []);
+
+  return (
+    <motion.a
+      href="https://wa.me/34627043397"
+      target="_blank"
+      rel="noreferrer"
+      aria-label="Chat on WhatsApp"
+      initial={{ opacity: 0, scale: 0.5 }}
+      animate={show ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.5 }}
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
+      transition={{ type: "spring", stiffness: 260, damping: 20 }}
+      className="fixed bottom-6 left-6 z-50 flex h-14 w-14 items-center justify-center rounded-full bg-[#25D366] shadow-lg shadow-[#25D366]/25"
+      style={{ pointerEvents: show ? "auto" : "none" }}
+    >
+      <svg viewBox="0 0 24 24" className="h-7 w-7 fill-white">
+        <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
+      </svg>
+    </motion.a>
+  );
 }
 
 function switchLocale(currentLocale: string) {
@@ -600,36 +726,47 @@ export default function Home() {
       {/* CONTACTO */}
       <section id="contacto" className="mx-auto max-w-6xl px-6 pb-28 pt-10">
         <ScrollAnimation>
-          <div className="space-y-8 text-center">
-            <div className="space-y-4">
-              <h2 className="text-3xl font-semibold md:text-4xl">{t.contact.title}</h2>
-              <p className="mx-auto max-w-2xl text-neutral-400">{t.contact.description}</p>
-            </div>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-4">
-              <a href="https://docs.google.com/forms/d/e/1FAIpQLSc7Zeogt62nWmHnScN2uCRYPmCe0hmSbjxI_N4XEXZV5bMKNQ/viewform" target="_blank" rel="noreferrer" className="group block">
-                <Card className="border-neutral-800 bg-neutral-900/60 transition-all hover:border-neutral-700 hover:bg-neutral-900/80">
-                  <CardContent className="p-6"><div className="flex flex-col items-center gap-3 text-center"><div className="rounded-full border border-neutral-800 bg-neutral-950 p-3 transition-all group-hover:border-neutral-700"><Mail className="h-5 w-5 text-neutral-300" /></div><div><p className="font-medium text-neutral-100">{t.contact.form}</p><p className="mt-1 text-xs text-neutral-400">{t.contact.formSub}</p></div></div></CardContent>
-                </Card>
-              </a>
-              <a href="https://wa.me/34627043397" target="_blank" rel="noreferrer" className="group block">
-                <Card className="border-green-900/50 bg-green-950/20 transition-all hover:border-green-800/50 hover:bg-green-950/30">
-                  <CardContent className="p-6"><div className="flex flex-col items-center gap-3 text-center"><div className="rounded-full border border-green-800/50 bg-green-950/40 p-3 transition-all group-hover:border-green-700/50"><MessageCircle className="h-5 w-5 text-green-400" /></div><div><p className="font-medium text-green-300">WhatsApp</p><p className="mt-1 text-xs text-green-400/70">{t.contact.whatsappSub}</p></div></div></CardContent>
-                </Card>
-              </a>
-              <a href="https://calendly.com/lucasezequielriera-phfi/30min" target="_blank" rel="noreferrer" className="group block">
-                <Card className="border-blue-900/50 bg-blue-950/20 transition-all hover:border-blue-800/50 hover:bg-blue-950/30">
-                  <CardContent className="p-6"><div className="flex flex-col items-center gap-3 text-center"><div className="rounded-full border border-blue-800/50 bg-blue-950/40 p-3 transition-all group-hover:border-blue-700/50"><Calendar className="h-5 w-5 text-blue-400" /></div><div><p className="font-medium text-blue-300">{t.contact.scheduleCall}</p><p className="mt-1 text-xs text-blue-400/70">{t.contact.minutes}</p></div></div></CardContent>
-                </Card>
-              </a>
-              <a href="https://instagram.com/lucasezequielriera" target="_blank" rel="noreferrer" className="group block">
-                <Card className="border-neutral-800 bg-neutral-900/60 transition-all hover:border-neutral-700 hover:bg-neutral-900/80">
-                  <CardContent className="p-6"><div className="flex flex-col items-center gap-3 text-center"><div className="rounded-full border border-neutral-800 bg-neutral-950 p-3 transition-all group-hover:border-neutral-700"><Instagram className="h-5 w-5 text-neutral-300" /></div><div><p className="font-medium text-neutral-100">Instagram</p><p className="mt-1 text-xs text-neutral-400">@lucasezequielriera</p></div></div></CardContent>
-                </Card>
-              </a>
-            </div>
+          <div className="space-y-4 text-center mb-12">
+            <h2 className="text-3xl font-semibold md:text-4xl">{t.contact.title}</h2>
+            <p className="mx-auto max-w-2xl text-neutral-400">{t.contact.description}</p>
           </div>
         </ScrollAnimation>
+        <div className="grid gap-8 lg:grid-cols-5">
+          <ScrollAnimation delay={0} className="lg:col-span-3">
+            <ContactForm t={t} />
+          </ScrollAnimation>
+          <ScrollAnimation delay={0.1} className="lg:col-span-2">
+            <div className="flex flex-col gap-4 h-full">
+              <a href="https://wa.me/34627043397" target="_blank" rel="noreferrer" className="group block flex-1">
+                <Card className="h-full border-green-900/50 bg-green-950/20 transition-all hover:border-green-800/50 hover:bg-green-950/30">
+                  <CardContent className="flex items-center gap-4 p-5">
+                    <div className="rounded-full border border-green-800/50 bg-green-950/40 p-3 shrink-0 transition-all group-hover:border-green-700/50"><MessageCircle className="h-5 w-5 text-green-400" /></div>
+                    <div><p className="font-medium text-green-300">WhatsApp</p><p className="text-xs text-green-400/70">{t.contact.whatsappSub}</p></div>
+                  </CardContent>
+                </Card>
+              </a>
+              <a href="https://calendly.com/lucasezequielriera-phfi/30min" target="_blank" rel="noreferrer" className="group block flex-1">
+                <Card className="h-full border-blue-900/50 bg-blue-950/20 transition-all hover:border-blue-800/50 hover:bg-blue-950/30">
+                  <CardContent className="flex items-center gap-4 p-5">
+                    <div className="rounded-full border border-blue-800/50 bg-blue-950/40 p-3 shrink-0 transition-all group-hover:border-blue-700/50"><Calendar className="h-5 w-5 text-blue-400" /></div>
+                    <div><p className="font-medium text-blue-300">{t.contact.scheduleCall}</p><p className="text-xs text-blue-400/70">{t.contact.minutes}</p></div>
+                  </CardContent>
+                </Card>
+              </a>
+              <a href="https://instagram.com/lucasezequielriera" target="_blank" rel="noreferrer" className="group block flex-1">
+                <Card className="h-full border-neutral-800 bg-neutral-900/60 transition-all hover:border-neutral-700 hover:bg-neutral-900/80">
+                  <CardContent className="flex items-center gap-4 p-5">
+                    <div className="rounded-full border border-neutral-800 bg-neutral-950 p-3 shrink-0 transition-all group-hover:border-neutral-700"><Instagram className="h-5 w-5 text-neutral-300" /></div>
+                    <div><p className="font-medium text-neutral-100">Instagram</p><p className="text-xs text-neutral-400">@lucasezequielriera</p></div>
+                  </CardContent>
+                </Card>
+              </a>
+            </div>
+          </ScrollAnimation>
+        </div>
       </section>
+
+      <WhatsAppFab />
 
       <motion.button initial={{ opacity: 0, scale: 0.8 }} animate={showScrollTop ? { opacity: 1, scale: 1 } : { opacity: 0, scale: 0.8 }} transition={{ duration: 0.2 }} onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })} className="fixed bottom-6 right-6 z-40 rounded-full border border-neutral-800 bg-neutral-900/90 p-3 text-neutral-400 shadow-lg backdrop-blur transition hover:border-emerald-500/50 hover:text-emerald-400" aria-label={t.scrollTop} style={{ pointerEvents: showScrollTop ? "auto" : "none" }}>
         <ChevronUp className="h-5 w-5" />

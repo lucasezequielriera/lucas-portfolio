@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Resend } from "resend";
 import { rateLimit } from "@/lib/rate-limit";
+import { escapeHtml, validateContactForm } from "@/lib/validation";
 
 let _resend: Resend | null = null;
 function getResend() {
@@ -8,28 +9,30 @@ function getResend() {
   return _resend;
 }
 
-const EMAIL_RE = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-const MAX_NAME = 100;
-const MAX_EMAIL = 254;
-const MAX_MESSAGE = 5000;
-
-function escapeHtml(str: string): string {
-  return str
-    .replace(/&/g, "&amp;")
-    .replace(/</g, "&lt;")
-    .replace(/>/g, "&gt;")
-    .replace(/"/g, "&quot;")
-    .replace(/'/g, "&#039;");
+function log(
+  level: "info" | "warn" | "error",
+  message: string,
+  meta?: Record<string, unknown>
+) {
+  const entry = {
+    timestamp: new Date().toISOString(),
+    level,
+    message,
+    ...meta,
+  };
+  if (level === "error") console.error(JSON.stringify(entry));
+  else console.log(JSON.stringify(entry));
 }
 
 export async function POST(request: NextRequest) {
-  try {
-    const ip =
-      request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
-      request.headers.get("x-real-ip") ??
-      "unknown";
+  const ip =
+    request.headers.get("x-forwarded-for")?.split(",")[0]?.trim() ??
+    request.headers.get("x-real-ip") ??
+    "unknown";
 
+  try {
     if (!rateLimit(ip).ok) {
+      log("warn", "Rate limit exceeded", { ip });
       return NextResponse.json(
         { error: "Too many requests. Please try again later." },
         { status: 429 }
@@ -37,35 +40,21 @@ export async function POST(request: NextRequest) {
     }
 
     const body = await request.json();
+
+    if (body.website) {
+      log("info", "Honeypot triggered", { ip });
+      return NextResponse.json({ success: true, id: "ok" });
+    }
+
     const name = typeof body.name === "string" ? body.name.trim() : "";
     const email = typeof body.email === "string" ? body.email.trim() : "";
     const message = typeof body.message === "string" ? body.message.trim() : "";
 
-    if (!name || !email || !message) {
+    const validation = validateContactForm({ name, email, message });
+    if (!validation.valid) {
       return NextResponse.json(
-        { error: "All fields are required." },
-        { status: 400 }
-      );
-    }
-
-    if (name.length > MAX_NAME) {
-      return NextResponse.json(
-        { error: `Name must be ${MAX_NAME} characters or less.` },
-        { status: 400 }
-      );
-    }
-
-    if (email.length > MAX_EMAIL || !EMAIL_RE.test(email)) {
-      return NextResponse.json(
-        { error: "Please provide a valid email address." },
-        { status: 400 }
-      );
-    }
-
-    if (message.length > MAX_MESSAGE) {
-      return NextResponse.json(
-        { error: `Message must be ${MAX_MESSAGE} characters or less.` },
-        { status: 400 }
+        { error: validation.error },
+        { status: validation.status }
       );
     }
 
@@ -90,13 +79,17 @@ export async function POST(request: NextRequest) {
     });
 
     if (resendError) {
-      console.error("Resend error:", resendError);
+      log("error", "Resend error", { error: resendError.message, ip });
       return NextResponse.json({ error: resendError.message }, { status: 422 });
     }
 
+    log("info", "Contact message sent", { id: data?.id, ip });
     return NextResponse.json({ success: true, id: data?.id });
   } catch (err) {
-    console.error("Contact API error:", err);
+    log("error", "Contact API error", {
+      error: err instanceof Error ? err.message : "Unknown error",
+      ip,
+    });
     return NextResponse.json(
       { error: "Failed to send message" },
       { status: 500 }

@@ -1,36 +1,88 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# lucasriera.com
+
+Personal portfolio and professional website for Lucas Riera — full-stack software developer based in Madrid.
+
+Built with Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS v4, and Framer Motion.
+
+## Features
+
+- **Bilingual (ES/EN)** — dictionary-based i18n with locale detection and middleware routing
+- **Accessible** — skip-to-content, ARIA labels, `prefers-reduced-motion` support, focus management
+- **SEO-optimized** — JSON-LD structured data, dynamic metadata, sitemap, hreflang alternates
+- **Secure** — XSS sanitization, rate limiting, honeypot spam protection, security headers (HSTS, X-Frame-Options, etc.)
+- **Legal compliance** — GDPR privacy policy, LSSI-CE legal notice, cookie policy with consent banner
+- **Contact form** — server-side validation, inline error feedback, structured logging, powered by Resend
+- **Performance** — H.264 video, static generation, optimized assets
+
+## Tech Stack
+
+| Layer       | Technology                              |
+|-------------|-----------------------------------------|
+| Framework   | Next.js 16 (App Router)                 |
+| UI          | React 19, Tailwind CSS v4, Framer Motion|
+| Language    | TypeScript (strict)                     |
+| Email       | Resend                                  |
+| Analytics   | Vercel Analytics + Speed Insights       |
+| Testing     | Vitest, Testing Library                 |
+| CI/CD       | GitHub Actions                          |
+| Hosting     | Vercel                                  |
 
 ## Getting Started
 
-First, run the development server:
-
 ```bash
+git clone https://github.com/lucasezequielriera/lucas-portfolio.git
+cd lucas-portfolio
+npm install
+cp .env.example .env.local   # Add your RESEND_API_KEY
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Open [http://localhost:3000](http://localhost:3000).
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Scripts
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+| Command              | Description                    |
+|----------------------|--------------------------------|
+| `npm run dev`        | Start development server       |
+| `npm run build`      | Production build               |
+| `npm run start`      | Start production server        |
+| `npm run lint`       | Run ESLint                     |
+| `npm test`           | Run tests                      |
+| `npm run test:watch` | Run tests in watch mode        |
+| `npm run test:coverage` | Run tests with coverage     |
 
-## Learn More
+## Project Structure
 
-To learn more about Next.js, take a look at the following resources:
+```
+app/
+  [locale]/          # Locale-scoped pages (es, en)
+    page.tsx         # Homepage (server component)
+    proyectos/       # Projects section
+    privacidad/      # Privacy policy
+    aviso-legal/     # Legal notice
+    cookies/         # Cookie policy
+  api/
+    contact/         # Contact form endpoint
+    health/          # Health check
+components/
+  home/              # Homepage section components
+  ui/                # Shared UI primitives (shadcn/ui)
+  cookie-banner.tsx  # GDPR cookie consent
+lib/
+  dictionaries.ts    # i18n strings (es/en)
+  projects.ts        # Project data
+  colors.ts          # Shared color config
+  rate-limit.ts      # API rate limiter
+  validation.ts      # Input validation utils
+__tests__/           # Unit tests
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Environment Variables
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+| Variable         | Required | Description          |
+|------------------|----------|----------------------|
+| `RESEND_API_KEY` | Yes      | Resend API key       |
 
-## Deploy on Vercel
+## License
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+All rights reserved. This is a personal portfolio — source code is not licensed for reuse.

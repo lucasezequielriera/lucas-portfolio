@@ -79,7 +79,7 @@ export default async function ProjectPage({
         : null;
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-100">
+    <main id="main-content" className="min-h-screen bg-neutral-950 text-neutral-100">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

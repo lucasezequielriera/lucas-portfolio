@@ -159,7 +159,7 @@ export function ExperienceSection({ locale }: { locale: Locale }) {
             <div className="flex items-center gap-4 pt-2" aria-hidden="true">
               <div className="w-28 shrink-0 md:w-36" />
               <div className="relative flex-1">
-                <div className="flex justify-between text-[0.65rem] text-neutral-600">
+                <div className="flex justify-between text-[0.65rem] text-neutral-500">
                   {[2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026].map((year) => (
                     <span key={year}>{year}</span>
                   ))}

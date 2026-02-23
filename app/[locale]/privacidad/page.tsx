@@ -23,9 +23,13 @@ export default async function PrivacyPage({
   const { locale } = await params;
   const t = getDictionary(locale as Locale);
   const isEs = locale === "es";
+  const lastUpdated = new Intl.DateTimeFormat(isEs ? "es-ES" : "en-US", {
+    month: "long",
+    year: "numeric",
+  }).format(new Date(2026, 1));
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-100">
+    <main id="main-content" className="min-h-screen bg-neutral-950 text-neutral-100">
       <div className="mx-auto max-w-3xl px-6 pb-24 pt-16 md:pt-24">
         <Link
           href={`/${locale}`}
@@ -38,7 +42,7 @@ export default async function PrivacyPage({
           {t.legal.privacyTitle}
         </h1>
         <p className="mt-2 text-sm text-neutral-500">
-          {t.legal.lastUpdated}: febrero 2026
+          {t.legal.lastUpdated}: {lastUpdated}
         </p>
 
         <div className="prose-invert mt-10 space-y-8 text-sm leading-relaxed text-neutral-300">
@@ -76,7 +80,7 @@ export default async function PrivacyPage({
               </section>
               <section>
                 <h2 className="text-lg font-semibold text-neutral-100">5. Destinatarios</h2>
-                <p>Los datos del formulario son enviados por correo electrónico a través de Resend (resend.com), que actúa como encargado del tratamiento. No se cederán datos a terceros salvo obligación legal.</p>
+                <p>Los datos del formulario son enviados por correo electrónico a través de Resend (resend.com), que actúa como encargado del tratamiento. El sitio web está alojado en Vercel Inc. (vercel.com), que actúa como encargado del tratamiento para el hosting y puede procesar datos técnicos de conexión (dirección IP, agente de usuario). No se cederán datos a terceros salvo obligación legal.</p>
               </section>
               <section>
                 <h2 className="text-lg font-semibold text-neutral-100">6. Conservación</h2>
@@ -138,7 +142,7 @@ export default async function PrivacyPage({
               </section>
               <section>
                 <h2 className="text-lg font-semibold text-neutral-100">5. Recipients</h2>
-                <p>Contact form data is sent via email through Resend (resend.com), which acts as a data processor. Data will not be shared with third parties except as required by law.</p>
+                <p>Contact form data is sent via email through Resend (resend.com), which acts as a data processor. The website is hosted on Vercel Inc. (vercel.com), which acts as a data processor for hosting and may process technical connection data (IP address, user agent). Data will not be shared with third parties except as required by law.</p>
               </section>
               <section>
                 <h2 className="text-lg font-semibold text-neutral-100">6. Data retention</h2>

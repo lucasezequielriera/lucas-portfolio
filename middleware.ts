@@ -32,7 +32,12 @@ export function middleware(request: NextRequest) {
     (l) => pathname.startsWith(`/${l}/`) || pathname === `/${l}`
   );
 
-  if (pathnameHasLocale) return;
+  if (pathnameHasLocale) {
+    const locale = pathname.split("/")[1];
+    const response = NextResponse.next();
+    response.headers.set("x-locale", locale);
+    return response;
+  }
 
   const locale = getPreferredLocale(request);
   const url = request.nextUrl.clone();
@@ -41,5 +46,7 @@ export function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ["/((?!_next|api|icon\\.png|apple-icon\\.png|og-image\\.png|.*\\..*).*)"],
+  matcher: [
+    "/((?!_next|api|icon\\.png|apple-icon\\.png|og-image\\.png|.*\\..*).*)",
+  ],
 };

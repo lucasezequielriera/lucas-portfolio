@@ -24,7 +24,7 @@ export default async function FitTravelPage({
   const t = getDictionary(locale as Locale);
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-100">
+    <main id="main-content" className="min-h-screen bg-neutral-950 text-neutral-100">
       <header className="sticky top-0 z-30 border-b border-neutral-900/60 bg-neutral-950/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <Link

@@ -56,13 +56,6 @@ export function Nav({ locale }: { locale: Locale }) {
 
   return (
     <>
-      <a
-        href="#trabajos"
-        className="sr-only focus:not-sr-only focus:fixed focus:left-4 focus:top-4 focus:z-50 focus:rounded-lg focus:bg-emerald-500 focus:px-4 focus:py-2 focus:text-sm focus:font-medium focus:text-neutral-950"
-      >
-        {t.nav.skipToContent}
-      </a>
-
       <header className="sticky top-0 z-30 border-b border-neutral-900/60 bg-neutral-950/80 backdrop-blur">
         <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
           <div className="flex items-center gap-3">

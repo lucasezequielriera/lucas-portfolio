@@ -99,6 +99,11 @@ export interface Dictionary {
     sending: string;
     success: string;
     error: string;
+    errorMinName: string;
+    errorMaxName: string;
+    errorEmail: string;
+    errorMinMessage: string;
+    errorMaxMessage: string;
   };
   footer: {
     rights: (year: number) => string;
@@ -267,6 +272,11 @@ const es: Dictionary = {
     sending: "Enviando...",
     success: "Mensaje enviado. Te respondo pronto.",
     error: "Error al enviar. Intentá de nuevo.",
+    errorMinName: "El nombre debe tener al menos 2 caracteres.",
+    errorMaxName: "El nombre es demasiado largo.",
+    errorEmail: "Ingresá un email válido.",
+    errorMinMessage: "El mensaje debe tener al menos 10 caracteres.",
+    errorMaxMessage: "El mensaje es demasiado largo.",
   },
   footer: {
     rights: (year) =>
@@ -480,6 +490,11 @@ const en: Dictionary = {
     sending: "Sending...",
     success: "Message sent. I'll get back to you soon.",
     error: "Failed to send. Please try again.",
+    errorMinName: "Name must be at least 2 characters.",
+    errorMaxName: "Name is too long.",
+    errorEmail: "Please enter a valid email address.",
+    errorMinMessage: "Message must be at least 10 characters.",
+    errorMaxMessage: "Message is too long.",
   },
   footer: {
     rights: (year) =>

@@ -23,9 +23,13 @@ export default async function CookiePolicyPage({
   const { locale } = await params;
   const t = getDictionary(locale as Locale);
   const isEs = locale === "es";
+  const lastUpdated = new Intl.DateTimeFormat(isEs ? "es-ES" : "en-US", {
+    month: "long",
+    year: "numeric",
+  }).format(new Date(2026, 1));
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-100">
+    <main id="main-content" className="min-h-screen bg-neutral-950 text-neutral-100">
       <div className="mx-auto max-w-3xl px-6 pb-24 pt-16 md:pt-24">
         <Link
           href={`/${locale}`}
@@ -38,7 +42,7 @@ export default async function CookiePolicyPage({
           {t.legal.cookieTitle}
         </h1>
         <p className="mt-2 text-sm text-neutral-500">
-          {t.legal.lastUpdated}: febrero 2026
+          {t.legal.lastUpdated}: {lastUpdated}
         </p>
 
         <div className="prose-invert mt-10 space-y-8 text-sm leading-relaxed text-neutral-300">

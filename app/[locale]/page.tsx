@@ -20,7 +20,7 @@ export default async function Home({
   const loc = locale as Locale;
 
   return (
-    <main className="min-h-screen bg-neutral-950 text-neutral-100">
+    <main id="main-content" className="min-h-screen bg-neutral-950 text-neutral-100">
       <Nav locale={loc} />
       <HeroSection locale={loc} />
       <WorksSection locale={loc} />

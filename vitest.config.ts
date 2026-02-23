@@ -6,6 +6,12 @@ export default defineConfig({
     environment: "jsdom",
     globals: true,
     setupFiles: [],
+    coverage: {
+      provider: "v8",
+      include: ["lib/**", "app/api/**"],
+      exclude: ["**/*.test.ts"],
+      reporter: ["text", "lcov"],
+    },
   },
   resolve: {
     alias: {

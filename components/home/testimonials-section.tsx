@@ -52,7 +52,7 @@ export function TestimonialsSection({ locale }: { locale: Locale }) {
                 <div>
                   <p className="text-sm font-medium text-neutral-100">Mary Sanchez</p>
                   <p className="text-xs text-neutral-500">{t.testimonials.maryRole}</p>
-                  <p className="text-[0.65rem] text-neutral-600">{t.testimonials.maryRelation}</p>
+                  <p className="text-[0.65rem] text-neutral-500">{t.testimonials.maryRelation}</p>
                 </div>
               </div>
             </CardContent>

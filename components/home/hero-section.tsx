@@ -113,14 +113,16 @@ export function HeroSection({ locale }: { locale: Locale }) {
         >
           <div className="relative aspect-square overflow-hidden rounded-2xl border border-neutral-800 bg-neutral-900/60">
             <video
-              src="/lucas.mov"
               autoPlay
               loop
               muted
               playsInline
+              preload="auto"
               aria-label={t.hero.videoAlt}
               className="h-full w-full object-cover"
-            />
+            >
+              <source src="/lucas.mp4" type="video/mp4" />
+            </video>
             <div className="absolute inset-0 bg-gradient-to-t from-neutral-950/60 via-transparent to-transparent" />
           </div>
           <Card className="bg-neutral-900/60 border-neutral-800">

@@ -1,7 +1,6 @@
 import type { Metadata } from "next";
 import { getDictionary, locales, type Locale } from "@/lib/dictionaries";
-
-const yearsExp = new Date().getFullYear() - 2020;
+import { CookieBanner } from "@/components/cookie-banner";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -13,6 +12,7 @@ export async function generateMetadata({
   params: Promise<{ locale: string }>;
 }): Promise<Metadata> {
   const { locale } = await params;
+  const yearsExp = new Date().getFullYear() - 2020;
   const t = getDictionary(locale as Locale);
   const isEs = locale === "es";
 
@@ -78,6 +78,7 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const yearsExp = new Date().getFullYear() - 2020;
   const t = getDictionary(locale as Locale);
   const isEs = locale === "es";
 
@@ -107,13 +108,31 @@ export default async function LocaleLayout({
             ],
             description: t.meta.ogDescription(yearsExp),
             knowsAbout: [
-              "Programación", "Desarrollo Web", "Informática",
-              "Full-Stack Development", "React", "Next.js", "Vue.js",
-              "TypeScript", "Node.js", "Express", "GraphQL", "Redux",
-              "PostgreSQL", "MongoDB", "Firebase", "Supabase", "Azure",
-              "Tailwind CSS", "Docker", "SaaS Development",
-              "Diseño Web", "Desarrollo Frontend", "Desarrollo Backend",
-              "Testing", "CI/CD",
+              "Programación",
+              "Desarrollo Web",
+              "Informática",
+              "Full-Stack Development",
+              "React",
+              "Next.js",
+              "Vue.js",
+              "TypeScript",
+              "Node.js",
+              "Express",
+              "GraphQL",
+              "Redux",
+              "PostgreSQL",
+              "MongoDB",
+              "Firebase",
+              "Supabase",
+              "Azure",
+              "Tailwind CSS",
+              "Docker",
+              "SaaS Development",
+              "Diseño Web",
+              "Desarrollo Frontend",
+              "Desarrollo Backend",
+              "Testing",
+              "CI/CD",
             ],
             address: {
               "@type": "PostalAddress",
@@ -121,8 +140,16 @@ export default async function LocaleLayout({
               addressCountry: "ES",
             },
             alumniOf: [
-              { "@type": "CollegeOrUniversity", name: "UADE", url: "https://www.uade.edu.ar" },
-              { "@type": "CollegeOrUniversity", name: "Universidad Tecnológica Nacional", url: "https://www.utn.edu.ar" },
+              {
+                "@type": "CollegeOrUniversity",
+                name: "UADE",
+                url: "https://www.uade.edu.ar",
+              },
+              {
+                "@type": "CollegeOrUniversity",
+                name: "Universidad Tecnológica Nacional",
+                url: "https://www.utn.edu.ar",
+              },
             ],
             knowsLanguage: ["es", "en"],
             hasCredential: [
@@ -153,7 +180,9 @@ export default async function LocaleLayout({
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "ProfessionalService",
-            name: isEs ? "Lucas Riera — Desarrollo Web" : "Lucas Riera — Web Development",
+            name: isEs
+              ? "Lucas Riera — Desarrollo Web"
+              : "Lucas Riera — Web Development",
             url: "https://www.lucasriera.com",
             description: t.meta.ogDescription(yearsExp),
             priceRange: "$$",
@@ -179,7 +208,11 @@ export default async function LocaleLayout({
                 author: { "@type": "Person", name: "Mary Sanchez" },
                 reviewBody:
                   "Lucas is a highly capable developer and analyst who consistently demonstrated strong leadership and deep technical insight regarding best practices. He excels at troubleshooting complex issues and effectively conveying clear timelines to business partners.",
-                reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+                reviewRating: {
+                  "@type": "Rating",
+                  ratingValue: "5",
+                  bestRating: "5",
+                },
                 datePublished: "2025-09-29",
               },
               {
@@ -187,7 +220,11 @@ export default async function LocaleLayout({
                 author: { "@type": "Person", name: "Nicolas Soroka" },
                 reviewBody:
                   "I strongly recommend Lucas based on our collaboration across multiple projects. His excellent communication skills, collaborative mindset, and meticulous attention to detail consistently lead to positive and successful outcomes.",
-                reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
+                reviewRating: {
+                  "@type": "Rating",
+                  ratingValue: "5",
+                  bestRating: "5",
+                },
                 datePublished: "2025-08-02",
               },
             ],
@@ -195,6 +232,7 @@ export default async function LocaleLayout({
         }}
       />
       {children}
+      <CookieBanner locale={locale as Locale} />
     </>
   );
 }

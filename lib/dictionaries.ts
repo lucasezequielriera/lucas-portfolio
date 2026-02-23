@@ -12,6 +12,7 @@ export interface Dictionary {
     proyectos: string;
     contacto: string;
     openMenu: string;
+    closeMenu: string;
     mainNav: string;
     mobileNav: string;
     skipToContent: string;
@@ -53,6 +54,7 @@ export interface Dictionary {
     years2: string;
     year1: string;
     present: string;
+    srDescription: string;
   };
   stack: {
     label: string;
@@ -77,6 +79,7 @@ export interface Dictionary {
     maryRole: string;
     maryRelation: string;
     nicolasRole: string;
+    starsLabel: string;
   };
   contact: {
     title: string;
@@ -98,8 +101,11 @@ export interface Dictionary {
     error: string;
   };
   footer: {
-    rights: string;
+    rights: (year: number) => string;
     madeBy: string;
+    privacy: string;
+    legal: string;
+    cookies: string;
   };
   scrollTop: string;
   proyectosPage: {
@@ -134,6 +140,23 @@ export interface Dictionary {
     ogDescription: (years: number) => string;
     keywords: string[];
   };
+  cookieBanner: {
+    text: string;
+    accept: string;
+    decline: string;
+    moreInfo: string;
+  };
+  legal: {
+    privacyTitle: string;
+    legalTitle: string;
+    cookieTitle: string;
+    backHome: string;
+    lastUpdated: string;
+  };
+  fitTravel: {
+    title: string;
+    description: string;
+  };
 }
 
 const es: Dictionary = {
@@ -145,6 +168,7 @@ const es: Dictionary = {
     proyectos: "Proyectos",
     contacto: "Contacto",
     openMenu: "Abrir menú de navegación",
+    closeMenu: "Cerrar menú de navegación",
     mainNav: "Navegación principal",
     mobileNav: "Navegación móvil",
     skipToContent: "Ir al contenido principal",
@@ -164,7 +188,8 @@ const es: Dictionary = {
     activity1: "Consultoría frontend & soluciones con IA",
     activity2: "Construyendo plataformas SaaS y sistemas web",
     activity3: "Creando portfolios y webs profesionales",
-    activity4: "Lic. Informática — UADE · Tec. Programación & Full Stack MERN — UTN",
+    activity4:
+      "Lic. Informática — UADE · Tec. Programación & Full Stack MERN — UTN",
     statCode: "Código",
     statYears: "+ años",
     statProducts: "Productos",
@@ -189,11 +214,14 @@ const es: Dictionary = {
     years2: "2 años",
     year1: "1 año",
     present: "hoy",
+    srDescription:
+      "Línea de tiempo profesional mostrando experiencia laboral desde 2019 hasta la actualidad.",
   },
   stack: {
     label: "Stack",
     title: "Tecnologías que uso día a día.",
-    description: "Las herramientas con las que construyo productos sólidos y escalables.",
+    description:
+      "Las herramientas con las que construyo productos sólidos y escalables.",
   },
   services: {
     label: "Servicios",
@@ -218,6 +246,7 @@ const es: Dictionary = {
     maryRole: "Senior Analyst / Developer · United Airlines",
     maryRelation: "Supervisora directa de Lucas",
     nicolasRole: "Frontend Engineer · Compañero de equipo",
+    starsLabel: "5 de 5 estrellas",
   },
   contact: {
     title: "Hablemos de tu próximo proyecto.",
@@ -240,8 +269,12 @@ const es: Dictionary = {
     error: "Error al enviar. Intentá de nuevo.",
   },
   footer: {
-    rights: "© 2025 Lucas Riera. Todos los derechos reservados.",
+    rights: (year) =>
+      `© ${year} Lucas Riera. Todos los derechos reservados.`,
     madeBy: "Sitio web por Lucas Riera · Desarrollo & Diseño Web",
+    privacy: "Privacidad",
+    legal: "Aviso Legal",
+    cookies: "Cookies",
   },
   scrollTop: "Volver arriba",
   proyectosPage: {
@@ -260,14 +293,16 @@ const es: Dictionary = {
     screenshots: "El producto en acción",
     visitSite: "Visitar sitio",
     contactCta: "¿Necesitás algo similar?",
-    contactCtaSub: "Desarrollo productos a medida con la misma obsesión que pongo en los míos.",
+    contactCtaSub:
+      "Desarrollo productos a medida con la misma obsesión que pongo en los míos.",
     backToProjects: "← Todos los proyectos",
     builtIn: "Construido en",
     createdBy: "Creado por Lucas Riera",
   },
   notFound: {
     title: "Página no encontrada",
-    description: "La página que buscás no existe o fue movida. Volvé al inicio para seguir navegando.",
+    description:
+      "La página que buscás no existe o fue movida. Volvé al inicio para seguir navegando.",
     backHome: "Volver al inicio",
   },
   meta: {
@@ -278,19 +313,62 @@ const es: Dictionary = {
     ogDescription: (years) =>
       `Programador, informático y desarrollador full-stack en Madrid. +${years} años creando plataformas, sistemas y webs desde cero.`,
     keywords: [
-      "Lucas Riera", "programador", "programador web", "programador Madrid",
-      "programador freelance", "informático", "informático Madrid",
-      "ingeniero de software", "ingeniero informático", "software developer",
-      "desarrollador", "desarrollador web", "desarrollador full-stack",
-      "desarrollador frontend", "desarrollador backend", "desarrollador Madrid",
-      "desarrollador España", "desarrollo web", "desarrollo web Madrid",
-      "crear página web", "hacer página web", "diseño web",
-      "React", "Next.js", "TypeScript", "Node.js",
-      "portfolio developer", "WebFinanceLab", "FitPlan AI",
-      "WebEducationLab", "Synapsis", "freelance developer",
-      "plataformas SaaS", "sistemas web", "técnico en programación",
-      "experto en programación", "developer España",
+      "Lucas Riera",
+      "programador",
+      "programador web",
+      "programador Madrid",
+      "programador freelance",
+      "informático",
+      "informático Madrid",
+      "ingeniero de software",
+      "ingeniero informático",
+      "software developer",
+      "desarrollador",
+      "desarrollador web",
+      "desarrollador full-stack",
+      "desarrollador frontend",
+      "desarrollador backend",
+      "desarrollador Madrid",
+      "desarrollador España",
+      "desarrollo web",
+      "desarrollo web Madrid",
+      "crear página web",
+      "hacer página web",
+      "diseño web",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "portfolio developer",
+      "WebFinanceLab",
+      "FitPlan AI",
+      "WebEducationLab",
+      "Synapsis",
+      "freelance developer",
+      "plataformas SaaS",
+      "sistemas web",
+      "técnico en programación",
+      "experto en programación",
+      "developer España",
     ],
+  },
+  cookieBanner: {
+    text: "Este sitio utiliza cookies funcionales para recordar tu preferencia de idioma.",
+    accept: "Aceptar",
+    decline: "Rechazar",
+    moreInfo: "Más información",
+  },
+  legal: {
+    privacyTitle: "Política de Privacidad",
+    legalTitle: "Aviso Legal",
+    cookieTitle: "Política de Cookies",
+    backHome: "← Volver al inicio",
+    lastUpdated: "Última actualización",
+  },
+  fitTravel: {
+    title: "FitTravel",
+    description:
+      "Proyecto FitTravel. Aquí irá el contenido que definamos.",
   },
 };
 
@@ -303,6 +381,7 @@ const en: Dictionary = {
     proyectos: "Projects",
     contacto: "Contact",
     openMenu: "Open navigation menu",
+    closeMenu: "Close navigation menu",
     mainNav: "Main navigation",
     mobileNav: "Mobile navigation",
     skipToContent: "Skip to main content",
@@ -322,7 +401,8 @@ const en: Dictionary = {
     activity1: "Frontend consulting & AI-powered solutions",
     activity2: "Building SaaS platforms and web systems",
     activity3: "Creating portfolios and professional websites",
-    activity4: "B.Sc. Computer Science — UADE · Software Dev & Full Stack MERN — UTN",
+    activity4:
+      "B.Sc. Computer Science — UADE · Software Dev & Full Stack MERN — UTN",
     statCode: "Code",
     statYears: "+ years",
     statProducts: "Products",
@@ -347,11 +427,14 @@ const en: Dictionary = {
     years2: "2 years",
     year1: "1 year",
     present: "now",
+    srDescription:
+      "Professional timeline showing work experience from 2019 to present.",
   },
   stack: {
     label: "Stack",
     title: "Technologies I use every day.",
-    description: "The tools I use to build solid and scalable products.",
+    description:
+      "The tools I use to build solid and scalable products.",
   },
   services: {
     label: "Services",
@@ -376,6 +459,7 @@ const en: Dictionary = {
     maryRole: "Senior Analyst / Developer · United Airlines",
     maryRelation: "Lucas's direct supervisor",
     nicolasRole: "Frontend Engineer · Teammate",
+    starsLabel: "5 out of 5 stars",
   },
   contact: {
     title: "Let's talk about your next project.",
@@ -398,8 +482,12 @@ const en: Dictionary = {
     error: "Failed to send. Please try again.",
   },
   footer: {
-    rights: "© 2025 Lucas Riera. All rights reserved.",
+    rights: (year) =>
+      `© ${year} Lucas Riera. All rights reserved.`,
     madeBy: "Website by Lucas Riera · Web Development & Design",
+    privacy: "Privacy",
+    legal: "Legal Notice",
+    cookies: "Cookies",
   },
   scrollTop: "Back to top",
   proyectosPage: {
@@ -418,14 +506,16 @@ const en: Dictionary = {
     screenshots: "The product in action",
     visitSite: "Visit site",
     contactCta: "Need something similar?",
-    contactCtaSub: "I build custom products with the same obsession I put into my own.",
+    contactCtaSub:
+      "I build custom products with the same obsession I put into my own.",
     backToProjects: "← All projects",
     builtIn: "Built in",
     createdBy: "Created by Lucas Riera",
   },
   notFound: {
     title: "Page not found",
-    description: "The page you're looking for doesn't exist or has been moved. Go back to the home page.",
+    description:
+      "The page you're looking for doesn't exist or has been moved. Go back to the home page.",
     backHome: "Back to home",
   },
   meta: {
@@ -436,14 +526,49 @@ const en: Dictionary = {
     ogDescription: (years) =>
       `Full-stack developer and software engineer in Madrid. ${years}+ years building platforms, systems and websites from scratch.`,
     keywords: [
-      "Lucas Riera", "software developer", "web developer", "programmer",
-      "software engineer", "full-stack developer", "frontend developer",
-      "backend developer", "developer Madrid", "developer Spain",
-      "freelance developer", "web development", "React", "Next.js",
-      "TypeScript", "Node.js", "portfolio developer", "WebFinanceLab",
-      "FitPlan AI", "WebEducationLab", "Synapsis", "SaaS platforms",
-      "web systems", "web design", "Madrid developer",
+      "Lucas Riera",
+      "software developer",
+      "web developer",
+      "programmer",
+      "software engineer",
+      "full-stack developer",
+      "frontend developer",
+      "backend developer",
+      "developer Madrid",
+      "developer Spain",
+      "freelance developer",
+      "web development",
+      "React",
+      "Next.js",
+      "TypeScript",
+      "Node.js",
+      "portfolio developer",
+      "WebFinanceLab",
+      "FitPlan AI",
+      "WebEducationLab",
+      "Synapsis",
+      "SaaS platforms",
+      "web systems",
+      "web design",
+      "Madrid developer",
     ],
+  },
+  cookieBanner: {
+    text: "This site uses functional cookies to remember your language preference.",
+    accept: "Accept",
+    decline: "Decline",
+    moreInfo: "Learn more",
+  },
+  legal: {
+    privacyTitle: "Privacy Policy",
+    legalTitle: "Legal Notice",
+    cookieTitle: "Cookie Policy",
+    backHome: "← Back to home",
+    lastUpdated: "Last updated",
+  },
+  fitTravel: {
+    title: "FitTravel",
+    description: "FitTravel project. Content will be defined here.",
   },
 };
 

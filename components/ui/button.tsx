@@ -40,10 +40,8 @@ export interface ButtonProps
 }
 
 const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   ({ className, variant, size, asChild, ...props }, ref) => {
-    // Nota: actualmente no implementamos el comportamiento de `asChild`
-    // como en shadcn (con <Slot />), pero lo extraemos para que no llegue
-    // al DOM y no genere warnings de React.
     return (
       <button
         className={cn(buttonVariants({ variant, size, className }))}

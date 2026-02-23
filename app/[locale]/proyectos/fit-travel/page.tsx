@@ -1,10 +1,19 @@
 import type { Metadata } from "next";
 import Link from "next/link";
+import { getDictionary, type Locale } from "@/lib/dictionaries";
 
-export const metadata: Metadata = {
-  title: "FitTravel — Lucas Riera | Software Developer",
-  description: "FitTravel: proyecto de Lucas Riera.",
-};
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ locale: string }>;
+}): Promise<Metadata> {
+  const { locale } = await params;
+  const t = getDictionary(locale as Locale);
+  return {
+    title: `${t.fitTravel.title} — Lucas Riera | Software Developer`,
+    description: t.fitTravel.description,
+  };
+}
 
 export default async function FitTravelPage({
   params,
@@ -12,6 +21,7 @@ export default async function FitTravelPage({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+  const t = getDictionary(locale as Locale);
 
   return (
     <main className="min-h-screen bg-neutral-950 text-neutral-100">
@@ -21,18 +31,18 @@ export default async function FitTravelPage({
             href={`/${locale}/proyectos`}
             className="text-sm font-medium tracking-[0.2em] text-neutral-400 uppercase transition hover:text-neutral-100"
           >
-            &larr; {locale === "es" ? "Proyectos" : "Projects"}
+            &larr; {t.nav.proyectos}
           </Link>
         </div>
       </header>
 
       <section className="mx-auto max-w-6xl px-6 pb-24 pt-16 md:pt-24">
         <div className="space-y-6">
-          <h1 className="text-3xl font-semibold md:text-4xl">FitTravel</h1>
+          <h1 className="text-3xl font-semibold md:text-4xl">
+            {t.fitTravel.title}
+          </h1>
           <p className="max-w-2xl text-sm text-neutral-400">
-            {locale === "es"
-              ? "Proyecto FitTravel. Aquí irá el contenido que definamos."
-              : "FitTravel project. Content will be defined here."}
+            {t.fitTravel.description}
           </p>
         </div>
       </section>

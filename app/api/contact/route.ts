@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
     }
 
     const { data, error: resendError } = await resend.emails.send({
-      from: "Lucas Riera Portfolio <contacto@lucasriera.com>",
+      from: "Portfolio <onboarding@resend.dev>",
       to: "lucasezequielriera@gmail.com",
       replyTo: email,
       subject: `Nuevo mensaje de ${name} — lucasriera.com`,

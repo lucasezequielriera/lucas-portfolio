@@ -63,7 +63,7 @@ export async function POST(request: NextRequest) {
     const safeMessage = escapeHtml(message);
 
     const { data, error: resendError } = await getResend().emails.send({
-      from: "Portfolio <onboarding@resend.dev>",
+      from: "Portfolio <hola@lucasriera.com>",
       to: "lucasezequielriera@gmail.com",
       replyTo: email,
       subject: `Nuevo mensaje de ${name} — lucasriera.com`,

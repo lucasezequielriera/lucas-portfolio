@@ -171,14 +171,29 @@ export async function extractTextFromLinkedInUrl(linkedinUrl: string) {
     );
   }
 
-  const response = await fetch(normalizedUrl, {
-    headers: {
-      "User-Agent":
-        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
-      "Accept-Language": "en-US,en;q=0.9,es;q=0.8",
-    },
-    cache: "no-store",
-  });
+  let response: Response;
+  try {
+    response = await fetch(normalizedUrl, {
+      headers: {
+        "User-Agent":
+          "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+        "Accept-Language": "en-US,en;q=0.9,es;q=0.8",
+      },
+      cache: "no-store",
+      redirect: "follow",
+    });
+  } catch (error) {
+    const message = error instanceof Error ? error.message : String(error);
+    // LinkedIn may return non-standard status 999, which Node fetch rejects.
+    if (message.includes('init["status"]') || message.includes("range of 200")) {
+      throw new Error(
+        "LinkedIn bloqueó la extracción automática (status 999). Usa la opción de subir tu CV en PDF/DOCX/TXT."
+      );
+    }
+    throw new Error(
+      "No pude acceder al perfil de LinkedIn. Verifica el enlace o usa la opción de subir tu CV."
+    );
+  }
 
   if (!response.ok) {
     throw new Error(

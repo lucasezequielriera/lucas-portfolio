@@ -10,6 +10,15 @@ import {
 
 export const runtime = "nodejs";
 
+const USER_INPUT_ERROR_PATTERNS = [
+  "El link debe ser",
+  "No pude acceder al perfil de LinkedIn",
+  "No se pudo leer suficiente contenido",
+  "LinkedIn bloqueó o limitó",
+  "Formato no soportado",
+  "Debes subir un archivo CV",
+];
+
 export async function POST(request: NextRequest) {
   try {
     const form = await request.formData();
@@ -58,9 +67,18 @@ export async function POST(request: NextRequest) {
     });
   } catch (error) {
     console.error("CV generator error:", error);
+    const message = error instanceof Error ? error.message : "";
+    const isUserInputError = USER_INPUT_ERROR_PATTERNS.some((pattern) =>
+      message.includes(pattern)
+    );
+
     return NextResponse.json(
-      { error: "No se pudo generar el CV. Intenta nuevamente." },
-      { status: 500 }
+      {
+        error: isUserInputError
+          ? message
+          : "No se pudo generar el CV. Intenta nuevamente.",
+      },
+      { status: isUserInputError ? 400 : 500 }
     );
   }
 }

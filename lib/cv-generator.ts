@@ -35,6 +35,31 @@ function normalizeLinkedinUrl(url: string) {
   return trimmed;
 }
 
+function isSupportedLinkedInUrl(rawUrl: string) {
+  try {
+    const url = new URL(rawUrl);
+    const host = url.hostname.toLowerCase();
+    const path = url.pathname.toLowerCase();
+    const isLinkedInHost =
+      host === "linkedin.com" ||
+      host.endsWith(".linkedin.com") ||
+      host === "lnkd.in";
+
+    if (!isLinkedInHost) return false;
+
+    if (host === "lnkd.in") return true;
+
+    return (
+      path.includes("/in/") ||
+      path.includes("/pub/") ||
+      path.includes("/mwlite/in/") ||
+      path.includes("/profile/view")
+    );
+  } catch {
+    return false;
+  }
+}
+
 function extractPdfText(buffer: Buffer): Promise<string> {
   return new Promise((resolve, reject) => {
     const rows: Record<number, string[]> = {};
@@ -140,9 +165,9 @@ export async function extractTextFromFile(file: File) {
 
 export async function extractTextFromLinkedInUrl(linkedinUrl: string) {
   const normalizedUrl = normalizeLinkedinUrl(linkedinUrl);
-  if (!/linkedin\.com\/in\//i.test(normalizedUrl)) {
+  if (!isSupportedLinkedInUrl(normalizedUrl)) {
     throw new Error(
-      "El link debe ser un perfil público de LinkedIn (linkedin.com/in/...)."
+      "El link debe ser un perfil público de LinkedIn o lnkd.in (por ejemplo linkedin.com/in/...)."
     );
   }
 

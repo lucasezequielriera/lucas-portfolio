@@ -87,6 +87,9 @@ export function Nav({ locale }: { locale: Locale }) {
               <Link href={`/${locale}/proyectos`} className="rounded-md px-1 transition hover:text-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/70">
                 {t.nav.proyectos}
               </Link>
+              <Link href={`/${locale}/herramientas`} className="rounded-md px-1 transition hover:text-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/70">
+                {t.nav.herramientas}
+              </Link>
               <button onClick={() => handleNavClick("contacto")} className="rounded-md px-1 transition hover:text-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/70">
                 {t.nav.contacto}
               </button>
@@ -163,6 +166,7 @@ export function Nav({ locale }: { locale: Locale }) {
             <button onClick={() => handleNavClick("stack")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.nav.stack}</button>
             <button onClick={() => handleNavClick("services")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.services.label}</button>
             <Link href={`/${locale}/proyectos`} onClick={closeMenu} className="rounded-lg px-3 py-2.5 text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.nav.proyectos}</Link>
+            <Link href={`/${locale}/herramientas`} onClick={closeMenu} className="rounded-lg px-3 py-2.5 text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.nav.herramientas}</Link>
             <button onClick={() => handleNavClick("contacto")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.nav.contacto}</button>
             <div className="mt-2 flex items-center gap-2 border-t border-neutral-800 pt-3">
               <Link

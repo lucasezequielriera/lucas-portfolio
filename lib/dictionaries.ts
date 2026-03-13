@@ -10,6 +10,7 @@ export interface Dictionary {
     experiencia: string;
     stack: string;
     proyectos: string;
+    herramientas: string;
     contacto: string;
     openMenu: string;
     closeMenu: string;
@@ -171,6 +172,7 @@ const es: Dictionary = {
     experiencia: "Experiencia",
     stack: "Stack",
     proyectos: "Proyectos",
+    herramientas: "Herramientas",
     contacto: "Contacto",
     openMenu: "Abrir menú de navegación",
     closeMenu: "Cerrar menú de navegación",
@@ -397,6 +399,7 @@ const en: Dictionary = {
     experiencia: "Experience",
     stack: "Stack",
     proyectos: "Projects",
+    herramientas: "Tools",
     contacto: "Contact",
     openMenu: "Open navigation menu",
     closeMenu: "Close navigation menu",
@@ -613,6 +616,7 @@ const fr: Dictionary = {
     experiencia: "Experience",
     stack: "Stack",
     proyectos: "Projets",
+    herramientas: "Outils",
     contacto: "Contact",
     openMenu: "Ouvrir le menu de navigation",
     closeMenu: "Fermer le menu de navigation",

@@ -2,10 +2,11 @@ import { describe, it, expect } from "vitest";
 import { locales, defaultLocale } from "@/lib/dictionaries";
 
 describe("i18n config", () => {
-  it("exports both locales", () => {
+  it("exports configured locales", () => {
     expect(locales).toContain("es");
     expect(locales).toContain("en");
-    expect(locales.length).toBe(2);
+    expect(locales).toContain("fr");
+    expect(locales.length).toBe(3);
   });
 
   it("defaults to Spanish", () => {

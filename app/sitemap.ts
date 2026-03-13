@@ -50,6 +50,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ]
   );
 
+  const toolsPages = [
+    {
+      url: `${base}/es/herramientas`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${base}/en/herramientas`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+    {
+      url: `${base}/fr/herramientas`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+  ];
+
   const serviceLandings = landingEntries.flatMap((entry) => [
     {
       url: `${base}/es/services/${entry.slug.es}`,
@@ -109,6 +130,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.75,
     },
     ...projectUrls,
+    ...toolsPages,
     ...serviceLandings,
     ...legalPages,
   ];

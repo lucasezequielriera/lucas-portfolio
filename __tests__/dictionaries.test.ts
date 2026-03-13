@@ -14,21 +14,30 @@ describe("getDictionary", () => {
     expect(dict.meta.title).toContain("Lucas Riera");
   });
 
+  it("returns French dictionary for 'fr' locale", () => {
+    const dict = getDictionary("fr");
+    expect(dict.nav.location).toBe("Madrid, Espagne");
+    expect(dict.meta.title).toContain("Lucas Riera");
+  });
+
   it("falls back to Spanish for unknown locale", () => {
-    const dict = getDictionary("fr" as "es");
+    const dict = getDictionary("it" as never);
     expect(dict.nav.location).toBe("Madrid, España");
   });
 
   it("has consistent keys across all locales", () => {
     const esDictKeys = getLeafKeys(getDictionary("es"));
     const enDictKeys = getLeafKeys(getDictionary("en"));
+    const frDictKeys = getLeafKeys(getDictionary("fr"));
     expect(esDictKeys.sort()).toEqual(enDictKeys.sort());
+    expect(esDictKeys.sort()).toEqual(frDictKeys.sort());
   });
 
-  it("locales array contains es and en", () => {
+  it("locales array contains es, en and fr", () => {
     expect(locales).toContain("es");
     expect(locales).toContain("en");
-    expect(locales).toHaveLength(2);
+    expect(locales).toContain("fr");
+    expect(locales).toHaveLength(3);
   });
 
   it("default locale is es", () => {

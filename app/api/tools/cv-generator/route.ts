@@ -2,7 +2,11 @@ import { NextRequest, NextResponse } from "next/server";
 import { renderToBuffer, type DocumentProps } from "@react-pdf/renderer";
 import React from "react";
 import { CvPdfDocument } from "@/lib/cv-pdf-document";
-import { extractTextFromFile, parseCvText } from "@/lib/cv-generator";
+import {
+  extractTextFromFile,
+  extractTextFromLinkedInUrl,
+  parseCvText,
+} from "@/lib/cv-generator";
 
 export const runtime = "nodejs";
 
@@ -11,20 +15,27 @@ export async function POST(request: NextRequest) {
     const form = await request.formData();
     const file = form.get("file");
     const targetRole = (form.get("targetRole") as string | null) ?? "";
+    const linkedinUrl = (form.get("linkedinUrl") as string | null) ?? "";
 
-    if (!(file instanceof File)) {
+    if (!(file instanceof File) && !linkedinUrl.trim()) {
       return NextResponse.json(
-        { error: "Debes subir un archivo CV en formato PDF, DOCX o TXT." },
+        {
+          error:
+            "Debes subir un archivo CV (PDF/DOCX/TXT) o pegar un link de LinkedIn.",
+        },
         { status: 400 }
       );
     }
 
-    const extractedText = await extractTextFromFile(file);
+    const extractedText =
+      file instanceof File
+        ? await extractTextFromFile(file)
+        : await extractTextFromLinkedInUrl(linkedinUrl);
     if (!extractedText || extractedText.trim().length < 40) {
       return NextResponse.json(
         {
           error:
-            "No pude extraer suficiente texto del CV. Si es PDF escaneado, prueba con DOCX o TXT.",
+            "No pude extraer suficiente texto del CV/perfil. Si LinkedIn está bloqueado, prueba subir PDF/DOCX/TXT.",
         },
         { status: 400 }
       );

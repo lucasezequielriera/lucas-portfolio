@@ -17,6 +17,24 @@ export type ParsedCv = {
   certifications: string[];
 };
 
+function decodeHtmlEntities(input: string) {
+  return input
+    .replace(/&amp;/g, "&")
+    .replace(/&lt;/g, "<")
+    .replace(/&gt;/g, ">")
+    .replace(/&quot;/g, '"')
+    .replace(/&#39;/g, "'")
+    .replace(/&nbsp;/g, " ");
+}
+
+function normalizeLinkedinUrl(url: string) {
+  const trimmed = url.trim();
+  if (!/^https?:\/\//i.test(trimmed)) {
+    return `https://${trimmed}`;
+  }
+  return trimmed;
+}
+
 function extractPdfText(buffer: Buffer): Promise<string> {
   return new Promise((resolve, reject) => {
     const rows: Record<number, string[]> = {};
@@ -118,6 +136,110 @@ export async function extractTextFromFile(file: File) {
   }
 
   throw new Error("Formato no soportado. Usa PDF, DOCX o TXT.");
+}
+
+export async function extractTextFromLinkedInUrl(linkedinUrl: string) {
+  const normalizedUrl = normalizeLinkedinUrl(linkedinUrl);
+  if (!/linkedin\.com\/in\//i.test(normalizedUrl)) {
+    throw new Error(
+      "El link debe ser un perfil público de LinkedIn (linkedin.com/in/...)."
+    );
+  }
+
+  const response = await fetch(normalizedUrl, {
+    headers: {
+      "User-Agent":
+        "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/125.0.0.0 Safari/537.36",
+      "Accept-Language": "en-US,en;q=0.9,es;q=0.8",
+    },
+    cache: "no-store",
+  });
+
+  if (!response.ok) {
+    throw new Error(
+      "No pude acceder al perfil de LinkedIn. Verifica que sea público."
+    );
+  }
+
+  const html = await response.text();
+  if (!html || html.length < 200) {
+    throw new Error(
+      "No se pudo leer suficiente contenido del perfil de LinkedIn."
+    );
+  }
+
+  const chunks: string[] = [];
+
+  const ldJsonMatches = [
+    ...html.matchAll(
+      /<script[^>]*type=["']application\/ld\+json["'][^>]*>([\s\S]*?)<\/script>/gi
+    ),
+  ];
+  for (const match of ldJsonMatches) {
+    const rawJson = decodeHtmlEntities(match[1]).trim();
+    if (!rawJson) continue;
+    try {
+      const data = JSON.parse(rawJson) as Record<string, unknown>;
+      const isPerson =
+        data["@type"] === "Person" ||
+        (Array.isArray(data["@graph"]) &&
+          data["@graph"].some(
+            (item) =>
+              typeof item === "object" &&
+              item &&
+              (item as Record<string, unknown>)["@type"] === "Person"
+          ));
+      if (!isPerson) continue;
+
+      const person =
+        data["@type"] === "Person"
+          ? data
+          : ((data["@graph"] as unknown[]).find(
+              (item) =>
+                typeof item === "object" &&
+                item &&
+                (item as Record<string, unknown>)["@type"] === "Person"
+            ) as Record<string, unknown> | undefined);
+      if (!person) continue;
+
+      if (typeof person.name === "string") chunks.push(person.name);
+      if (typeof person.jobTitle === "string")
+        chunks.push(`Target role: ${person.jobTitle}`);
+      if (typeof person.description === "string") chunks.push(person.description);
+      if (typeof person.url === "string") chunks.push(person.url);
+    } catch {
+      // ignore malformed JSON-LD blocks
+    }
+  }
+
+  const title = html.match(
+    /<meta[^>]*property=["']og:title["'][^>]*content=["']([^"']+)["'][^>]*>/i
+  )?.[1];
+  const description = html.match(
+    /<meta[^>]*name=["']description["'][^>]*content=["']([^"']+)["'][^>]*>/i
+  )?.[1];
+  if (title) chunks.push(decodeHtmlEntities(title));
+  if (description) chunks.push(decodeHtmlEntities(description));
+
+  const visibleText = decodeHtmlEntities(
+    html
+      .replace(/<script[\s\S]*?<\/script>/gi, " ")
+      .replace(/<style[\s\S]*?<\/style>/gi, " ")
+      .replace(/<[^>]+>/g, " ")
+      .replace(/\s+/g, " ")
+      .trim()
+  );
+  if (visibleText) {
+    chunks.push(visibleText.slice(0, 6000));
+  }
+
+  const result = chunks.join("\n").trim();
+  if (result.length < 120) {
+    throw new Error(
+      "LinkedIn bloqueó o limitó la extracción. Usa la opción de subir tu CV PDF/DOCX."
+    );
+  }
+  return result;
 }
 
 export function parseCvText(raw: string, targetRole?: string): ParsedCv {

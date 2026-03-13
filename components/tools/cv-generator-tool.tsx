@@ -9,6 +9,10 @@ import type { Locale } from "@/lib/dictionaries";
 type Copy = {
   title: string;
   subtitle: string;
+  linkedinLabel: string;
+  linkedinPlaceholder: string;
+  linkedinHelp: string;
+  sourceOr: string;
   targetRoleLabel: string;
   targetRolePlaceholder: string;
   uploadLabel: string;
@@ -27,6 +31,11 @@ function getCopy(locale: Locale): Copy {
       title: "Generateur de CV ATS",
       subtitle:
         "Telechargez votre CV (PDF, DOCX ou TXT) et generez une version optimisee pour ATS/LinkedIn en PDF.",
+      linkedinLabel: "URL du profil LinkedIn (optionnel)",
+      linkedinPlaceholder: "https://www.linkedin.com/in/votre-profil",
+      linkedinHelp:
+        "Fonctionne seulement avec profils publics. Si LinkedIn bloque, utilisez un fichier.",
+      sourceOr: "OU",
       targetRoleLabel: "Poste cible (optionnel)",
       targetRolePlaceholder: "Ex.: Senior Full-Stack Developer",
       uploadLabel: "Fichier CV",
@@ -45,6 +54,11 @@ function getCopy(locale: Locale): Copy {
       title: "ATS Resume Generator",
       subtitle:
         "Upload your CV (PDF, DOCX or TXT) and generate a polished ATS/LinkedIn-friendly PDF version.",
+      linkedinLabel: "LinkedIn profile URL (optional)",
+      linkedinPlaceholder: "https://www.linkedin.com/in/your-profile",
+      linkedinHelp:
+        "Works only with public profiles. If LinkedIn blocks access, use file upload.",
+      sourceOr: "OR",
       targetRoleLabel: "Target role (optional)",
       targetRolePlaceholder: "e.g. Senior Full-Stack Developer",
       uploadLabel: "CV file",
@@ -62,6 +76,11 @@ function getCopy(locale: Locale): Copy {
     title: "Generador de CV ATS",
     subtitle:
       "Subí tu CV (PDF, DOCX o TXT) y generá una versión optimizada para ATS/LinkedIn en PDF.",
+    linkedinLabel: "URL de perfil de LinkedIn (opcional)",
+    linkedinPlaceholder: "https://www.linkedin.com/in/tu-perfil",
+    linkedinHelp:
+      "Funciona solo con perfiles públicos. Si LinkedIn bloquea, usá subida de archivo.",
+    sourceOr: "O",
     targetRoleLabel: "Puesto objetivo (opcional)",
     targetRolePlaceholder: "Ej: Senior Full-Stack Developer",
     uploadLabel: "Archivo CV",
@@ -78,6 +97,7 @@ function getCopy(locale: Locale): Copy {
 
 export function CvGeneratorTool({ locale }: { locale: Locale }) {
   const [file, setFile] = useState<File | null>(null);
+  const [linkedinUrl, setLinkedinUrl] = useState("");
   const [targetRole, setTargetRole] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
@@ -85,13 +105,13 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
   const t = useMemo(() => getCopy(locale), [locale]);
 
   const handleGenerate = async () => {
-    if (!file) {
+    if (!file && !linkedinUrl.trim()) {
       setError(
         locale === "es"
-          ? "Primero subí un archivo."
+          ? "Subí un archivo o pegá tu URL de LinkedIn."
           : locale === "fr"
-            ? "Veuillez d'abord telecharger un fichier."
-            : "Upload a file first."
+            ? "Telechargez un fichier ou collez votre URL LinkedIn."
+            : "Upload a file or paste your LinkedIn URL."
       );
       return;
     }
@@ -101,7 +121,12 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
     setSuccess("");
     try {
       const formData = new FormData();
-      formData.append("file", file);
+      if (file) {
+        formData.append("file", file);
+      }
+      if (linkedinUrl.trim()) {
+        formData.append("linkedinUrl", linkedinUrl.trim());
+      }
       formData.append("targetRole", targetRole);
 
       const response = await fetch("/api/tools/cv-generator", {
@@ -166,15 +191,36 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
 
           <div className="space-y-2">
             <label className="text-sm font-medium text-neutral-300">
-              {t.targetRoleLabel}
+              {t.linkedinLabel}
             </label>
             <input
-              value={targetRole}
-              onChange={(event) => setTargetRole(event.target.value)}
-              placeholder={t.targetRolePlaceholder}
+              value={linkedinUrl}
+              onChange={(event) => setLinkedinUrl(event.target.value)}
+              placeholder={t.linkedinPlaceholder}
               className="w-full rounded-lg border border-neutral-700 bg-neutral-950/60 px-4 py-3 text-sm text-neutral-100 placeholder-neutral-500 outline-none transition focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/25"
             />
+            <p className="text-xs text-neutral-500">{t.linkedinHelp}</p>
           </div>
+        </div>
+
+        <div className="flex items-center gap-3">
+          <div className="h-px flex-1 bg-neutral-800" />
+          <span className="text-xs uppercase tracking-[0.16em] text-neutral-500">
+            {t.sourceOr}
+          </span>
+          <div className="h-px flex-1 bg-neutral-800" />
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-neutral-300">
+            {t.targetRoleLabel}
+          </label>
+          <input
+            value={targetRole}
+            onChange={(event) => setTargetRole(event.target.value)}
+            placeholder={t.targetRolePlaceholder}
+            className="w-full rounded-lg border border-neutral-700 bg-neutral-950/60 px-4 py-3 text-sm text-neutral-100 placeholder-neutral-500 outline-none transition focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/25"
+          />
         </div>
 
         <div className="rounded-lg border border-neutral-800 bg-neutral-950/60 p-4">

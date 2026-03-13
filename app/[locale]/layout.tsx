@@ -15,6 +15,7 @@ export async function generateMetadata({
   const yearsExp = new Date().getFullYear() - 2020;
   const t = getDictionary(locale as Locale);
   const isEs = locale === "es";
+  const isFr = locale === "fr";
 
   return {
     title: t.meta.title,
@@ -34,7 +35,7 @@ export async function generateMetadata({
     },
     openGraph: {
       type: "website",
-      locale: isEs ? "es_ES" : "en_US",
+      locale: isEs ? "es_ES" : isFr ? "fr_FR" : "en_US",
       url: `https://www.lucasriera.com/${locale}`,
       title: t.meta.ogTitle,
       description: t.meta.ogDescription(yearsExp),

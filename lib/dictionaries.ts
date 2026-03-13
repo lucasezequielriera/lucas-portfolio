@@ -1,6 +1,6 @@
-export type Locale = "es" | "en";
+export type Locale = "es" | "en" | "fr";
 
-export const locales: Locale[] = ["es", "en"];
+export const locales: Locale[] = ["es", "en", "fr"];
 export const defaultLocale: Locale = "es";
 
 export interface Dictionary {
@@ -604,7 +604,159 @@ const en: Dictionary = {
   },
 };
 
-const dictionaries: Record<Locale, Dictionary> = { es, en };
+const fr: Dictionary = {
+  ...en,
+  nav: {
+    ...en.nav,
+    location: "Madrid, Espagne",
+    trabajos: "Travaux",
+    experiencia: "Experience",
+    stack: "Stack",
+    proyectos: "Projets",
+    contacto: "Contact",
+    openMenu: "Ouvrir le menu de navigation",
+    closeMenu: "Fermer le menu de navigation",
+    mainNav: "Navigation principale",
+    mobileNav: "Navigation mobile",
+    skipToContent: "Aller au contenu principal",
+  },
+  hero: {
+    ...en.hero,
+    badge: "Developpeur Full-Stack · Services distants globaux",
+    location: "Espagne",
+    h1: "Je transforme les idees en logiciel",
+    h1Accent: " qui vend, evolue et dure.",
+    description: (years) =>
+      `Developpeur logiciel full-stack avec ${years}+ ans d'experience. J'aide startups et entreprises a creer des applications web, des solutions IA et des produits scalables avec une execution premium.`,
+    ctaPrimary: "Voir mes projets",
+    ctaSecondary: "Me contacter",
+    presence: "Presence",
+    videoAlt: "Video de Lucas Riera",
+    currently: "Actuellement",
+    activity1: "Conseil frontend et solutions IA",
+    activity2: "Creation de plateformes SaaS et systemes web",
+    activity3: "Creation de portfolios et sites professionnels",
+    statYears: "+ ans",
+    statCreated: "+ crees",
+    statLived: " vecus",
+  },
+  works: {
+    ...en.works,
+    label: "Travaux",
+    title: "Produits crees de zero.",
+    ctaTitle: "Votre prochain projet",
+    ctaButton: "Parlons",
+  },
+  services: {
+    ...en.services,
+    label: "Services",
+    title: "Ce que je peux construire pour vous.",
+    description:
+      "Developpement logiciel, applications web et conseil technique pour entreprises et fondateurs.",
+  },
+  testimonials: {
+    ...en.testimonials,
+    label: "Temoignages",
+    title: "Ce que disent les clients avec qui j'ai travaille.",
+  },
+  contact: {
+    ...en.contact,
+    title: "Parlons de votre prochain projet.",
+    description:
+      "Si vous cherchez un developpeur implique, orienté resultat et execution premium, ecrivez-moi.",
+    form: "Formulaire",
+    formSub: "Parlez-moi de votre projet",
+    whatsappSub: "Message direct",
+    scheduleCall: "Planifier un appel",
+    send: "Envoyer le message",
+    sending: "Envoi...",
+    success: "Message envoye. Je vous reponds rapidement.",
+    error: "Echec d'envoi. Reessayez.",
+    errorMinName: "Le nom doit contenir au moins 2 caracteres.",
+    errorMaxName: "Le nom est trop long.",
+    errorEmail: "Entrez un email valide.",
+    errorMinMessage: "Le message doit contenir au moins 10 caracteres.",
+    errorMaxMessage: "Le message est trop long.",
+  },
+  footer: {
+    ...en.footer,
+    rights: (year) => `© ${year} Lucas Riera. Tous droits reserves.`,
+    madeBy: "Site web par Lucas Riera · Developpement & Design web",
+    privacy: "Confidentialite",
+    legal: "Mentions legales",
+    cookies: "Cookies",
+  },
+  scrollTop: "Retour en haut",
+  proyectosPage: {
+    ...en.proyectosPage,
+    count: (n) => `${n} projets`,
+    title: "Tout ce que j'ai construit depuis zero.",
+    goToFitTravel: "Aller a FitTravel",
+    backHome: "← Retour a l'accueil",
+    inicio: "Accueil",
+  },
+  caseStudy: {
+    ...en.caseStudy,
+    problem: "Le probleme",
+    solution: "La solution",
+    techStack: "Stack technique",
+    screenshots: "Le produit en action",
+    visitSite: "Visiter le site",
+    contactCta: "Besoin de quelque chose de similaire ?",
+    backToProjects: "← Tous les projets",
+    builtIn: "Construit en",
+    createdBy: "Cree par Lucas Riera",
+  },
+  notFound: {
+    ...en.notFound,
+    title: "Page introuvable",
+    description:
+      "La page que vous cherchez n'existe pas ou a ete deplacee. Revenez a l'accueil.",
+    backHome: "Retour a l'accueil",
+  },
+  meta: {
+    ...en.meta,
+    title: "Lucas Riera — Developpeur logiciel Full-Stack",
+    description: (years) =>
+      `Developpeur logiciel full-stack avec ${years}+ ans d'experience. Applications web, solutions IA et conseil technique pour equipes internationales.`,
+    ogTitle: "Lucas Riera — Developpeur logiciel Full-Stack",
+    ogDescription: (years) =>
+      `Developpeur full-stack avec ${years}+ ans d'experience en applications web, IA et systemes scalables.`,
+    keywords: [
+      "Lucas Riera",
+      "developpeur logiciel",
+      "developpeur web freelance",
+      "developpeur full stack",
+      "developpeur remote",
+      "consultant technique",
+      "solutions IA",
+      "application web sur mesure",
+      "developpement SaaS",
+      "freelance developer",
+    ],
+  },
+  cookieBanner: {
+    ...en.cookieBanner,
+    text: "Ce site utilise des cookies fonctionnels pour memoriser votre langue.",
+    accept: "Accepter",
+    decline: "Refuser",
+    moreInfo: "En savoir plus",
+  },
+  legal: {
+    ...en.legal,
+    privacyTitle: "Politique de confidentialite",
+    legalTitle: "Mentions legales",
+    cookieTitle: "Politique de cookies",
+    backHome: "← Retour a l'accueil",
+    lastUpdated: "Derniere mise a jour",
+  },
+  fitTravel: {
+    ...en.fitTravel,
+    description: "Projet FitTravel. Le contenu sera defini ici.",
+  },
+};
+
+const dictionaries: Record<Locale, Dictionary> = { es, en, fr };
 
 export function getDictionary(locale: Locale): Dictionary {
   return dictionaries[locale] ?? dictionaries.es;

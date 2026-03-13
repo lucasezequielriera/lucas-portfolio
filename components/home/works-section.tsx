@@ -15,6 +15,7 @@ function scrollToId(id: string) {
 
 export function WorksSection({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
+  const textLocale = locale === "es" ? "es" : "en";
 
   return (
     <section id="trabajos" className="mx-auto max-w-6xl px-6 pb-24 space-y-10">
@@ -71,7 +72,7 @@ export function WorksSection({ locale }: { locale: Locale }) {
                     <div>
                       <h3 className="text-xl font-semibold text-neutral-100">{project.name}</h3>
                       <p className="mt-2 text-sm text-neutral-400">
-                        {project.longDescription[locale]}
+                        {project.longDescription[textLocale]}
                       </p>
                     </div>
                     <div className="flex flex-wrap gap-2">

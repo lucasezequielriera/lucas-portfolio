@@ -12,7 +12,7 @@ type Props = {
   params: Promise<{ locale: string; slug: string }>;
 };
 
-const allowedLocales: LandingLocale[] = ["es", "en"];
+const allowedLocales: LandingLocale[] = ["es", "en", "fr"];
 
 export function generateStaticParams() {
   return allowedLocales.flatMap((locale) =>
@@ -72,12 +72,16 @@ export default async function ServiceLandingPage({ params }: Props) {
           href={homePath}
           className="text-sm text-neutral-400 transition hover:text-neutral-200"
         >
-          {loc === "es" ? "← Volver al inicio" : "← Back to home"}
+          {loc === "es"
+            ? "← Volver al inicio"
+            : loc === "fr"
+              ? "← Retour a l'accueil"
+              : "← Back to home"}
         </Link>
 
         <header className="space-y-4">
           <p className="text-xs font-semibold uppercase tracking-[0.2em] text-emerald-400">
-            {loc === "es" ? "Servicios" : "Services"}
+            {loc === "es" ? "Servicios" : loc === "fr" ? "Services" : "Services"}
           </p>
           <h1 className="text-balance text-4xl font-semibold md:text-5xl">
             {entry.title[loc].replace(" | Lucas Riera", "")}
@@ -99,24 +103,34 @@ export default async function ServiceLandingPage({ params }: Props) {
 
         <section className="rounded-2xl border border-emerald-500/30 bg-emerald-500/10 p-6 md:p-8">
           <h2 className="text-2xl font-semibold">
-            {loc === "es" ? "¿Trabajamos juntos?" : "Need this for your project?"}
+            {loc === "es"
+              ? "¿Trabajamos juntos?"
+              : loc === "fr"
+                ? "Travaillons ensemble ?"
+                : "Need this for your project?"}
           </h2>
           <p className="mt-3 max-w-2xl text-neutral-200">
             {loc === "es"
               ? "Contame tu objetivo y te propongo una solucion tecnica clara, escalable y orientada a negocio."
-              : "Tell me your goal and I will propose a clear, scalable, business-focused technical solution."}
+              : loc === "fr"
+                ? "Dites-moi votre objectif et je proposerai une solution technique claire, evolutive et orientee business."
+                : "Tell me your goal and I will propose a clear, scalable, business-focused technical solution."}
           </p>
           <Link
             href={`${homePath}#contacto`}
             className="mt-6 inline-flex rounded-lg bg-emerald-600 px-5 py-2.5 text-sm font-medium text-white transition hover:bg-emerald-500"
           >
-            {loc === "es" ? "Contactar" : "Contact me"}
+            {loc === "es" ? "Contactar" : loc === "fr" ? "Contact" : "Contact me"}
           </Link>
         </section>
 
         <section className="space-y-3">
           <h2 className="text-lg font-semibold">
-            {loc === "es" ? "Mas servicios" : "More services"}
+            {loc === "es"
+              ? "Mas servicios"
+              : loc === "fr"
+                ? "Autres services"
+                : "More services"}
           </h2>
           <div className="flex flex-wrap gap-3">
             {landingEntries

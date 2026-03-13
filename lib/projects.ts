@@ -4,14 +4,16 @@ export type MediaItem =
   | { type: "image"; src: string }
   | { type: "video"; src: string };
 
+type ProjectTextLocale = Exclude<Locale, "fr">;
+
 export type Project = {
   name: string;
   slug: string;
   url: string;
-  description: Record<Locale, string>;
-  longDescription: Record<Locale, string>;
-  problem: Record<Locale, string>;
-  solution: Record<Locale, string>;
+  description: Record<ProjectTextLocale, string>;
+  longDescription: Record<ProjectTextLocale, string>;
+  problem: Record<ProjectTextLocale, string>;
+  solution: Record<ProjectTextLocale, string>;
   tags: string[];
   media: MediaItem[];
   year: number;

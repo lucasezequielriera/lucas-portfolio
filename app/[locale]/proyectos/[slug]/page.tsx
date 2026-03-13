@@ -28,13 +28,13 @@ export async function generateMetadata({
   const project = projects.find((p) => p.slug === slug);
   if (!project) return {};
 
-  const loc = locale as Locale;
+  const textLocale = locale === "es" ? "es" : "en";
   return {
     title: `${project.name} — Lucas Riera | Software Developer`,
-    description: project.description[loc],
+    description: project.description[textLocale],
     openGraph: {
       title: `${project.name} — Lucas Riera`,
-      description: project.longDescription[loc],
+      description: project.longDescription[textLocale],
       url: `https://www.lucasriera.com/${locale}/proyectos/${slug}`,
       images:
         project.media.length > 0 && project.media[0].type === "image"
@@ -52,6 +52,7 @@ export async function generateMetadata({
       languages: {
         es: `/es/proyectos/${slug}`,
         en: `/en/proyectos/${slug}`,
+        fr: `/fr/proyectos/${slug}`,
       },
     },
   };
@@ -67,6 +68,7 @@ export default async function ProjectPage({
   if (!project) notFound();
 
   const loc = locale as Locale;
+  const textLocale = locale === "es" ? "es" : "en";
   const t = getDictionary(loc);
   const otherLocale = locale === "es" ? "en" : "es";
   const colors = colorConfig[project.color];
@@ -90,7 +92,7 @@ export default async function ProjectPage({
             url: project.url,
             applicationCategory: project.appCategory,
             operatingSystem: "Web",
-            description: project.longDescription[loc],
+            description: project.longDescription[textLocale],
             dateCreated: `${project.year}-01-01`,
             author: {
               "@type": "Person",
@@ -198,7 +200,7 @@ export default async function ProjectPage({
           </div>
 
           <p className="text-lg leading-relaxed text-neutral-300">
-            {project.longDescription[loc]}
+            {project.longDescription[textLocale]}
           </p>
         </section>
 
@@ -212,7 +214,7 @@ export default async function ProjectPage({
             </h2>
           </div>
           <p className="text-base leading-relaxed text-neutral-300">
-            {project.problem[loc]}
+            {project.problem[textLocale]}
           </p>
         </section>
 
@@ -226,7 +228,7 @@ export default async function ProjectPage({
             </h2>
           </div>
           <p className="text-base leading-relaxed text-neutral-300">
-            {project.solution[loc]}
+            {project.solution[textLocale]}
           </p>
         </section>
 

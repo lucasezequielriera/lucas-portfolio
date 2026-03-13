@@ -13,19 +13,28 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { locale } = await params;
   const isEs = locale === "es";
+  const isFr = locale === "fr";
   return {
     title: isEs
       ? "Proyectos — Lucas Riera | Software Developer"
-      : "Projects — Lucas Riera | Software Developer",
+      : isFr
+        ? "Projets — Lucas Riera | Software Developer"
+        : "Projects — Lucas Riera | Software Developer",
     description: isEs
       ? "Proyectos de Lucas Riera: plataformas, sistemas web y aplicaciones construidas desde cero."
-      : "Lucas Riera's projects: platforms, web systems and applications built from scratch.",
+      : isFr
+        ? "Projets de Lucas Riera: plateformes, systemes web et applications developpes de zero."
+        : "Lucas Riera's projects: platforms, web systems and applications built from scratch.",
     openGraph: {
-      title: isEs ? "Proyectos — Lucas Riera" : "Projects — Lucas Riera",
+      title: isEs
+        ? "Proyectos — Lucas Riera"
+        : isFr
+          ? "Projets — Lucas Riera"
+          : "Projects — Lucas Riera",
       url: `https://www.lucasriera.com/${locale}/proyectos`,
     },
     alternates: {
-      languages: { es: "/es/proyectos", en: "/en/proyectos" },
+      languages: { es: "/es/proyectos", en: "/en/proyectos", fr: "/fr/proyectos" },
     },
   };
 }
@@ -45,6 +54,7 @@ export default async function ProyectosPage({
 }) {
   const { locale } = await params;
   const t = getDictionary(locale as Locale);
+  const textLocale = locale === "es" ? "es" : "en";
   const otherLocale = locale === "es" ? "en" : "es";
 
   return (
@@ -165,7 +175,7 @@ export default async function ProyectosPage({
                         </div>
                       </div>
                       <p className="text-sm leading-relaxed text-neutral-400 md:text-base">
-                        {project.longDescription[locale as Locale]}
+                        {project.longDescription[textLocale]}
                       </p>
                       <div className="flex flex-wrap gap-2 pt-1">
                         {project.tags.map((tag) => (

@@ -19,6 +19,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly" as const,
       priority: 0.7,
     },
+    {
+      url: `${base}/fr/proyectos/${p.slug}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.65,
+    },
   ]);
 
   const legalPages = ["privacidad", "aviso-legal", "cookies"].flatMap(
@@ -31,6 +37,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       },
       {
         url: `${base}/en/${page}`,
+        lastModified: now,
+        changeFrequency: "yearly" as const,
+        priority: 0.3,
+      },
+      {
+        url: `${base}/fr/${page}`,
         lastModified: now,
         changeFrequency: "yearly" as const,
         priority: 0.3,
@@ -89,6 +101,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       lastModified: now,
       changeFrequency: "monthly",
       priority: 0.8,
+    },
+    {
+      url: `${base}/fr/proyectos`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.75,
     },
     ...projectUrls,
     ...serviceLandings,

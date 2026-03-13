@@ -5,10 +5,7 @@ const PUBLIC_FILE = /\.(.*)$/;
 
 function getPreferredLocale(request: NextRequest): string {
   const cookieLocale = request.cookies.get("locale")?.value;
-  if (cookieLocale === "fr") {
-    return "fr";
-  }
-  if (cookieLocale && locales.includes(cookieLocale as "es" | "en")) {
+  if (cookieLocale && locales.includes(cookieLocale as "es" | "en" | "fr")) {
     return cookieLocale;
   }
 
@@ -30,13 +27,6 @@ export function middleware(request: NextRequest) {
     pathname === "/manifest.webmanifest"
   ) {
     return;
-  }
-
-  // Dedicated French marketing routes live under /fr
-  if (pathname.startsWith("/fr/") || pathname === "/fr") {
-    const response = NextResponse.next();
-    response.headers.set("x-locale", "fr");
-    return response;
   }
 
   const pathnameHasLocale = locales.some(

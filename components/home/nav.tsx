@@ -12,11 +12,11 @@ function scrollToId(id: string) {
 
 export function Nav({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
-  const otherLocale = locale === "es" ? "en" : "es";
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const menuRef = useRef<HTMLElement>(null);
   const toggleRef = useRef<HTMLButtonElement>(null);
   const prefersReduced = useReducedMotion();
+  const currentLocaleLabel = locale.toUpperCase();
 
   const closeMenu = useCallback(() => setMobileMenuOpen(false), []);
 
@@ -91,15 +91,50 @@ export function Nav({ locale }: { locale: Locale }) {
                 {t.nav.contacto}
               </button>
             </nav>
-            <Link
-              href={`/${otherLocale}`}
-              onClick={() => {
-                document.cookie = `locale=${otherLocale};path=/;max-age=31536000`;
-              }}
-              className="rounded-md border border-neutral-800 bg-neutral-900/60 px-2.5 py-1 text-xs font-medium text-neutral-400 transition hover:border-neutral-700 hover:text-neutral-100"
+            <nav
+              aria-label={locale === "es" ? "Selector de idioma" : "Language selector"}
+              className="hidden items-center gap-1 rounded-md border border-neutral-800 bg-neutral-900/60 p-1 sm:flex"
             >
-              {otherLocale.toUpperCase()}
-            </Link>
+              <Link
+                href="/es"
+                onClick={() => {
+                  document.cookie = "locale=es;path=/;max-age=31536000";
+                }}
+                className={`rounded px-2 py-1 text-xs font-medium transition ${
+                  currentLocaleLabel === "ES"
+                    ? "bg-emerald-500/20 text-emerald-300"
+                    : "text-neutral-400 hover:text-neutral-100"
+                }`}
+              >
+                ES
+              </Link>
+              <Link
+                href="/en"
+                onClick={() => {
+                  document.cookie = "locale=en;path=/;max-age=31536000";
+                }}
+                className={`rounded px-2 py-1 text-xs font-medium transition ${
+                  currentLocaleLabel === "EN"
+                    ? "bg-emerald-500/20 text-emerald-300"
+                    : "text-neutral-400 hover:text-neutral-100"
+                }`}
+              >
+                EN
+              </Link>
+              <Link
+                href="/fr"
+                onClick={() => {
+                  document.cookie = "locale=fr;path=/;max-age=31536000";
+                }}
+                className={`rounded px-2 py-1 text-xs font-medium transition ${
+                  currentLocaleLabel === "FR"
+                    ? "bg-emerald-500/20 text-emerald-300"
+                    : "text-neutral-400 hover:text-neutral-100"
+                }`}
+              >
+                FR
+              </Link>
+            </nav>
             <button
               ref={toggleRef}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
@@ -129,6 +164,50 @@ export function Nav({ locale }: { locale: Locale }) {
             <button onClick={() => handleNavClick("services")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.services.label}</button>
             <Link href={`/${locale}/proyectos`} onClick={closeMenu} className="rounded-lg px-3 py-2.5 text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.nav.proyectos}</Link>
             <button onClick={() => handleNavClick("contacto")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.nav.contacto}</button>
+            <div className="mt-2 flex items-center gap-2 border-t border-neutral-800 pt-3">
+              <Link
+                href="/es"
+                onClick={() => {
+                  document.cookie = "locale=es;path=/;max-age=31536000";
+                  closeMenu();
+                }}
+                className={`rounded px-2 py-1 text-xs font-medium transition ${
+                  currentLocaleLabel === "ES"
+                    ? "bg-emerald-500/20 text-emerald-300"
+                    : "text-neutral-400 hover:text-neutral-100"
+                }`}
+              >
+                ES
+              </Link>
+              <Link
+                href="/en"
+                onClick={() => {
+                  document.cookie = "locale=en;path=/;max-age=31536000";
+                  closeMenu();
+                }}
+                className={`rounded px-2 py-1 text-xs font-medium transition ${
+                  currentLocaleLabel === "EN"
+                    ? "bg-emerald-500/20 text-emerald-300"
+                    : "text-neutral-400 hover:text-neutral-100"
+                }`}
+              >
+                EN
+              </Link>
+              <Link
+                href="/fr"
+                onClick={() => {
+                  document.cookie = "locale=fr;path=/;max-age=31536000";
+                  closeMenu();
+                }}
+                className={`rounded px-2 py-1 text-xs font-medium transition ${
+                  currentLocaleLabel === "FR"
+                    ? "bg-emerald-500/20 text-emerald-300"
+                    : "text-neutral-400 hover:text-neutral-100"
+                }`}
+              >
+                FR
+              </Link>
+            </div>
           </motion.nav>
         )}
       </header>

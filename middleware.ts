@@ -5,6 +5,9 @@ const PUBLIC_FILE = /\.(.*)$/;
 
 function getPreferredLocale(request: NextRequest): string {
   const cookieLocale = request.cookies.get("locale")?.value;
+  if (cookieLocale === "fr") {
+    return "fr";
+  }
   if (cookieLocale && locales.includes(cookieLocale as "es" | "en")) {
     return cookieLocale;
   }

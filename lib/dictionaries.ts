@@ -181,8 +181,8 @@ const es: Dictionary = {
   hero: {
     badge: "Programador Full-Stack · Servicios Remotos Globales",
     location: "España",
-    h1: "Construyo productos digitales",
-    h1Accent: " que funcionan de verdad.",
+    h1: "Convierto ideas en software",
+    h1Accent: " que vende, escala y dura.",
     description: (years) =>
       `Programador y desarrollador full-stack con +${years} años de experiencia. Ayudo a empresas y startups a lanzar productos digitales, aplicaciones web e integraciones con IA con calidad premium y enfoque en resultados.`,
     ctaPrimary: "Ver lo que construyo",
@@ -407,8 +407,8 @@ const en: Dictionary = {
   hero: {
     badge: "Full-Stack Software Developer · Remote Global Services",
     location: "Spain",
-    h1: "I build digital products",
-    h1Accent: " that actually work.",
+    h1: "I turn ideas into software",
+    h1Accent: " that sells, scales and lasts.",
     description: (years) =>
       `Full-stack software developer with ${years}+ years of experience. I help companies and startups build web applications, AI-powered solutions and scalable digital products with premium execution.`,
     ctaPrimary: "See my work",

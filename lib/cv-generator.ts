@@ -1,5 +1,5 @@
 import mammoth from "mammoth";
-import { PDFParse } from "pdf-parse";
+import { PdfReader } from "pdfreader";
 
 export type ParsedCv = {
   name: string;
@@ -16,6 +16,35 @@ export type ParsedCv = {
   projects: string[];
   certifications: string[];
 };
+
+function extractPdfText(buffer: Buffer): Promise<string> {
+  return new Promise((resolve, reject) => {
+    const rows: Record<number, string[]> = {};
+
+    new PdfReader().parseBuffer(buffer, (error, item) => {
+      if (error) {
+        reject(error);
+        return;
+      }
+
+      if (!item) {
+        const text = Object.keys(rows)
+          .map(Number)
+          .sort((a, b) => a - b)
+          .map((y) => rows[y].join(" "))
+          .join("\n");
+        resolve(text);
+        return;
+      }
+
+      if ("text" in item && item.text) {
+        const y = Math.floor(item.y ?? 0);
+        rows[y] = rows[y] || [];
+        rows[y].push(item.text);
+      }
+    });
+  });
+}
 
 const EMPTY_CV: ParsedCv = {
   name: "Your Name",
@@ -71,10 +100,7 @@ export async function extractTextFromFile(file: File) {
   const name = (file.name || "").toLowerCase();
 
   if (type.includes("pdf") || name.endsWith(".pdf")) {
-    const parser = new PDFParse({ data: buffer });
-    const parsed = await parser.getText();
-    await parser.destroy();
-    return parsed.text || "";
+    return extractPdfText(buffer);
   }
 
   if (

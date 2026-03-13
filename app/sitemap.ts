@@ -1,5 +1,6 @@
 import { MetadataRoute } from "next";
 import { projects } from "@/lib/projects";
+import { landingEntries } from "@/lib/seo-landings";
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const base = "https://www.lucasriera.com";
@@ -37,6 +38,27 @@ export default function sitemap(): MetadataRoute.Sitemap {
     ]
   );
 
+  const serviceLandings = landingEntries.flatMap((entry) => [
+    {
+      url: `${base}/es/services/${entry.slug.es}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    },
+    {
+      url: `${base}/en/services/${entry.slug.en}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.85,
+    },
+    {
+      url: `${base}/fr/services/${entry.slug.fr}`,
+      lastModified: now,
+      changeFrequency: "monthly" as const,
+      priority: 0.8,
+    },
+  ]);
+
   return [
     {
       url: `${base}/es`,
@@ -51,6 +73,12 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 1,
     },
     {
+      url: `${base}/fr`,
+      lastModified: now,
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${base}/es/proyectos`,
       lastModified: now,
       changeFrequency: "monthly",
@@ -63,6 +91,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     ...projectUrls,
+    ...serviceLandings,
     ...legalPages,
   ];
 }

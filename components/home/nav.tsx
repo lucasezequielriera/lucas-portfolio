@@ -81,6 +81,9 @@ export function Nav({ locale }: { locale: Locale }) {
               <button onClick={() => handleNavClick("stack")} className="rounded-md px-1 transition hover:text-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/70">
                 {t.nav.stack}
               </button>
+              <button onClick={() => handleNavClick("services")} className="rounded-md px-1 transition hover:text-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/70">
+                {t.services.label}
+              </button>
               <Link href={`/${locale}/proyectos`} className="rounded-md px-1 transition hover:text-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/70">
                 {t.nav.proyectos}
               </Link>
@@ -123,6 +126,7 @@ export function Nav({ locale }: { locale: Locale }) {
             <button onClick={() => handleNavClick("trabajos")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.nav.trabajos}</button>
             <button onClick={() => handleNavClick("experiencia")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.nav.experiencia}</button>
             <button onClick={() => handleNavClick("stack")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.nav.stack}</button>
+            <button onClick={() => handleNavClick("services")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.services.label}</button>
             <Link href={`/${locale}/proyectos`} onClick={closeMenu} className="rounded-lg px-3 py-2.5 text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.nav.proyectos}</Link>
             <button onClick={() => handleNavClick("contacto")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.nav.contacto}</button>
           </motion.nav>

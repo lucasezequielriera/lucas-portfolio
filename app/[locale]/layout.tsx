@@ -29,6 +29,7 @@ export async function generateMetadata({
       languages: {
         es: "/es",
         en: "/en",
+        fr: "/fr",
       },
     },
     openGraph: {
@@ -97,7 +98,6 @@ export default async function LocaleLayout({
             "@context": "https://schema.org",
             "@type": "Person",
             name: "Lucas Riera",
-            alternateName: ["Lucas Ezequiel Riera"],
             url: "https://www.lucasriera.com",
             jobTitle: [
               "Software Developer",
@@ -152,7 +152,7 @@ export default async function LocaleLayout({
                 url: "https://www.utn.edu.ar",
               },
             ],
-            knowsLanguage: ["es", "en"],
+            knowsLanguage: ["es", "en", "fr"],
             hasCredential: [
               {
                 "@type": "EducationalOccupationalCredential",
@@ -192,10 +192,24 @@ export default async function LocaleLayout({
               addressLocality: "Madrid",
               addressCountry: "ES",
             },
-            areaServed: {
-              "@type": "Country",
-              name: isEs ? "España" : "Spain",
-            },
+            areaServed: [
+              {
+                "@type": "Country",
+                name: isEs ? "España" : "Spain",
+              },
+              {
+                "@type": "Country",
+                name: isEs ? "Argentina" : "Argentina",
+              },
+              {
+                "@type": "Country",
+                name: isEs ? "Estados Unidos" : "United States",
+              },
+              {
+                "@type": "Country",
+                name: isEs ? "Francia" : "France",
+              },
+            ],
             aggregateRating: {
               "@type": "AggregateRating",
               ratingValue: "5",

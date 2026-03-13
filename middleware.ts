@@ -10,6 +10,7 @@ function getPreferredLocale(request: NextRequest): string {
   }
 
   const acceptLang = request.headers.get("accept-language") ?? "";
+  if (acceptLang.toLowerCase().startsWith("fr")) return "fr";
   if (acceptLang.toLowerCase().startsWith("en")) return "en";
   return defaultLocale;
 }
@@ -26,6 +27,13 @@ export function middleware(request: NextRequest) {
     pathname === "/manifest.webmanifest"
   ) {
     return;
+  }
+
+  // Dedicated French marketing routes live under /fr
+  if (pathname.startsWith("/fr/") || pathname === "/fr") {
+    const response = NextResponse.next();
+    response.headers.set("x-locale", "fr");
+    return response;
   }
 
   const pathnameHasLocale = locales.some(

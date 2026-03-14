@@ -5,6 +5,7 @@ import { Upload, FileDown, Sparkles, Loader2 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { Locale } from "@/lib/dictionaries";
+import type { CvTemplate } from "@/lib/cv-pdf-document";
 
 type Copy = {
   title: string;
@@ -15,6 +16,10 @@ type Copy = {
   sourceOr: string;
   targetRoleLabel: string;
   targetRolePlaceholder: string;
+  templateLabel: string;
+  templateAts: string;
+  templateModern: string;
+  templateExec: string;
   uploadLabel: string;
   uploadHelp: string;
   generate: string;
@@ -38,6 +43,10 @@ function getCopy(locale: Locale): Copy {
       sourceOr: "OU",
       targetRoleLabel: "Poste cible (optionnel)",
       targetRolePlaceholder: "Ex.: Senior Full-Stack Developer",
+      templateLabel: "Modele de CV",
+      templateAts: "ATS Clean (max compatibilite)",
+      templateModern: "Modern Recruiter (visuel)",
+      templateExec: "Executive One-Page (senior)",
       uploadLabel: "Fichier CV",
       uploadHelp: "Formats pris en charge: PDF, DOCX, TXT.",
       generate: "Generer et telecharger PDF",
@@ -61,6 +70,10 @@ function getCopy(locale: Locale): Copy {
       sourceOr: "OR",
       targetRoleLabel: "Target role (optional)",
       targetRolePlaceholder: "e.g. Senior Full-Stack Developer",
+      templateLabel: "Resume template",
+      templateAts: "ATS Clean (max compatibility)",
+      templateModern: "Modern Recruiter (visual)",
+      templateExec: "Executive One-Page (senior)",
       uploadLabel: "CV file",
       uploadHelp: "Supported formats: PDF, DOCX, TXT.",
       generate: "Generate and download PDF",
@@ -83,6 +96,10 @@ function getCopy(locale: Locale): Copy {
     sourceOr: "O",
     targetRoleLabel: "Puesto objetivo (opcional)",
     targetRolePlaceholder: "Ej: Senior Full-Stack Developer",
+    templateLabel: "Plantilla de CV",
+    templateAts: "ATS Clean (max compatibilidad)",
+    templateModern: "Modern Recruiter (visual)",
+    templateExec: "Executive One-Page (senior)",
     uploadLabel: "Archivo CV",
     uploadHelp: "Formatos soportados: PDF, DOCX, TXT.",
     generate: "Generar y descargar PDF",
@@ -99,6 +116,7 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
   const [file, setFile] = useState<File | null>(null);
   const [linkedinUrl, setLinkedinUrl] = useState("");
   const [targetRole, setTargetRole] = useState("");
+  const [template, setTemplate] = useState<CvTemplate>("ats-clean");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
@@ -128,6 +146,7 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
         formData.append("linkedinUrl", linkedinUrl.trim());
       }
       formData.append("targetRole", targetRole);
+      formData.append("template", template);
 
       const response = await fetch("/api/tools/cv-generator", {
         method: "POST",
@@ -221,6 +240,21 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
             placeholder={t.targetRolePlaceholder}
             className="w-full rounded-lg border border-neutral-700 bg-neutral-950/60 px-4 py-3 text-sm text-neutral-100 placeholder-neutral-500 outline-none transition focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/25"
           />
+        </div>
+
+        <div className="space-y-2">
+          <label className="text-sm font-medium text-neutral-300">
+            {t.templateLabel}
+          </label>
+          <select
+            value={template}
+            onChange={(event) => setTemplate(event.target.value as CvTemplate)}
+            className="w-full rounded-lg border border-neutral-700 bg-neutral-950/60 px-4 py-3 text-sm text-neutral-100 outline-none transition focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/25"
+          >
+            <option value="ats-clean">{t.templateAts}</option>
+            <option value="modern-recruiter">{t.templateModern}</option>
+            <option value="executive-onepage">{t.templateExec}</option>
+          </select>
         </div>
 
         <div className="rounded-lg border border-neutral-800 bg-neutral-950/60 p-4">

@@ -1,7 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { renderToBuffer, type DocumentProps } from "@react-pdf/renderer";
 import React from "react";
-import { CvPdfDocument } from "@/lib/cv-pdf-document";
+import { CvPdfDocument, type CvTemplate } from "@/lib/cv-pdf-document";
 import {
   extractTextFromFile,
   extractTextFromLinkedInUrl,
@@ -9,6 +9,11 @@ import {
 } from "@/lib/cv-generator";
 
 export const runtime = "nodejs";
+const ALLOWED_TEMPLATES: CvTemplate[] = [
+  "ats-clean",
+  "modern-recruiter",
+  "executive-onepage",
+];
 
 const USER_INPUT_ERROR_PATTERNS = [
   "El link debe ser",
@@ -25,6 +30,12 @@ export async function POST(request: NextRequest) {
     const file = form.get("file");
     const targetRole = (form.get("targetRole") as string | null) ?? "";
     const linkedinUrl = (form.get("linkedinUrl") as string | null) ?? "";
+    const templateInput = (form.get("template") as string | null) ?? "ats-clean";
+    const template: CvTemplate = ALLOWED_TEMPLATES.includes(
+      templateInput as CvTemplate
+    )
+      ? (templateInput as CvTemplate)
+      : "ats-clean";
 
     if (!(file instanceof File) && !linkedinUrl.trim()) {
       return NextResponse.json(
@@ -53,9 +64,12 @@ export async function POST(request: NextRequest) {
     const parsed = parseCvText(extractedText, targetRole);
     const doc = React.createElement(CvPdfDocument, {
       cv: parsed,
+      template,
     }) as unknown as React.ReactElement<DocumentProps>;
     const pdfBuffer = await renderToBuffer(doc);
-    const filename = `${parsed.name.replace(/\s+/g, "-").toLowerCase()}-ats-cv.pdf`;
+    const filename = `${parsed.name
+      .replace(/\s+/g, "-")
+      .toLowerCase()}-${template}-cv.pdf`;
 
     return new NextResponse(new Uint8Array(pdfBuffer), {
       status: 200,

@@ -31,6 +31,12 @@ export const colorMap = {
     gradient: "from-rose-500/[0.03]",
     iconBorder: "group-hover:border-rose-500/50 group-hover:text-rose-400",
   },
+  kolibri: {
+    border: "hover:border-[#7C3AED]/40",
+    shadow: "hover:shadow-[#FF5FA2]/5",
+    gradient: "from-[#7C3AED]/[0.06]",
+    iconBorder: "group-hover:border-[#FF5FA2]/50 group-hover:text-[#FF5FA2]",
+  },
 } as const;
 
 export const iconColors = {
@@ -39,6 +45,7 @@ export const iconColors = {
   violet: "text-violet-400",
   amber: "text-amber-400",
   rose: "text-rose-400",
+  kolibri: "text-[#7C3AED]",
 } as const;
 
 export const colorStyles = {
@@ -83,6 +90,14 @@ export const colorStyles = {
     iconBorder: "group-hover:border-rose-500/50 group-hover:text-rose-400",
     tag: "border-rose-500/20 text-rose-400/80",
     icon: "text-rose-400",
+  },
+  kolibri: {
+    border: "hover:border-[#7C3AED]/40",
+    shadow: "hover:shadow-[#FF5FA2]/5",
+    gradient: "from-[#7C3AED]/[0.06]",
+    iconBorder: "group-hover:border-[#FF5FA2]/50 group-hover:text-[#FF5FA2]",
+    tag: "border-[#7C3AED]/20 text-[#C4B5FD]/90",
+    icon: "text-[#7C3AED]",
   },
 } as const;
 
@@ -136,6 +151,17 @@ export const colorConfig = {
     border: "border-rose-500/30",
     glow: "shadow-rose-500/10",
     ctaBg: "bg-rose-500 hover:bg-rose-600 text-neutral-950",
+  },
+  kolibri: {
+    badge: "border-[#7C3AED]/30 bg-[#7C3AED]/10 text-[#C4B5FD]",
+    heading: "text-[#FF5FA2]",
+    accent: "bg-gradient-to-r from-[#7C3AED] to-[#FF5FA2]",
+    accentLight: "bg-[#7C3AED]/10 text-[#C4B5FD]",
+    tag: "border-[#7C3AED]/20 text-[#C4B5FD]/90",
+    border: "border-[#7C3AED]/30",
+    glow: "shadow-[#FF5FA2]/10",
+    ctaBg:
+      "bg-gradient-to-r from-[#7C3AED] to-[#FF5FA2] hover:opacity-90 text-white",
   },
 } as const;
 

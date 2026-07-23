@@ -21,7 +21,9 @@ describe("projects", () => {
       expect(p.solution.en).toBeTruthy();
       expect(p.tags.length).toBeGreaterThan(0);
       expect(p.year).toBeGreaterThanOrEqual(2020);
-      expect(["emerald", "sky", "violet", "amber", "rose"]).toContain(p.color);
+      expect(["emerald", "sky", "violet", "amber", "rose", "kolibri"]).toContain(
+        p.color
+      );
     }
   });
 

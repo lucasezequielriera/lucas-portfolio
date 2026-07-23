@@ -18,12 +18,39 @@ export type Project = {
   media: MediaItem[];
   year: number;
   appCategory: string;
-  color: "emerald" | "sky" | "violet" | "amber" | "rose";
+  color: "emerald" | "sky" | "violet" | "amber" | "rose" | "kolibri";
   logo?: string;
   icon?: "graduation-cap" | "palette";
 };
 
 export const projects: Project[] = [
+  {
+    name: "Kolibrí",
+    slug: "kolibri",
+    url: "https://www.kolibriacademy.xyz",
+    year: 2026,
+    appCategory: "EducationalApplication",
+    description: {
+      es: "Escuela online bilingüe (ES/EN) de inteligencia artificial para principiantes absolutos. Aprendé a usar ChatGPT, Claude y Gemini en tu día a día con currículum vivo, certificados y comunidad.",
+      en: "Bilingual (ES/EN) online AI school for absolute beginners. Learn to use ChatGPT, Claude and Gemini in everyday life with a living curriculum, certificates and community.",
+    },
+    longDescription: {
+      es: "Escuela online bilingüe de inteligencia artificial pensada para gente que parte de cero absoluto. Currículum vivo de 5 cursos entre gratis y pagos, certificados por nivel y una experiencia real de escuela, no una góndola de cursos sueltos.",
+      en: "Bilingual online AI school built for people starting from absolute zero. A living 5-course curriculum, free and paid, level certificates and a real school experience — not just another course dump.",
+    },
+    problem: {
+      es: "El mercado de cursos de IA está saturado pero fragmentado: cursos sueltos sin comunidad real, contenido que se desactualiza en meses porque la IA cambia rápido, y teoría que nunca se traduce en algo implementado. Casi nada está pensado de verdad para gente sin ningún conocimiento técnico.",
+      en: "The AI course market is saturated but fragmented: standalone courses with no real community, content that goes stale within months because AI moves fast, and theory that never turns into something implemented. Almost nothing is truly built for people with zero technical background.",
+    },
+    solution: {
+      es: "Construí Kolibrí como una escuela, no una góndola de cursos: currículum vivo que se revisa activamente, aprender haciendo desde la primera lección, y contenido 100% bilingüe pensado y producido en ambos idiomas, no traducido después. Catálogo de 5 cursos (uno gratuito de introducción y cuatro especializados en prompting, herramientas de IA, agentes y contenido multimedia) con certificados por nivel, pagos con Stripe, autenticación y base de datos en Supabase, emails automáticos con Resend y analítica con PostHog.",
+      en: "I built Kolibrí as a school, not a course dump: a living curriculum that's actively reviewed, learning by doing from lesson one, and content that's truly bilingual — thought out and produced in both languages, not translated afterward. A 5-course catalog (one free intro course plus four specialized ones on prompting, AI tools, agents and multimedia content) with level certificates, Stripe payments, Supabase auth and database, automated emails via Resend, and PostHog analytics.",
+    },
+    tags: ["Next.js", "Supabase", "Stripe", "PostHog"],
+    media: [],
+    color: "kolibri",
+    logo: "/kolibri-logo.png",
+  },
   {
     name: "WebFinanceLab",
     slug: "webfinancelab",

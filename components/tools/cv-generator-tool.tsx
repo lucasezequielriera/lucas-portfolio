@@ -1,7 +1,8 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Upload, FileDown, Sparkles, Loader2 } from "lucide-react";
+import { useSearchParams } from "next/navigation";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import type { Locale } from "@/lib/dictionaries";
@@ -22,6 +23,12 @@ type Copy = {
   templateExec: string;
   uploadLabel: string;
   uploadHelp: string;
+  payLabel: string;
+  payingLabel: string;
+  paidReady: string;
+  paymentRequired: string;
+  paymentCancelled: string;
+  payCta: string;
   generate: string;
   generating: string;
   success: string;
@@ -49,6 +56,12 @@ function getCopy(locale: Locale): Copy {
       templateExec: "Executive One-Page (senior)",
       uploadLabel: "Fichier CV",
       uploadHelp: "Formats pris en charge: PDF, DOCX, TXT.",
+      payLabel: "Paiement requis",
+      payingLabel: "Redirection vers Stripe...",
+      paidReady: "Paiement confirme. Vous pouvez maintenant generer 1 CV.",
+      paymentRequired: "Paiement de 1 USD requis pour chaque generation.",
+      paymentCancelled: "Paiement annule. Reessayez pour continuer.",
+      payCta: "Payer 1 USD et continuer",
       generate: "Generer et telecharger PDF",
       generating: "Generation...",
       success: "CV genere avec succes.",
@@ -76,6 +89,12 @@ function getCopy(locale: Locale): Copy {
       templateExec: "Executive One-Page (senior)",
       uploadLabel: "CV file",
       uploadHelp: "Supported formats: PDF, DOCX, TXT.",
+      payLabel: "Payment required",
+      payingLabel: "Redirecting to Stripe...",
+      paidReady: "Payment confirmed. You can now generate 1 CV.",
+      paymentRequired: "A $1 payment is required for each generation.",
+      paymentCancelled: "Payment was canceled. Please try again.",
+      payCta: "Pay $1 and continue",
       generate: "Generate and download PDF",
       generating: "Generating...",
       success: "Resume generated successfully.",
@@ -102,6 +121,12 @@ function getCopy(locale: Locale): Copy {
     templateExec: "Executive One-Page (senior)",
     uploadLabel: "Archivo CV",
     uploadHelp: "Formatos soportados: PDF, DOCX, TXT.",
+    payLabel: "Pago requerido",
+    payingLabel: "Redirigiendo a Stripe...",
+    paidReady: "Pago confirmado. Ahora podés generar 1 CV.",
+    paymentRequired: "Se requiere pago de USD 1 por cada generación.",
+    paymentCancelled: "El pago fue cancelado. Probá de nuevo.",
+    payCta: "Pagar USD 1 y continuar",
     generate: "Generar y descargar PDF",
     generating: "Generando...",
     success: "CV generado con éxito.",
@@ -113,14 +138,55 @@ function getCopy(locale: Locale): Copy {
 }
 
 export function CvGeneratorTool({ locale }: { locale: Locale }) {
+  const searchParams = useSearchParams();
   const [file, setFile] = useState<File | null>(null);
   const [linkedinUrl, setLinkedinUrl] = useState("");
   const [targetRole, setTargetRole] = useState("");
   const [template, setTemplate] = useState<CvTemplate>("ats-clean");
   const [loading, setLoading] = useState(false);
+  const [paymentLoading, setPaymentLoading] = useState(false);
+  const [paymentSessionId, setPaymentSessionId] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState("");
   const t = useMemo(() => getCopy(locale), [locale]);
+
+  useEffect(() => {
+    const paymentStatus = searchParams.get("cv_payment");
+    const sessionId = searchParams.get("session_id");
+    if (paymentStatus === "success" && sessionId) {
+      setPaymentSessionId(sessionId);
+      setError("");
+      setSuccess(t.paidReady);
+      return;
+    }
+    if (paymentStatus === "cancel") {
+      setPaymentSessionId("");
+      setError(t.paymentCancelled);
+      setSuccess("");
+    }
+  }, [searchParams, t.paidReady, t.paymentCancelled]);
+
+  const handleStartPayment = async () => {
+    setPaymentLoading(true);
+    setError("");
+    setSuccess("");
+    try {
+      const response = await fetch("/api/tools/cv-generator/checkout", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ locale }),
+      });
+      if (!response.ok) {
+        throw new Error(t.errorGeneric);
+      }
+      const data = (await response.json()) as { url?: string };
+      if (!data.url) throw new Error(t.errorGeneric);
+      window.location.href = data.url;
+    } catch (err) {
+      setError(err instanceof Error ? err.message : t.errorGeneric);
+      setPaymentLoading(false);
+    }
+  };
 
   const handleGenerate = async () => {
     if (!file && !linkedinUrl.trim()) {
@@ -147,6 +213,7 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
       }
       formData.append("targetRole", targetRole);
       formData.append("template", template);
+      formData.append("paymentSessionId", paymentSessionId);
 
       const response = await fetch("/api/tools/cv-generator", {
         method: "POST",
@@ -170,6 +237,7 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
       anchor.remove();
       URL.revokeObjectURL(url);
       setSuccess(t.success);
+      setPaymentSessionId("");
     } catch (err) {
       setError(err instanceof Error ? err.message : t.errorGeneric);
     } finally {
@@ -264,6 +332,28 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
           <p className="mt-2 text-sm text-neutral-300">{t.noteText}</p>
         </div>
 
+        <div className="rounded-lg border border-amber-700/50 bg-amber-950/20 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-amber-300">
+            {t.payLabel}
+          </p>
+          <p className="mt-2 text-sm text-amber-100/90">{t.paymentRequired}</p>
+          <Button
+            type="button"
+            onClick={handleStartPayment}
+            disabled={paymentLoading}
+            className="mt-3 h-10 bg-amber-600 text-white hover:bg-amber-500 disabled:opacity-70"
+          >
+            {paymentLoading ? (
+              <>
+                <Loader2 className="mr-2 h-4 w-4 animate-spin" />
+                {t.payingLabel}
+              </>
+            ) : (
+              t.payCta
+            )}
+          </Button>
+        </div>
+
         {error ? (
           <div className="rounded-lg border border-red-700/60 bg-red-950/30 px-4 py-3 text-sm text-red-300">
             {error}
@@ -278,7 +368,7 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
         <Button
           type="button"
           onClick={handleGenerate}
-          disabled={loading}
+          disabled={loading || !paymentSessionId}
           className="h-11 w-full bg-emerald-600 text-white hover:bg-emerald-500 disabled:opacity-70"
         >
           {loading ? (

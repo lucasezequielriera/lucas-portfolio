@@ -7,6 +7,8 @@ import {
   extractTextFromLinkedInUrl,
   parseCvText,
 } from "@/lib/cv-generator";
+import { enhanceCvForRecruiters } from "@/lib/cv-ai-enhancer";
+import { verifyAndConsumeCvPayment } from "@/lib/cv-payment";
 
 export const runtime = "nodejs";
 const ALLOWED_TEMPLATES: CvTemplate[] = [
@@ -22,6 +24,9 @@ const USER_INPUT_ERROR_PATTERNS = [
   "LinkedIn bloqueó o limitó",
   "Formato no soportado",
   "Debes subir un archivo CV",
+  "Debes completar el pago",
+  "El pago no se pudo validar",
+  "ya fue utilizado",
 ];
 
 export async function POST(request: NextRequest) {
@@ -31,11 +36,21 @@ export async function POST(request: NextRequest) {
     const targetRole = (form.get("targetRole") as string | null) ?? "";
     const linkedinUrl = (form.get("linkedinUrl") as string | null) ?? "";
     const templateInput = (form.get("template") as string | null) ?? "ats-clean";
+    const paymentSessionId = (form.get("paymentSessionId") as string | null) ?? "";
     const template: CvTemplate = ALLOWED_TEMPLATES.includes(
       templateInput as CvTemplate
     )
       ? (templateInput as CvTemplate)
       : "ats-clean";
+
+    if (!paymentSessionId.trim()) {
+      return NextResponse.json(
+        { error: "Debes completar el pago de USD 1 para generar el CV." },
+        { status: 402 }
+      );
+    }
+
+    await verifyAndConsumeCvPayment(paymentSessionId.trim());
 
     if (!(file instanceof File) && !linkedinUrl.trim()) {
       return NextResponse.json(
@@ -62,12 +77,17 @@ export async function POST(request: NextRequest) {
     }
 
     const parsed = parseCvText(extractedText, targetRole);
+    const enhanced = await enhanceCvForRecruiters({
+      parsed,
+      rawText: extractedText,
+      targetRole,
+    });
     const doc = React.createElement(CvPdfDocument, {
-      cv: parsed,
+      cv: enhanced,
       template,
     }) as unknown as React.ReactElement<DocumentProps>;
     const pdfBuffer = await renderToBuffer(doc);
-    const filename = `${parsed.name
+    const filename = `${enhanced.name
       .replace(/\s+/g, "-")
       .toLowerCase()}-${template}-cv.pdf`;
 

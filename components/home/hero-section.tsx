@@ -8,7 +8,7 @@ import {
   MapPin,
   Terminal,
   Layers,
-  Palette,
+  ShieldCheck,
   GraduationCap,
 } from "lucide-react";
 import { Card, CardContent } from "@/components/ui/card";
@@ -30,10 +30,20 @@ export function HeroSection({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
   const yearsOfExperience = new Date().getFullYear() - 2020;
   const prefersReduced = useReducedMotion();
+  const headlineWords = t.hero.h1.split(" ");
+  const accentWords = t.hero.h1Accent.trim().split(" ");
 
   return (
     <section className="relative overflow-hidden">
       <div className="absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_-20%,rgba(16,185,129,0.08),transparent)]" />
+      <div
+        aria-hidden="true"
+        className="animate-aurora-a pointer-events-none absolute -top-40 left-1/4 h-[32rem] w-[32rem] rounded-full bg-emerald-500/20 blur-[110px]"
+      />
+      <div
+        aria-hidden="true"
+        className="animate-aurora-b pointer-events-none absolute -top-20 right-0 h-[28rem] w-[28rem] rounded-full bg-sky-500/15 blur-[110px]"
+      />
       <div className="relative mx-auto grid max-w-6xl gap-12 px-6 pb-24 pt-20 md:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)] md:pt-28">
         <motion.div
           initial={prefersReduced ? false : { opacity: 0, y: 24 }}
@@ -53,8 +63,33 @@ export function HeroSection({ locale }: { locale: Locale }) {
           </div>
 
           <h1 className="text-balance text-4xl font-semibold leading-tight md:text-6xl">
-            {t.hero.h1}
-            <span className="text-neutral-400">{t.hero.h1Accent}</span>
+            {headlineWords.map((word, idx) => (
+              <motion.span
+                key={`h1-${idx}`}
+                initial={prefersReduced ? false : { opacity: 0, y: 24 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.5, delay: 0.15 + idx * 0.07 }}
+                className="mr-[0.25em] inline-block"
+              >
+                {word}
+              </motion.span>
+            ))}
+            <span className="text-neutral-400">
+              {accentWords.map((word, idx) => (
+                <motion.span
+                  key={`h1a-${idx}`}
+                  initial={prefersReduced ? false : { opacity: 0, y: 24 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.5,
+                    delay: 0.15 + (headlineWords.length + idx) * 0.07,
+                  }}
+                  className="mr-[0.25em] inline-block"
+                >
+                  {word}
+                </motion.span>
+              ))}
+            </span>
           </h1>
 
           <p className="max-w-xl text-lg text-neutral-300">
@@ -140,7 +175,7 @@ export function HeroSection({ locale }: { locale: Locale }) {
                   <span>{t.hero.activity2}</span>
                 </div>
                 <div className="flex items-start gap-3">
-                  <Palette className="mt-0.5 h-4 w-4 text-purple-400" />
+                  <ShieldCheck className="mt-0.5 h-4 w-4 text-purple-400" />
                   <span>{t.hero.activity3}</span>
                 </div>
                 <div className="flex items-start gap-3">

@@ -6,6 +6,8 @@ export const defaultLocale: Locale = "es";
 export interface Dictionary {
   nav: {
     location: string;
+    roleBadge: string;
+    futureRoleBadge: string;
     trabajos: string;
     experiencia: string;
     stack: string;
@@ -61,6 +63,26 @@ export interface Dictionary {
     label: string;
     title: string;
     description: string;
+    aiTitle: string;
+    aiDescription: string;
+    coreTitle: string;
+    coreDescription: string;
+    backendTitle: string;
+    backendDescription: string;
+    mobileTitle: string;
+    mobileDescription: string;
+    paymentsTitle: string;
+    paymentsDescription: string;
+    mediaTitle: string;
+    mediaDescription: string;
+    integrationsTitle: string;
+    integrationsDescription: string;
+    testingTitle: string;
+    testingDescription: string;
+    analyticsTitle: string;
+    analyticsDescription: string;
+    infraTitle: string;
+    infraDescription: string;
   };
   services: {
     label: string;
@@ -168,6 +190,8 @@ export interface Dictionary {
 const es: Dictionary = {
   nav: {
     location: "Madrid, España",
+    roleBadge: "Product Engineer",
+    futureRoleBadge: "→ AI Trust Engineer",
     trabajos: "Trabajos",
     experiencia: "Experiencia",
     stack: "Stack",
@@ -181,20 +205,20 @@ const es: Dictionary = {
     skipToContent: "Ir al contenido principal",
   },
   hero: {
-    badge: "Programador Full-Stack · Servicios Remotos Globales",
+    badge: "Product Engineer con IA · Servicios Remotos Globales",
     location: "España",
-    h1: "Convierto ideas en software",
+    h1: "Convierto ideas en producto con IA",
     h1Accent: " que vende, escala y dura.",
     description: (years) =>
-      `Programador y desarrollador full-stack con +${years} años de experiencia. Ayudo a empresas y startups a lanzar productos digitales, aplicaciones web e integraciones con IA con calidad premium y enfoque en resultados.`,
+      `Product Engineer con +${years} años de experiencia construyendo con IA. Ayudo a empresas y startups a lanzar productos digitales y soluciones de IA con calidad premium — y voy camino a especializarme en auditoría y seguridad de sistemas de IA.`,
     ctaPrimary: "Ver lo que construyo",
     ctaSecondary: "Contactar",
     presence: "Presencia",
     videoAlt: "Video de Lucas Riera",
     currently: "Actualmente",
-    activity1: "Consultoría frontend & soluciones con IA",
+    activity1: "Product Engineering con IA",
     activity2: "Construyendo plataformas SaaS y sistemas web",
-    activity3: "Creando portfolios y webs profesionales",
+    activity3: "Explorando auditoría y seguridad de sistemas de IA",
     activity4:
       "Lic. Informática — UADE · Tec. Programación & Full Stack MERN — UTN",
     statCode: "Código",
@@ -226,9 +250,32 @@ const es: Dictionary = {
   },
   stack: {
     label: "Stack",
-    title: "Tecnologías que uso día a día.",
+    title: "Con qué construyo.",
     description:
-      "Las herramientas con las que construyo productos sólidos y escalables.",
+      "Ordenado por lo que más uso, no alfabético: la IA va primero porque es donde construyo hoy.",
+    aiTitle: "IA en producto",
+    aiDescription:
+      "El stack con el que construyo producto con IA: modelos, editor, automatización e infraestructura.",
+    coreTitle: "Core de producto",
+    coreDescription:
+      "La base con la que construyo interfaz, estado y lógica de cliente.",
+    backendTitle: "Backend y datos",
+    backendDescription: "Autenticación, base de datos y tareas programadas.",
+    mobileTitle: "Móvil",
+    mobileDescription: "La misma base web empaquetada como app nativa.",
+    paymentsTitle: "Pagos",
+    paymentsDescription: "Cobros y suscripciones.",
+    mediaTitle: "Media y generación de archivos",
+    mediaDescription: "Proceso imágenes y genero documentos desde el producto.",
+    integrationsTitle: "Integraciones",
+    integrationsDescription:
+      "Conecto el producto con redes sociales, mensajería y email.",
+    testingTitle: "Testing",
+    testingDescription: "Pruebo lo que construyo antes de que lo pruebe el usuario.",
+    analyticsTitle: "Analítica y SEO",
+    analyticsDescription: "Mido uso y visibilidad en buscadores.",
+    infraTitle: "Infraestructura",
+    infraDescription: "Dónde vive el código y cómo se despliega.",
   },
   services: {
     label: "Servicios",
@@ -318,14 +365,20 @@ const es: Dictionary = {
     backHome: "Volver al inicio",
   },
   meta: {
-    title: "Lucas Riera — Programador Full-Stack y Software Developer",
+    title: "Lucas Riera — Product Engineer con IA",
     description: (years) =>
-      `Programador y software developer full-stack con +${years} años de experiencia. Desarrollo aplicaciones web, soluciones con IA y consultoría técnica para empresas y startups en remoto.`,
-    ogTitle: "Lucas Riera — Programador Full-Stack y Desarrollador Web",
+      `Product Engineer con +${years} años de experiencia construyendo con IA. Desarrollo aplicaciones web, productos digitales y soluciones de IA para empresas y startups — y me especializo en auditoría y seguridad de sistemas de IA.`,
+    ogTitle: "Lucas Riera — Product Engineer con IA",
     ogDescription: (years) =>
-      `Programador y software developer full-stack con +${years} años de experiencia. Desarrollo web, IA y consultoría técnica para equipos globales.`,
+      `Product Engineer con +${years} años de experiencia. Desarrollo web, soluciones de IA y consultoría técnica para equipos globales.`,
     keywords: [
       "Lucas Riera",
+      "product engineer",
+      "product engineer con IA",
+      "ingeniero de producto",
+      "AI trust engineer",
+      "auditoría de IA",
+      "seguridad en sistemas de IA",
       "programador",
       "programador web",
       "programador Madrid",
@@ -398,6 +451,8 @@ const es: Dictionary = {
 const en: Dictionary = {
   nav: {
     location: "Madrid, Spain",
+    roleBadge: "Product Engineer",
+    futureRoleBadge: "→ AI Trust Engineer",
     trabajos: "Work",
     experiencia: "Experience",
     stack: "Stack",
@@ -411,20 +466,20 @@ const en: Dictionary = {
     skipToContent: "Skip to main content",
   },
   hero: {
-    badge: "Full-Stack Software Developer · Remote Global Services",
+    badge: "Product Engineer with AI · Remote Global Services",
     location: "Spain",
-    h1: "I turn ideas into software",
+    h1: "I turn ideas into product with AI",
     h1Accent: " that sells, scales and lasts.",
     description: (years) =>
-      `Full-stack software developer with ${years}+ years of experience. I help companies and startups build web applications, AI-powered solutions and scalable digital products with premium execution.`,
+      `Product Engineer with ${years}+ years of experience building with AI. I help companies and startups ship digital products and AI-powered solutions with premium execution — and I'm on my way to specializing in AI systems auditing and security.`,
     ctaPrimary: "See my work",
     ctaSecondary: "Get in touch",
     presence: "Presence",
     videoAlt: "Video of Lucas Riera",
     currently: "Currently",
-    activity1: "Frontend consulting & AI-powered solutions",
+    activity1: "Product engineering with AI",
     activity2: "Building SaaS platforms and web systems",
-    activity3: "Creating portfolios and professional websites",
+    activity3: "Exploring AI systems auditing and security",
     activity4:
       "B.Sc. Computer Science — UADE · Software Dev & Full Stack MERN — UTN",
     statCode: "Code",
@@ -456,9 +511,32 @@ const en: Dictionary = {
   },
   stack: {
     label: "Stack",
-    title: "Technologies I use every day.",
+    title: "What I build with.",
     description:
-      "The tools I use to build solid and scalable products.",
+      "Ordered by how much I actually use it, not alphabetically: AI comes first because that's where I build today.",
+    aiTitle: "AI in product",
+    aiDescription:
+      "The stack I use to build product with AI: models, editor, automation and infrastructure.",
+    coreTitle: "Product core",
+    coreDescription:
+      "The foundation I use to build interface, state and client logic.",
+    backendTitle: "Backend and data",
+    backendDescription: "Authentication, database and scheduled jobs.",
+    mobileTitle: "Mobile",
+    mobileDescription: "The same web codebase packaged as a native app.",
+    paymentsTitle: "Payments",
+    paymentsDescription: "Charges and subscriptions.",
+    mediaTitle: "Media and file generation",
+    mediaDescription: "I process images and generate documents from the product.",
+    integrationsTitle: "Integrations",
+    integrationsDescription:
+      "I connect the product to social media, messaging and email.",
+    testingTitle: "Testing",
+    testingDescription: "I test what I build before the user does.",
+    analyticsTitle: "Analytics and SEO",
+    analyticsDescription: "I measure usage and search visibility.",
+    infraTitle: "Infrastructure",
+    infraDescription: "Where the code lives and how it ships.",
   },
   services: {
     label: "Services",
@@ -548,14 +626,19 @@ const en: Dictionary = {
     backHome: "Back to home",
   },
   meta: {
-    title: "Lucas Riera — Full-Stack Software Developer",
+    title: "Lucas Riera — Product Engineer with AI",
     description: (years) =>
-      `Full-stack software developer with ${years}+ years of experience. Web app development, AI solutions and technical consulting for startups and companies.`,
-    ogTitle: "Lucas Riera — Full-Stack Software Developer",
+      `Product Engineer with ${years}+ years of experience building with AI. Web app development, AI-powered products and technical consulting for startups and companies — specializing in AI systems auditing and security.`,
+    ogTitle: "Lucas Riera — Product Engineer with AI",
     ogDescription: (years) =>
-      `Full-stack software developer with ${years}+ years of experience building web apps, AI solutions and scalable systems for global teams.`,
+      `Product Engineer with ${years}+ years of experience building web apps, AI solutions and scalable systems for global teams.`,
     keywords: [
       "Lucas Riera",
+      "product engineer",
+      "AI product engineer",
+      "AI trust engineer",
+      "AI auditing",
+      "AI security",
       "software developer",
       "remote software developer",
       "hire software developer",
@@ -618,6 +701,8 @@ const fr: Dictionary = {
   nav: {
     ...en.nav,
     location: "Madrid, Espagne",
+    roleBadge: "Product Engineer",
+    futureRoleBadge: "→ AI Trust Engineer",
     trabajos: "Travaux",
     experiencia: "Experience",
     stack: "Stack",
@@ -632,20 +717,20 @@ const fr: Dictionary = {
   },
   hero: {
     ...en.hero,
-    badge: "Developpeur Full-Stack · Services distants globaux",
+    badge: "Product Engineer avec IA · Services distants globaux",
     location: "Espagne",
-    h1: "Je transforme les idees en logiciel",
+    h1: "Je transforme les idees en produit avec l'IA",
     h1Accent: " qui vend, evolue et dure.",
     description: (years) =>
-      `Developpeur logiciel full-stack avec ${years}+ ans d'experience. J'aide startups et entreprises a creer des applications web, des solutions IA et des produits scalables avec une execution premium.`,
+      `Product Engineer avec ${years}+ ans d'experience a construire avec l'IA. J'aide startups et entreprises a creer des produits numeriques et des solutions IA avec une execution premium — et je me dirige vers l'audit et la securite des systemes d'IA.`,
     ctaPrimary: "Voir mes projets",
     ctaSecondary: "Me contacter",
     presence: "Presence",
     videoAlt: "Video de Lucas Riera",
     currently: "Actuellement",
-    activity1: "Conseil frontend et solutions IA",
+    activity1: "Product engineering avec IA",
     activity2: "Creation de plateformes SaaS et systemes web",
-    activity3: "Creation de portfolios et sites professionnels",
+    activity3: "Exploration de l'audit et de la securite des systemes d'IA",
     statYears: "+ ans",
     statCreated: "+ crees",
     statLived: " vecus",
@@ -656,6 +741,36 @@ const fr: Dictionary = {
     title: "Produits crees de zero.",
     ctaTitle: "Votre prochain projet",
     ctaButton: "Parlons",
+  },
+  stack: {
+    ...en.stack,
+    label: "Stack",
+    title: "Avec quoi je construis.",
+    description:
+      "Classe par ce que j'utilise le plus, pas par ordre alphabetique : l'IA est en premier car c'est la que je construis aujourd'hui.",
+    aiTitle: "IA en produit",
+    aiDescription:
+      "La stack avec laquelle je construis du produit avec l'IA : modeles, editeur, automatisation et infrastructure.",
+    coreTitle: "Coeur de produit",
+    coreDescription:
+      "La base avec laquelle je construis l'interface, l'etat et la logique client.",
+    backendTitle: "Backend et donnees",
+    backendDescription: "Authentification, base de donnees et taches programmees.",
+    mobileTitle: "Mobile",
+    mobileDescription: "La meme base web empaquetee comme application native.",
+    paymentsTitle: "Paiements",
+    paymentsDescription: "Paiements et abonnements.",
+    mediaTitle: "Media et generation de fichiers",
+    mediaDescription: "Je traite les images et genere des documents depuis le produit.",
+    integrationsTitle: "Integrations",
+    integrationsDescription:
+      "Je connecte le produit aux reseaux sociaux, a la messagerie et a l'email.",
+    testingTitle: "Tests",
+    testingDescription: "Je teste ce que je construis avant que l'utilisateur ne le fasse.",
+    analyticsTitle: "Analytique et SEO",
+    analyticsDescription: "Je mesure l'usage et la visibilite dans les moteurs de recherche.",
+    infraTitle: "Infrastructure",
+    infraDescription: "Ou vit le code et comment il est deploye.",
   },
   services: {
     ...en.services,
@@ -726,14 +841,18 @@ const fr: Dictionary = {
   },
   meta: {
     ...en.meta,
-    title: "Lucas Riera — Developpeur logiciel Full-Stack",
+    title: "Lucas Riera — Product Engineer avec IA",
     description: (years) =>
-      `Developpeur logiciel full-stack avec ${years}+ ans d'experience. Applications web, solutions IA et conseil technique pour equipes internationales.`,
-    ogTitle: "Lucas Riera — Developpeur logiciel Full-Stack",
+      `Product Engineer avec ${years}+ ans d'experience a construire avec l'IA. Applications web, solutions IA et conseil technique pour equipes internationales — vers l'audit et la securite des systemes d'IA.`,
+    ogTitle: "Lucas Riera — Product Engineer avec IA",
     ogDescription: (years) =>
-      `Developpeur full-stack avec ${years}+ ans d'experience en applications web, IA et systemes scalables.`,
+      `Product Engineer avec ${years}+ ans d'experience en applications web, IA et systemes scalables.`,
     keywords: [
       "Lucas Riera",
+      "product engineer",
+      "AI trust engineer",
+      "audit IA",
+      "securite IA",
       "developpeur logiciel",
       "developpeur web freelance",
       "developpeur full stack",

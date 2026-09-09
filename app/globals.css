@@ -128,6 +128,24 @@
   }
 }
 
+@keyframes aurora-drift-a {
+  0%, 100% { transform: translate(-10%, -10%) scale(1); }
+  50% { transform: translate(8%, 6%) scale(1.15); }
+}
+
+@keyframes aurora-drift-b {
+  0%, 100% { transform: translate(10%, 5%) scale(1.1); }
+  50% { transform: translate(-8%, -8%) scale(0.95); }
+}
+
+.animate-aurora-a {
+  animation: aurora-drift-a 16s ease-in-out infinite;
+}
+
+.animate-aurora-b {
+  animation: aurora-drift-b 20s ease-in-out infinite;
+}
+
 @media (prefers-reduced-motion: reduce) {
   *,
   *::before,

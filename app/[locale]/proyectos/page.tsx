@@ -16,10 +16,10 @@ export async function generateMetadata({
   const isFr = locale === "fr";
   return {
     title: isEs
-      ? "Proyectos — Lucas Riera | Software Developer"
+      ? "Proyectos — Lucas Riera | Product Engineer"
       : isFr
-        ? "Projets — Lucas Riera | Software Developer"
-        : "Projects — Lucas Riera | Software Developer",
+        ? "Projets — Lucas Riera | Product Engineer"
+        : "Projects — Lucas Riera | Product Engineer",
     description: isEs
       ? "Proyectos de Lucas Riera: plataformas, sistemas web y aplicaciones construidas desde cero."
       : isFr

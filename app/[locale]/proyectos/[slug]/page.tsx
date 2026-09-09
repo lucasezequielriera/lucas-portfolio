@@ -30,7 +30,7 @@ export async function generateMetadata({
 
   const textLocale = locale === "es" ? "es" : "en";
   return {
-    title: `${project.name} — Lucas Riera | Software Developer`,
+    title: `${project.name} — Lucas Riera | Product Engineer`,
     description: project.description[textLocale],
     openGraph: {
       title: `${project.name} — Lucas Riera`,

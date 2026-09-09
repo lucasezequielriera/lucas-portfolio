@@ -57,21 +57,20 @@ export function Nav({ locale }: { locale: Locale }) {
   return (
     <>
       <header className="sticky top-0 z-30 border-b border-neutral-900/60 bg-neutral-950/80 backdrop-blur">
-        <div className="mx-auto flex max-w-6xl items-center justify-between px-6 py-4">
-          <div className="flex items-center gap-3">
-            <span className="text-sm font-medium tracking-[0.2em] text-neutral-400 uppercase">
+        <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-4 py-3.5 sm:px-6 lg:px-8 lg:py-4">
+          <div className="flex min-w-0 items-center gap-2.5">
+            <span className="shrink-0 text-sm font-medium tracking-[0.2em] text-neutral-400 uppercase">
               Lucas Riera
             </span>
-            <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">
-              Software Developer
+            <span className="hidden shrink-0 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300 sm:inline-flex">
+              {t.nav.roleBadge}
             </span>
-            <span className="hidden items-center gap-1.5 rounded-full border border-neutral-800 bg-neutral-900/60 px-2.5 py-1 text-xs text-neutral-400 md:flex">
-              <MapPin className="h-3 w-3" />
-              {t.nav.location}
+            <span className="hidden shrink-0 rounded-full border border-dashed border-neutral-700 bg-neutral-900/40 px-3 py-1 text-xs font-medium text-neutral-400 sm:inline-flex xl:hidden">
+              {t.nav.futureRoleBadge}
             </span>
           </div>
           <div className="flex items-center gap-3">
-            <nav aria-label={t.nav.mainNav} className="hidden gap-4 text-sm text-neutral-400 md:flex">
+            <nav aria-label={t.nav.mainNav} className="hidden gap-5 text-sm text-neutral-400 xl:flex">
               <button onClick={() => handleNavClick("trabajos")} className="rounded-md px-1 transition hover:text-neutral-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500/70">
                 {t.nav.trabajos}
               </button>
@@ -141,7 +140,7 @@ export function Nav({ locale }: { locale: Locale }) {
             <button
               ref={toggleRef}
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="md:hidden rounded-lg border border-neutral-800 bg-neutral-900/60 p-2 text-neutral-400 transition hover:text-neutral-100"
+              className="rounded-lg border border-neutral-800 bg-neutral-900/60 p-2 text-neutral-400 transition hover:text-neutral-100 xl:hidden"
               aria-label={mobileMenuOpen ? t.nav.closeMenu : t.nav.openMenu}
               aria-expanded={mobileMenuOpen}
               aria-controls="mobile-nav"
@@ -159,8 +158,20 @@ export function Nav({ locale }: { locale: Locale }) {
             initial={prefersReduced ? false : { opacity: 0, y: -10 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.2 }}
-            className="flex flex-col gap-1 border-t border-neutral-900/60 bg-neutral-950/95 px-6 pb-4 pt-2 text-sm md:hidden"
+            className="flex flex-col gap-1 border-t border-neutral-900/60 bg-neutral-950/95 px-6 pb-4 pt-3 text-sm xl:hidden"
           >
+            <div className="mb-2 flex flex-wrap items-center gap-2 pb-3 border-b border-neutral-800">
+              <span className="rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs font-medium text-emerald-300">
+                {t.nav.roleBadge}
+              </span>
+              <span className="rounded-full border border-dashed border-neutral-700 bg-neutral-900/40 px-3 py-1 text-xs font-medium text-neutral-400">
+                {t.nav.futureRoleBadge}
+              </span>
+              <span className="flex items-center gap-1.5 rounded-full border border-neutral-800 bg-neutral-900/60 px-2.5 py-1 text-xs text-neutral-400">
+                <MapPin className="h-3 w-3" />
+                {t.nav.location}
+              </span>
+            </div>
             <button onClick={() => handleNavClick("trabajos")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.nav.trabajos}</button>
             <button onClick={() => handleNavClick("experiencia")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.nav.experiencia}</button>
             <button onClick={() => handleNavClick("stack")} className="rounded-lg px-3 py-2.5 text-left text-neutral-300 transition hover:bg-neutral-900 hover:text-neutral-100">{t.nav.stack}</button>

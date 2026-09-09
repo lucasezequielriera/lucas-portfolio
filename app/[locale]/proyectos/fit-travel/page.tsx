@@ -10,7 +10,7 @@ export async function generateMetadata({
   const { locale } = await params;
   const t = getDictionary(locale as Locale);
   return {
-    title: `${t.fitTravel.title} — Lucas Riera | Software Developer`,
+    title: `${t.fitTravel.title} — Lucas Riera | Product Engineer`,
     description: t.fitTravel.description,
   };
 }

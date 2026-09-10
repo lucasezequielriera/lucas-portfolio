@@ -223,9 +223,9 @@ const es: Dictionary = {
     h1: "Construyo productos con IA",
     h1Accent: " que la gente usa todos los días.",
     description: (years) =>
-      `${years} años construyendo software. Tres en United Airlines, el resto en productos propios. Ahora me estoy metiendo en auditoría y seguridad de sistemas de IA.`,
+      `${years} años construyendo software. Ahora me estoy metiendo en auditoría y seguridad de sistemas de IA.`,
     pitch: (years) =>
-      `${years} años construyendo software. Tres en United Airlines, el resto en productos propios.`,
+      `${years} años construyendo software.`,
     showcaseLabel: "Proyectos destacados",
     ctaPrimary: "Ver lo que construí",
     ctaSecondary: "Escríbeme",
@@ -388,10 +388,10 @@ const es: Dictionary = {
   meta: {
     title: "Lucas Riera — Product Engineer con IA",
     description: (years) =>
-      `${years} años construyendo software, tres de ellos en United Airlines. Desarrollo web, plataformas a medida y soluciones con IA para empresas y startups desde Madrid.`,
+      `${years} años construyendo software. Desarrollo web, plataformas a medida y soluciones con IA para empresas y startups desde Madrid.`,
     ogTitle: "Lucas Riera — Product Engineer con IA",
     ogDescription: (years) =>
-      `${years} años construyendo software, tres en United Airlines. Desarrollo web, IA y consultoría técnica para equipos de todo el mundo.`,
+      `${years} años construyendo software. Desarrollo web, IA y consultoría técnica para equipos de todo el mundo.`,
     keywords: [
       "Lucas Riera",
       "product engineer",
@@ -493,9 +493,9 @@ const en: Dictionary = {
     h1: "I build AI products",
     h1Accent: " people actually use.",
     description: (years) =>
-      `${years} years building software. Three of them at United Airlines, the rest on my own products. Lately I've been getting into AI systems auditing and security.`,
+      `${years} years building software. Lately I've been getting into AI systems auditing and security.`,
     pitch: (years) =>
-      `${years} years building software. Three of them at United Airlines, the rest on my own products.`,
+      `${years} years building software.`,
     showcaseLabel: "Featured work",
     ctaPrimary: "See what I built",
     ctaSecondary: "Write to me",
@@ -658,10 +658,10 @@ const en: Dictionary = {
   meta: {
     title: "Lucas Riera — Product Engineer with AI",
     description: (years) =>
-      `${years} years building software, three of them at United Airlines. Web development, custom platforms and AI-powered products for startups and companies, from Madrid.`,
+      `${years} years building software. Web development, custom platforms and AI-powered products for startups and companies, from Madrid.`,
     ogTitle: "Lucas Riera — Product Engineer with AI",
     ogDescription: (years) =>
-      `${years} years building software, three at United Airlines. Web development, AI and technical consulting for teams anywhere.`,
+      `${years} years building software. Web development, AI and technical consulting for teams anywhere.`,
     keywords: [
       "Lucas Riera",
       "product engineer",
@@ -753,9 +753,9 @@ const fr: Dictionary = {
     h1: "Je construis des produits IA",
     h1Accent: " que les gens utilisent vraiment.",
     description: (years) =>
-      `${years} ans à construire des logiciels. Trois chez United Airlines, le reste sur mes propres produits. En ce moment je me plonge dans l'audit et la sécurité des systèmes d'IA.`,
+      `${years} ans à construire des logiciels. En ce moment je me plonge dans l'audit et la sécurité des systèmes d'IA.`,
     pitch: (years) =>
-      `${years}+ ans a construire du produit avec l'IA. De l'architecture au deploiement, execution premium.`,
+      `${years} ans à construire des logiciels.`,
     showcaseLabel: "Projets phares",
     ctaPrimary: "Voir ce que j'ai construit",
     ctaSecondary: "Écrivez-moi",
@@ -891,10 +891,10 @@ const fr: Dictionary = {
     ...en.meta,
     title: "Lucas Riera — Product Engineer avec IA",
     description: (years) =>
-      `${years} ans à construire des logiciels, trois chez United Airlines. Développement web, plateformes sur mesure et solutions IA, depuis Madrid.`,
+      `${years} ans à construire des logiciels. Développement web, plateformes sur mesure et solutions IA, depuis Madrid.`,
     ogTitle: "Lucas Riera — Product Engineer avec IA",
     ogDescription: (years) =>
-      `${years} ans à construire des logiciels, trois chez United Airlines. Développement web, IA et conseil technique.`,
+      `${years} ans à construire des logiciels. Développement web, IA et conseil technique.`,
     keywords: [
       "Lucas Riera",
       "product engineer",

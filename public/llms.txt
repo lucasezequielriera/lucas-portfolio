@@ -1,8 +1,7 @@
 # Lucas Riera
 
 AI Product Engineer based in Madrid, working remotely. Six years building
-software — three of them at United Airlines — and six products of my own
-currently in production. Available for freelance and contract work: web
+software, with six products of my own currently in production. Available for freelance and contract work: web
 applications, custom platforms, AI integrations and technical consulting.
 
 Contact: lucasezequielriera@gmail.com

@@ -1,31 +1,37 @@
-const SIZES = {
-  sm: "text-sm",
-  md: "text-base",
-  lg: "text-2xl",
+import Image from "next/image";
+
+// Ratio of the exported artwork (brand/logo.svg), used to derive the width.
+const RATIO = 380.9 / 229.3;
+
+const HEIGHTS = {
+  sm: 20,
+  md: 26,
+  lg: 44,
 } as const;
 
 /**
- * `[LR.]` — the brackets run larger than the letters so they read as a frame
- * enclosing the monogram rather than as punctuation beside it. Everything is
- * pure white except the period, which carries the single accent.
+ * The wordmark is served as the exported SVG rather than re-typeset in the
+ * browser, so the site and the files in `brand/` can never drift apart — and the
+ * display face no longer has to be downloaded just to render it.
  */
 export function Logo({
   size = "md",
   className = "",
+  priority = false,
 }: {
-  size?: keyof typeof SIZES;
+  size?: keyof typeof HEIGHTS;
   className?: string;
+  priority?: boolean;
 }) {
+  const height = HEIGHTS[size];
   return (
-    <span
-      aria-hidden="true"
-      className={`inline-flex items-center gap-[0.14em] font-[family-name:var(--font-display)] ${SIZES[size]} font-extrabold leading-none tracking-[-0.02em] text-white ${className}`}
-    >
-      <span className="text-[1.5em] font-medium leading-none">[</span>
-      <span>
-        LR<span className="text-cyan-300">.</span>
-      </span>
-      <span className="text-[1.5em] font-medium leading-none">]</span>
-    </span>
+    <Image
+      src="/brand/logo.svg"
+      alt="Lucas Riera"
+      width={Math.round(height * RATIO)}
+      height={height}
+      priority={priority}
+      className={className}
+    />
   );
 }

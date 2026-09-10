@@ -123,7 +123,7 @@ function getCopy(locale: Locale): Copy {
     uploadHelp: "Formatos soportados: PDF, DOCX, TXT.",
     payLabel: "Pago requerido",
     payingLabel: "Redirigiendo a Stripe...",
-    paidReady: "Pago confirmado. Ahora podés generar 1 CV.",
+    paidReady: "Pago confirmado. Ya puedes generar 1 CV.",
     paymentRequired: "Se requiere pago de USD 1 por cada generación.",
     paymentCancelled: "El pago fue cancelado. Probá de nuevo.",
     payCta: "Pagar USD 1 y continuar",

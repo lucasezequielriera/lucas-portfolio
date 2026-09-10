@@ -12,12 +12,18 @@ export async function generateMetadata({
 
   return {
     title: `${t.about.badge} — Lucas Riera | Product Engineer`,
-    description: t.about.subtitle,
+    description:
+      locale === "es"
+        ? "Trayectoria de Lucas Riera: cinco empresas (United Airlines, YPF, Synapsis), el stack con el que construyo software y qué dicen quienes han trabajado conmigo."
+        : locale === "fr"
+          ? "Parcours de Lucas Riera : cinq entreprises (United Airlines, YPF, Synapsis), la stack avec laquelle je construis et les avis de mes collaborateurs."
+          : "Lucas Riera's track record: five companies (United Airlines, YPF, Synapsis), the stack I build software with, and what people I've worked with say.",
     openGraph: {
       title: `${t.about.badge} — Lucas Riera`,
       url: `https://www.lucasriera.com/${locale}/sobre-mi`,
     },
     alternates: {
+      canonical: `/${locale}/sobre-mi`,
       languages: { es: "/es/sobre-mi", en: "/en/sobre-mi", fr: "/fr/sobre-mi" },
     },
   };

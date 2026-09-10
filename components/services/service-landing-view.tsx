@@ -56,7 +56,7 @@ export function ServiceLandingView({
             </h2>
             <p className="mt-2 max-w-2xl text-sm text-white/70">
               {loc === "es"
-                ? "Contame qué querés lograr y te digo cómo lo encararía, cuánto sale y cuánto tardo."
+                ? "Cuéntame qué quieres conseguir y te digo cómo lo enfocaría, cuánto cuesta y cuánto tardo."
                 : loc === "fr"
                   ? "Dites-moi ce que vous voulez obtenir et je vous dirai comment je m'y prendrais, combien ça coûte et combien de temps ça prend."
                   : "Tell me what you're trying to get done and I'll tell you how I'd approach it, what it costs and how long it takes."}

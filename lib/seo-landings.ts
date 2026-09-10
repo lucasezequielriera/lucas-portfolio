@@ -43,7 +43,7 @@ export const landingEntries: LandingEntry[] = [
     bulletPoints: {
       es: [
         "Base de datos y arquitectura pensadas para cuando haya diez veces más usuarios",
-        "Pantallas diseñadas alrededor de la acción que querés que la gente haga",
+        "Pantallas diseñadas alrededor de la acción que quieres que haga la gente",
         "SEO técnico resuelto antes del lanzamiento, no después",
       ],
       en: [
@@ -204,7 +204,7 @@ export const landingEntries: LandingEntry[] = [
     },
     bulletPoints: {
       es: [
-        "Sabés en qué ando sin tener que preguntarme",
+        "Sabes en qué ando sin tener que preguntarme",
         "Me hago cargo desde la idea hasta que está en producción",
         "Código que el próximo que entre va a poder leer",
       ],

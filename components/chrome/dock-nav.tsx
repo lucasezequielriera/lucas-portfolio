@@ -35,7 +35,7 @@ export function DockNav({ locale }: { locale: Locale }) {
           aria-label="Lucas Riera"
           className="opacity-90 transition hover:opacity-100"
         >
-          <Logo size="md" />
+          <Logo size="md" priority />
         </Link>
       </div>
 

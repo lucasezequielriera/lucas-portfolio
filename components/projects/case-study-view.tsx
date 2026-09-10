@@ -113,26 +113,26 @@ export function CaseStudyView({ locale, project }: { locale: Locale; project: Pr
                     <div>
                       <div className="flex items-center gap-2">
                         <div className={`h-1 w-6 rounded-full ${colors.accent}`} />
-                        <p className={`font-[family-name:var(--font-geist-mono)] text-xs font-semibold uppercase tracking-[0.2em] ${colors.heading}`}>
+                        <h2 className={`font-[family-name:var(--font-geist-mono)] text-xs font-semibold uppercase tracking-[0.2em] ${colors.heading}`}>
                           {t.caseStudy.problem}
-                        </p>
+                        </h2>
                       </div>
                       <p className="mt-2 text-sm leading-relaxed text-white/60">{project.problem[textLocale]}</p>
                     </div>
                     <div>
                       <div className="flex items-center gap-2">
                         <div className={`h-1 w-6 rounded-full ${colors.accent}`} />
-                        <p className={`font-[family-name:var(--font-geist-mono)] text-xs font-semibold uppercase tracking-[0.2em] ${colors.heading}`}>
+                        <h2 className={`font-[family-name:var(--font-geist-mono)] text-xs font-semibold uppercase tracking-[0.2em] ${colors.heading}`}>
                           {t.caseStudy.solution}
-                        </p>
+                        </h2>
                       </div>
                       <p className="mt-2 text-sm leading-relaxed text-white/60">{project.solution[textLocale]}</p>
                     </div>
                   </div>
                   <div>
-                    <p className={`font-[family-name:var(--font-geist-mono)] text-xs font-semibold uppercase tracking-[0.2em] ${colors.heading}`}>
+                    <h2 className={`font-[family-name:var(--font-geist-mono)] text-xs font-semibold uppercase tracking-[0.2em] ${colors.heading}`}>
                       {t.caseStudy.techStack}
-                    </p>
+                    </h2>
                     <div className="mt-2 flex flex-wrap gap-2">
                       {project.tags.map((tag) => (
                         <span key={tag} className={`rounded-full border bg-black/40 px-3 py-1 text-xs ${colors.tag}`}>

@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { DockNav } from "@/components/chrome/dock-nav";
 import { SiteFooterBar } from "@/components/home/site-footer-bar";
 import { Segmented } from "@/components/ui/segmented";
@@ -17,12 +16,14 @@ export function AboutView({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
   const [tab, setTab] = useState<TabKey>("experience");
 
-  const items = [
-    { key: "experience", label: t.about.tabExperience },
-    { key: "stack", label: t.about.tabStack },
-    { key: "services", label: t.about.tabServices },
-    { key: "testimonials", label: t.about.tabTestimonials },
-  ];
+  const PANELS = [
+    { key: "experience", label: t.about.tabExperience, Panel: ExperiencePanel },
+    { key: "stack", label: t.about.tabStack, Panel: StackPanel },
+    { key: "services", label: t.about.tabServices, Panel: ServicesPanel },
+    { key: "testimonials", label: t.about.tabTestimonials, Panel: TestimonialsPanel },
+  ] as const;
+
+  const items = PANELS.map(({ key, label }) => ({ key, label }));
 
   return (
     <div className="relative flex h-screen-dvh flex-col overflow-hidden text-white">
@@ -49,25 +50,29 @@ export function AboutView({ locale }: { locale: Locale }) {
               value={tab}
               onChange={(k) => setTab(k as TabKey)}
               ariaLabel={t.about.badge}
+              linkedPanels
             />
           </div>
         </div>
 
+        {/* Every panel is rendered and the inactive ones are hidden with CSS
+            rather than left out of the tree. Mounting only the active tab kept
+            three quarters of this page out of the HTML, so search engines never
+            saw the stack, the services or the testimonials. */}
         <div className="min-h-0 flex-1 overflow-y-auto rounded-2xl border border-white/10 bg-white/[0.03] p-4 backdrop-blur-xl sm:p-6">
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={tab}
-              initial={{ opacity: 0, y: 8 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -8 }}
-              transition={{ duration: 0.25 }}
+          {PANELS.map(({ key, label, Panel }) => (
+            <section
+              key={key}
+              id={`panel-${key}`}
+              role="tabpanel"
+              aria-labelledby={`tab-${key}`}
+              hidden={key !== tab}
+              className={key === tab ? "animate-in fade-in duration-300" : undefined}
             >
-              {tab === "experience" && <ExperiencePanel locale={locale} />}
-              {tab === "stack" && <StackPanel locale={locale} />}
-              {tab === "services" && <ServicesPanel locale={locale} />}
-              {tab === "testimonials" && <TestimonialsPanel locale={locale} />}
-            </motion.div>
-          </AnimatePresence>
+              <h2 className="sr-only">{label}</h2>
+              <Panel locale={locale} />
+            </section>
+          ))}
         </div>
       </main>
     </div>

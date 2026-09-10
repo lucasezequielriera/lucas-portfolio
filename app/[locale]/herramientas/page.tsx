@@ -15,16 +15,17 @@ export async function generateMetadata({
 
   return {
     title: isEs
-      ? "Herramientas — Lucas Riera"
+      ? "Generador de CV optimizado para ATS — Herramientas | Lucas Riera"
       : isFr
-        ? "Outils — Lucas Riera"
-        : "Tools — Lucas Riera",
+        ? "Générateur de CV optimisé ATS — Outils | Lucas Riera"
+        : "ATS-optimized resume generator — Tools | Lucas Riera",
     description: isEs
-      ? "Herramientas profesionales para candidatos y equipos. Generador de CV ATS en PDF."
+      ? "Sube tu CV o tu perfil de LinkedIn y descarga una versión optimizada para los filtros ATS que usan las empresas. PDF listo en un minuto, con IA."
       : isFr
-        ? "Outils professionnels pour candidats et equipes. Generateur de CV ATS en PDF."
-        : "Professional tools for candidates and teams. ATS-friendly resume PDF generator.",
+        ? "Envoyez votre CV ou votre profil LinkedIn et téléchargez une version optimisée pour les filtres ATS des entreprises. PDF prêt en une minute, avec IA."
+        : "Upload your CV or LinkedIn profile and download a version optimized for the ATS filters companies use. PDF ready in a minute, powered by AI.",
     alternates: {
+      canonical: `/${locale}/herramientas`,
       languages: {
         es: "/es/herramientas",
         en: "/en/herramientas",

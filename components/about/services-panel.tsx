@@ -46,7 +46,7 @@ export function ServicesPanel({ locale }: { locale: Locale }) {
       <div className="rounded-lg border border-white/10 bg-white/[0.03] p-3.5 text-xs text-white/60">
         <p>
           {locale === "es"
-            ? "También podés contratarme como programador freelance remoto para proyectos internacionales."
+            ? "También puedes contratarme como programador freelance remoto para proyectos internacionales."
             : locale === "fr"
               ? "Vous pouvez aussi me contacter comme developpeur freelance remote pour des projets internationaux."
               : "You can also hire me as a remote freelance developer for international projects."}

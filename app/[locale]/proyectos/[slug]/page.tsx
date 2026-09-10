@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { projects } from "@/lib/projects";
-import { locales, type Locale } from "@/lib/dictionaries";
+import { getDictionary, locales, type Locale } from "@/lib/dictionaries";
 import { CaseStudyView } from "@/components/projects/case-study-view";
 
 export function generateStaticParams() {
@@ -40,6 +40,7 @@ export async function generateMetadata({
           : [{ url: "/og-image.png", width: 1200, height: 630 }],
     },
     alternates: {
+      canonical: `/${locale}/proyectos/${slug}`,
       languages: {
         es: `/es/proyectos/${slug}`,
         en: `/en/proyectos/${slug}`,
@@ -92,6 +93,35 @@ export default async function ProjectPage({
                 contentUrl: `https://www.lucasriera.com${project.media.find((m) => m.type === "video")!.src}`,
               },
             }),
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "BreadcrumbList",
+            itemListElement: [
+              {
+                "@type": "ListItem",
+                position: 1,
+                name: "Lucas Riera",
+                item: `https://www.lucasriera.com/${locale}`,
+              },
+              {
+                "@type": "ListItem",
+                position: 2,
+                name: getDictionary(loc).nav.proyectos,
+                item: `https://www.lucasriera.com/${locale}/proyectos`,
+              },
+              {
+                "@type": "ListItem",
+                position: 3,
+                name: project.name,
+                item: `https://www.lucasriera.com/${locale}/proyectos/${slug}`,
+              },
+            ],
           }),
         }}
       />

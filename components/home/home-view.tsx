@@ -5,6 +5,7 @@ import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
 import { DockNav } from "@/components/chrome/dock-nav";
 import { AnimatedCounter } from "./animated-counter";
+import { RoleSignature } from "./role-signature";
 import { useContactDrawer } from "@/components/contact/contact-drawer-context";
 import { getDictionary, type Locale } from "@/lib/dictionaries";
 import { projects } from "@/lib/projects";
@@ -22,20 +23,33 @@ function RevealWords({
 }) {
   const prefersReduced = useReducedMotion();
   const words = text.trim().split(" ");
+
   return (
     <span className={className}>
-      {words.map((word, idx) => (
-        <span key={idx} className="mr-[0.28em] inline-block overflow-hidden align-bottom">
-          <motion.span
-            initial={prefersReduced ? false : { y: "110%" }}
-            animate={{ y: "0%" }}
-            transition={{ duration: 0.7, delay: startDelay + idx * 0.055, ease: [0.16, 1, 0.3, 1] }}
-            className={`inline-block ${accent ? "text-white/45" : ""}`}
-          >
-            {word}
-          </motion.span>
-        </span>
-      ))}
+      {words.map((word, idx) => {
+        // The full stop that closes the headline is the same accent as the one
+        // in the wordmark, so it gets the brand colour rather than the muted
+        // tone the rest of the phrase carries.
+        const isLast = idx === words.length - 1;
+        const endsSentence = isLast && word.endsWith(".");
+        const body = endsSentence ? word.slice(0, -1) : word;
+
+        return (
+          <span key={idx} className="mr-[0.28em] inline-block overflow-hidden align-bottom">
+            <motion.span
+              initial={prefersReduced ? false : { y: "110%" }}
+              animate={{ y: "0%" }}
+              transition={{ duration: 0.7, delay: startDelay + idx * 0.055, ease: [0.16, 1, 0.3, 1] }}
+              className={`inline-block ${accent ? "text-white/45" : ""}`}
+            >
+              {body}
+              {endsSentence && (
+                <span className={accent ? "text-cyan-300/45" : "text-cyan-300"}>.</span>
+              )}
+            </motion.span>
+          </span>
+        );
+      })}
     </span>
   );
 }
@@ -55,31 +69,25 @@ export function HomeView({ locale }: { locale: Locale }) {
         id="main-content"
         className="relative z-10 flex flex-1 flex-col items-center justify-center px-6 text-center"
       >
-        <motion.div
-          initial={prefersReduced ? false : { opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.5 }}
-          className="mb-6 inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/[0.04] px-3.5 py-1.5 backdrop-blur-xl"
-        >
-          <span className="h-1.5 w-1.5 animate-pulse rounded-full bg-cyan-300" />
-          <span className="font-[family-name:var(--font-geist-mono)] text-[0.65rem] uppercase tracking-[0.2em] text-white/60">
-            {t.hero.badge}
-          </span>
-        </motion.div>
+        <div className="mb-7">
+          <RoleSignature delay={0.15} />
+        </div>
 
-        <h1 className="max-w-4xl font-[family-name:var(--font-display)] text-[2.5rem] font-extrabold leading-[1.02] tracking-[-0.03em] text-white sm:text-5xl lg:text-7xl">
+        <h1 className="max-w-4xl font-[family-name:var(--font-display)] text-[2.5rem] font-bold leading-[1.04] tracking-[-0.03em] text-white sm:text-5xl lg:text-7xl">
           <RevealWords text={t.hero.h1} startDelay={0.1} />
           <RevealWords text={t.hero.h1Accent} startDelay={0.1 + wordCount * 0.055} accent />
         </h1>
 
-        <motion.p
+        {/* Semantically the subheading of the page, so it carries the h2 even
+            though it is styled as body copy. */}
+        <motion.h2
           initial={prefersReduced ? false : { opacity: 0, y: 10 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.9 }}
-          className="mt-6 max-w-lg text-sm text-white/50 sm:text-base"
+          className="mt-6 max-w-lg text-sm font-normal text-white/50 sm:text-base"
         >
           {t.hero.pitch(yearsOfExperience)}
-        </motion.p>
+        </motion.h2>
 
         <motion.div
           initial={prefersReduced ? false : { opacity: 0, y: 10 }}

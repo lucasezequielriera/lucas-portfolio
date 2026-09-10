@@ -12,11 +12,17 @@ export function Segmented({
   value,
   onChange,
   ariaLabel,
+  /**
+   * Set when the caller renders matching `panel-<key>` elements, so each tab can
+   * point at the region it controls. Left off, the buttons stay plain toggles.
+   */
+  linkedPanels = false,
 }: {
   items: SegmentedItem[];
   value: string;
   onChange: (key: string) => void;
   ariaLabel: string;
+  linkedPanels?: boolean;
 }) {
   return (
     <div
@@ -31,6 +37,9 @@ export function Segmented({
             key={item.key}
             role="tab"
             type="button"
+            {...(linkedPanels
+              ? { id: `tab-${item.key}`, "aria-controls": `panel-${item.key}` }
+              : {})}
             aria-selected={active}
             onClick={() => onChange(item.key)}
             className={`relative shrink-0 whitespace-nowrap rounded-full px-3 py-1.5 font-[family-name:var(--font-geist-mono)] text-[0.68rem] uppercase tracking-wide transition-colors ${

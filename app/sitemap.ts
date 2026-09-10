@@ -1,137 +1,68 @@
 import { MetadataRoute } from "next";
 import { projects } from "@/lib/projects";
 import { landingEntries } from "@/lib/seo-landings";
+import { locales } from "@/lib/dictionaries";
 
-export default function sitemap(): MetadataRoute.Sitemap {
-  const base = "https://www.lucasriera.com";
-  const now = new Date();
+const BASE = "https://www.lucasriera.com";
 
-  const projectUrls = projects.flatMap((p) => [
-    {
-      url: `${base}/es/proyectos/${p.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    },
-    {
-      url: `${base}/en/proyectos/${p.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    },
-    {
-      url: `${base}/fr/proyectos/${p.slug}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.65,
-    },
-  ]);
-
-  const legalPages = ["privacidad", "aviso-legal", "cookies"].flatMap(
-    (page) => [
-      {
-        url: `${base}/es/${page}`,
-        lastModified: now,
-        changeFrequency: "yearly" as const,
-        priority: 0.3,
-      },
-      {
-        url: `${base}/en/${page}`,
-        lastModified: now,
-        changeFrequency: "yearly" as const,
-        priority: 0.3,
-      },
-      {
-        url: `${base}/fr/${page}`,
-        lastModified: now,
-        changeFrequency: "yearly" as const,
-        priority: 0.3,
-      },
-    ]
+/**
+ * Every page exists in all three locales, so each entry ships the full set of
+ * hreflang alternates. Without them Google treats the translations as competing
+ * duplicates instead of alternates of the same page.
+ */
+function entry(
+  pathFor: (locale: string) => string,
+  {
+    priority,
+    changeFrequency = "monthly",
+    lastModified = new Date(),
+  }: {
+    priority: number | ((locale: string) => number);
+    changeFrequency?: MetadataRoute.Sitemap[number]["changeFrequency"];
+    lastModified?: Date;
+  }
+): MetadataRoute.Sitemap {
+  const languages = Object.fromEntries(
+    locales.map((l) => [l, `${BASE}${pathFor(l)}`])
   );
 
-  const toolsPages = [
-    {
-      url: `${base}/es/herramientas`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${base}/en/herramientas`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-    {
-      url: `${base}/fr/herramientas`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-  ];
+  return locales.map((locale) => ({
+    url: `${BASE}${pathFor(locale)}`,
+    lastModified,
+    changeFrequency,
+    priority: typeof priority === "function" ? priority(locale) : priority,
+    alternates: { languages },
+  }));
+}
 
-  const serviceLandings = landingEntries.flatMap((entry) => [
-    {
-      url: `${base}/es/services/${entry.slug.es}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.85,
-    },
-    {
-      url: `${base}/en/services/${entry.slug.en}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.85,
-    },
-    {
-      url: `${base}/fr/services/${entry.slug.fr}`,
-      lastModified: now,
-      changeFrequency: "monthly" as const,
-      priority: 0.8,
-    },
-  ]);
+export default function sitemap(): MetadataRoute.Sitemap {
+  // French is a partial translation, so it sits slightly below es/en throughout.
+  const byLocale = (main: number, fr: number) => (l: string) =>
+    l === "fr" ? fr : main;
 
   return [
-    {
-      url: `${base}/es`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-    {
-      url: `${base}/en`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 1,
-    },
-    {
-      url: `${base}/fr`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${base}/es/proyectos`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/en/proyectos`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.8,
-    },
-    {
-      url: `${base}/fr/proyectos`,
-      lastModified: now,
-      changeFrequency: "monthly",
-      priority: 0.75,
-    },
-    ...projectUrls,
-    ...toolsPages,
-    ...serviceLandings,
-    ...legalPages,
+    ...entry((l) => `/${l}`, { priority: byLocale(1, 0.9) }),
+    ...entry((l) => `/${l}/sobre-mi`, { priority: byLocale(0.85, 0.8) }),
+    ...entry((l) => `/${l}/proyectos`, { priority: byLocale(0.8, 0.75) }),
+    ...entry((l) => `/${l}/herramientas`, { priority: byLocale(0.8, 0.75) }),
+
+    ...projects.flatMap((p) =>
+      entry((l) => `/${l}/proyectos/${p.slug}`, {
+        priority: byLocale(0.7, 0.65),
+      })
+    ),
+
+    ...landingEntries.flatMap((e) =>
+      entry((l) => `/${l}/services/${e.slug[l as keyof typeof e.slug]}`, {
+        priority: byLocale(0.85, 0.8),
+      })
+    ),
+
+    ...["privacidad", "aviso-legal", "cookies"].flatMap((page) =>
+      entry((l) => `/${l}/${page}`, {
+        priority: 0.3,
+        changeFrequency: "yearly",
+      })
+    ),
   ];
 }

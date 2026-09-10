@@ -1,6 +1,0 @@
-User-agent: *
-Allow: /es/
-Allow: /en/
-Disallow: /api/
-
-Sitemap: https://www.lucasriera.com/sitemap.xml

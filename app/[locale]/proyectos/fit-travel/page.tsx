@@ -13,6 +13,9 @@ export async function generateMetadata({
   return {
     title: `${t.fitTravel.title} — Lucas Riera | Product Engineer`,
     description: t.fitTravel.description,
+    // Todavía es una página de relleno: indexarla sólo aporta contenido pobre
+    // al dominio. Quitar el noindex cuando tenga contenido real.
+    robots: { index: false, follow: true },
   };
 }
 

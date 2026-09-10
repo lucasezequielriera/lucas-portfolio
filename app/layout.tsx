@@ -1,4 +1,4 @@
-import { Geist, Geist_Mono, Sora } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { headers } from "next/headers";
@@ -16,12 +16,6 @@ const geistSans = Geist({
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
-});
-
-const sora = Sora({
-  variable: "--font-display",
-  subsets: ["latin"],
-  weight: ["600", "700", "800"],
 });
 
 export const metadata = {
@@ -42,7 +36,7 @@ export default async function RootLayout({
   return (
     <html lang={lang} suppressHydrationWarning>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${sora.variable} bg-black antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} bg-black antialiased`}
       >
         <NeuralBackgroundLoader />
         <CustomCursor />

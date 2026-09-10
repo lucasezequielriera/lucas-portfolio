@@ -101,13 +101,18 @@ export default async function LocaleLayout({
             name: "Lucas Riera",
             url: "https://www.lucasriera.com",
             jobTitle: [
+              "AI Product Engineer",
               "Product Engineer",
               "Software Developer",
               "Programador",
               "Desarrollador Web",
-              "Informático",
               "Full-Stack Developer",
             ],
+            worksFor: {
+              "@type": "Organization",
+              name: "Synapsis",
+              url: "https://www.synapsis.team",
+            },
             description: t.meta.ogDescription(yearsExp),
             knowsAbout: [
               "Programación",
@@ -189,6 +194,7 @@ export default async function LocaleLayout({
               "https://instagram.com/lucasezequielriera",
             ],
             image: "https://www.lucasriera.com/og-image.png",
+            logo: "https://www.lucasriera.com/brand/logo.svg",
           }),
         }}
       />

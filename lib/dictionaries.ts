@@ -228,7 +228,7 @@ const es: Dictionary = {
       `${years} años construyendo software. Tres en United Airlines, el resto en productos propios.`,
     showcaseLabel: "Proyectos destacados",
     ctaPrimary: "Ver lo que construí",
-    ctaSecondary: "Escribime",
+    ctaSecondary: "Escríbeme",
     presence: "Presencia",
     videoAlt: "Video de Lucas Riera",
     currently: "Actualmente",
@@ -251,7 +251,7 @@ const es: Dictionary = {
       "Todos están online y funcionando. Los hice solo, de la base de datos al diseño.",
     ctaTitle: "El que falta es el tuyo",
     ctaDescription:
-      "Si tenés algo en mente, contame de qué se trata.",
+      "Si tienes algo en mente, cuéntame de qué se trata.",
     ctaButton: "Hablemos",
   },
   experience: {
@@ -293,13 +293,13 @@ const es: Dictionary = {
     label: "Servicios",
     title: "Lo que hago.",
     description:
-      "Desarrollo web, plataformas a medida y consultoría técnica. Para empresas y para quien recién arranca.",
+      "Desarrollo web, plataformas a medida y consultoría técnica. Para empresas y para quien está empezando.",
     saasTitle: "Plataformas & SaaS",
     saasDescription:
       "Auth, base de datos, API, panel de control y toda la lógica de negocio del medio. Del esquema inicial al deploy.",
     systemsTitle: "Sistemas Web",
     systemsDescription:
-      "Aplicaciones internas, dashboards e integraciones con los servicios que ya usás.",
+      "Aplicaciones internas, dashboards e integraciones con los servicios que ya usas.",
     websTitle: "Portfolios & Webs",
     websDescription:
       "Sitios rápidos, con diseño propio y animaciones que no estorban.",
@@ -315,11 +315,11 @@ const es: Dictionary = {
     starsLabel: "5 de 5 estrellas",
   },
   contact: {
-    title: "¿Tenés algo en mente?",
+    title: "¿Tienes algo en mente?",
     description:
-      "Contame qué necesitás y te digo si te puedo ayudar, cuánto sale y cuánto tardo. Si no es lo mío, también te lo digo.",
+      "Cuéntame qué necesitas y te digo si puedo ayudarte, cuánto cuesta y cuánto tardo. Si no es lo mío, también te lo digo.",
     form: "Formulario",
-    formSub: "Contame tu proyecto",
+    formSub: "Cuéntame tu proyecto",
     whatsappSub: "Mensaje directo",
     scheduleCall: "Agendar llamada",
     minutes: "30 minutos",
@@ -328,14 +328,14 @@ const es: Dictionary = {
     emailLabel: "Email",
     emailPlaceholder: "tu@email.com",
     messageLabel: "Mensaje",
-    messagePlaceholder: "Contame sobre tu proyecto...",
+    messagePlaceholder: "Cuéntame sobre tu proyecto...",
     send: "Enviar mensaje",
     sending: "Enviando...",
     success: "Mensaje enviado. Te respondo pronto.",
-    error: "Error al enviar. Intentá de nuevo.",
+    error: "Error al enviar. Inténtalo de nuevo.",
     errorMinName: "El nombre debe tener al menos 2 caracteres.",
     errorMaxName: "El nombre es demasiado largo.",
-    errorEmail: "Ingresá un email válido.",
+    errorEmail: "Introduce un email válido.",
     errorMinMessage: "El mensaje debe tener al menos 10 caracteres.",
     errorMaxMessage: "El mensaje es demasiado largo.",
   },
@@ -372,9 +372,9 @@ const es: Dictionary = {
     techStack: "Stack técnico",
     screenshots: "El producto en acción",
     visitSite: "Visitar sitio",
-    contactCta: "¿Querés algo parecido?",
+    contactCta: "¿Quieres algo parecido?",
     contactCtaSub:
-      "Lo que hice acá lo puedo hacer para tu producto.",
+      "Lo que hice aquí puedo hacerlo para tu producto.",
     backToProjects: "← Todos los proyectos",
     builtIn: "Construido en",
     createdBy: "Creado por Lucas Riera",
@@ -382,7 +382,7 @@ const es: Dictionary = {
   notFound: {
     title: "Página no encontrada",
     description:
-      "La página que buscás no existe o fue movida. Volvé al inicio para seguir navegando.",
+      "La página que buscas no existe o se ha movido. Vuelve al inicio para seguir navegando.",
     backHome: "Volver al inicio",
   },
   meta: {

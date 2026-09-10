@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { getDictionary, locales, type Locale } from "@/lib/dictionaries";
 import { CookieBanner } from "@/components/cookie-banner";
+import { DockNav } from "@/components/chrome/dock-nav";
+import { SiteFooterBar } from "@/components/home/site-footer-bar";
 
 export function generateStaticParams() {
   return locales.map((locale) => ({ locale }));
@@ -269,6 +271,12 @@ export default async function LocaleLayout({
           }),
         }}
       />
+      {/* El dock y el pie viven en el layout, no en cada página: así el App
+          Router los conserva entre navegaciones en vez de desmontarlos y
+          volverlos a montar, y el indicador activo puede deslizarse de una
+          sección a otra. */}
+      <DockNav locale={locale as Locale} />
+      <SiteFooterBar locale={locale as Locale} />
       {children}
       <CookieBanner locale={locale as Locale} />
     </>

@@ -30,41 +30,74 @@ export function ExperiencePanel({ locale }: { locale: Locale }) {
   ];
 
   return (
-    <div className="space-y-2.5" role="list" aria-label={t.experience.label}>
+    <div className="space-y-2 sm:space-y-2.5" role="list" aria-label={t.experience.label}>
       <p className="sr-only">{t.experience.srDescription}</p>
       {entries.map((entry, idx) => {
         const Wrapper = entry.href ? "a" : "div";
-        return (
-          <div key={entry.name} className="flex items-center gap-3 sm:gap-4" role="listitem">
-            <div className="w-20 shrink-0 text-right sm:w-32">
-              <p className="text-xs font-semibold text-white sm:text-sm">{entry.name}</p>
-              <p className="text-[0.62rem] text-white/35 sm:text-[0.7rem]">{entry.period}</p>
+        const inner = (
+          <>
+            {/* Móvil: ficha legible. A 390px un tramo del 14% mide unos 38px,
+                donde el logo y la duración se pisaban. */}
+            <div className="flex items-center gap-3 sm:hidden">
+              {entry.logo ? (
+                <div className="relative h-7 w-7 shrink-0 overflow-hidden rounded">
+                  <Image src={entry.logo} alt="" fill sizes="28px" className="object-contain" />
+                </div>
+              ) : (
+                <div className="h-7 w-7 shrink-0 rounded bg-white/[0.06]" />
+              )}
+              <div className="min-w-0 flex-1">
+                <p className="truncate text-sm font-semibold text-white">{entry.name}</p>
+                <p className="text-[0.7rem] text-white/35">{entry.period}</p>
+              </div>
+              <span className={`shrink-0 text-xs font-medium ${entry.text}`}>{entry.duration}</span>
             </div>
-            <div className="relative h-8 flex-1 rounded-lg bg-white/[0.03] sm:h-9">
-              <Wrapper
-                {...(entry.href ? { href: entry.href, target: "_blank", rel: "noreferrer" } : {})}
-                className="absolute inset-0 block"
-              >
+
+            {/* Desde sm hay ancho suficiente para la línea de tiempo proporcional. */}
+            <div className="hidden items-center gap-4 sm:flex">
+              <div className="w-32 shrink-0 text-right">
+                <p className="text-sm font-semibold text-white">{entry.name}</p>
+                <p className="text-[0.7rem] text-white/35">{entry.period}</p>
+              </div>
+              <div className="relative h-9 flex-1 rounded-lg bg-white/[0.03]">
                 <motion.div
                   initial={prefersReduced ? { width: `${entry.widthPct}%` } : { width: 0 }}
                   animate={{ width: `${entry.widthPct}%` }}
                   transition={{ duration: 0.7, delay: idx * 0.08, ease: "easeOut" }}
-                  className={`absolute top-0 h-full rounded-lg border ${entry.bar}`}
+                  className={`absolute top-0 h-full overflow-hidden rounded-lg border ${entry.bar}`}
                   style={{ left: `${entry.leftPct}%` }}
                 >
-                  <div className="flex h-full items-center justify-between px-2.5 sm:px-3">
+                  <div className="flex h-full items-center justify-between gap-2 px-3">
                     {entry.logo ? (
-                      <div className="relative h-5 w-5 shrink-0 overflow-hidden rounded sm:h-6 sm:w-6">
-                        <Image src={entry.logo} alt={entry.name} fill sizes="24px" className="object-contain" />
+                      <div className="relative h-6 w-6 shrink-0 overflow-hidden rounded">
+                        <Image src={entry.logo} alt="" fill sizes="24px" className="object-contain" />
                       </div>
                     ) : (
                       <span />
                     )}
-                    <span className={`text-[0.65rem] font-medium sm:text-xs ${entry.text}`}>{entry.duration}</span>
+                    <span className={`truncate text-xs font-medium ${entry.text}`}>
+                      {entry.duration}
+                    </span>
                   </div>
                 </motion.div>
-              </Wrapper>
+              </div>
             </div>
+          </>
+        );
+
+        return (
+          <div
+            key={entry.name}
+            role="listitem"
+            className="rounded-lg transition hover:bg-white/[0.03] sm:hover:bg-transparent"
+          >
+            {entry.href ? (
+              <Wrapper href={entry.href} target="_blank" rel="noreferrer" className="block p-1 sm:p-0">
+                {inner}
+              </Wrapper>
+            ) : (
+              <div className="p-1 sm:p-0">{inner}</div>
+            )}
           </div>
         );
       })}

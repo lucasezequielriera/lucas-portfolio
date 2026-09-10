@@ -2,8 +2,6 @@
 
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { DockNav } from "@/components/chrome/dock-nav";
-import { SiteFooterBar } from "@/components/home/site-footer-bar";
 import { OpenContactButton } from "@/components/contact/open-contact-button";
 import type { LandingEntry, LandingLocale } from "@/lib/seo-landings";
 import { landingEntries } from "@/lib/seo-landings";
@@ -20,8 +18,6 @@ export function ServiceLandingView({
 
   return (
     <div className="relative flex h-screen-dvh flex-col overflow-hidden text-white">
-      <DockNav locale={locale as Locale} />
-      <SiteFooterBar locale={locale as Locale} />
 
       <main
         id="main-content"

@@ -131,11 +131,11 @@ export function ProjectsGallery({ locale }: { locale: Locale }) {
   const [index, setIndex] = useState(0);
 
   return (
-    <div className="grid min-h-0 flex-1 grid-cols-1 gap-4 sm:grid-cols-[220px_minmax(0,1fr)] lg:grid-cols-[260px_minmax(0,1fr)]">
+    <div className="grid min-h-0 flex-1 grid-cols-1 grid-rows-[auto_minmax(0,1fr)] gap-3 sm:grid-cols-[220px_minmax(0,1fr)] sm:grid-rows-1 sm:gap-4 lg:grid-cols-[260px_minmax(0,1fr)]">
       <div
         role="tablist"
         aria-label={getDictionary(locale).nav.proyectos}
-        className="min-h-0 overflow-y-auto rounded-2xl border border-white/10 bg-white/[0.03] p-2 backdrop-blur-xl"
+        className="flex gap-2 overflow-x-auto rounded-2xl border border-white/10 bg-white/[0.03] p-2 backdrop-blur-xl [scrollbar-width:none] sm:block sm:min-h-0 sm:gap-0 sm:overflow-x-visible sm:overflow-y-auto [&::-webkit-scrollbar]:hidden"
       >
         {projects.map((p, i) => {
           const active = i === index;
@@ -148,7 +148,7 @@ export function ProjectsGallery({ locale }: { locale: Locale }) {
               aria-selected={active}
               aria-controls={`project-${p.slug}`}
               onClick={() => setIndex(i)}
-              className={`flex w-full items-center gap-3 rounded-xl p-2.5 text-left transition ${
+              className={`flex shrink-0 items-center gap-2.5 rounded-xl p-2 text-left transition sm:w-full sm:gap-3 sm:p-2.5 ${
                 active ? "bg-white/10" : "hover:bg-white/[0.06]"
               }`}
             >
@@ -168,10 +168,10 @@ export function ProjectsGallery({ locale }: { locale: Locale }) {
                 </div>
               ) : null}
               <div className="min-w-0">
-                <p className={`truncate text-sm font-medium ${active ? "text-white" : "text-white/60"}`}>
+                <p className={`whitespace-nowrap text-sm font-medium sm:truncate ${active ? "text-white" : "text-white/60"}`}>
                   {p.name}
                 </p>
-                <p className="text-xs text-white/35">{p.year}</p>
+                <p className="hidden text-xs text-white/35 sm:block">{p.year}</p>
               </div>
             </button>
           );

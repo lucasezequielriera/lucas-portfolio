@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { getDictionary, type Locale } from "@/lib/dictionaries";
-import { DockNav } from "@/components/chrome/dock-nav";
-import { SiteFooterBar } from "@/components/home/site-footer-bar";
 import { CvGeneratorTool } from "@/components/tools/cv-generator-tool";
 
 export async function generateMetadata({
@@ -59,8 +57,6 @@ export default async function HerramientasPage({
 
   return (
     <div className="relative flex h-screen-dvh flex-col overflow-hidden text-white">
-      <DockNav locale={loc} />
-      <SiteFooterBar locale={loc} />
 
       <main
         id="main-content"

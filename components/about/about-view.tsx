@@ -1,8 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { DockNav } from "@/components/chrome/dock-nav";
-import { SiteFooterBar } from "@/components/home/site-footer-bar";
 import { Segmented } from "@/components/ui/segmented";
 import { getDictionary, type Locale } from "@/lib/dictionaries";
 import { ExperiencePanel } from "./experience-panel";
@@ -27,8 +25,6 @@ export function AboutView({ locale }: { locale: Locale }) {
 
   return (
     <div className="relative flex h-screen-dvh flex-col overflow-hidden text-white">
-      <DockNav locale={locale} />
-      <SiteFooterBar locale={locale} />
 
       <main
         id="main-content"

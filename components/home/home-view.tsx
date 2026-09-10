@@ -3,7 +3,6 @@
 import { motion, useReducedMotion } from "framer-motion";
 import Link from "next/link";
 import { ArrowUpRight } from "lucide-react";
-import { DockNav } from "@/components/chrome/dock-nav";
 import { AnimatedCounter } from "./animated-counter";
 import { RoleSignature } from "./role-signature";
 import { SocialLinks } from "./social-links";
@@ -64,7 +63,6 @@ export function HomeView({ locale }: { locale: Locale }) {
 
   return (
     <div className="relative flex h-screen-dvh flex-col overflow-hidden">
-      <DockNav locale={locale} />
 
       <main
         id="main-content"
@@ -117,19 +115,19 @@ export function HomeView({ locale }: { locale: Locale }) {
           initial={prefersReduced ? false : { opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.6, delay: 1.3 }}
-          className="mt-14 flex items-center gap-4 font-[family-name:var(--font-geist-mono)] text-[0.65rem] uppercase tracking-[0.15em] text-white/35 sm:gap-6 sm:text-xs"
+          className="mt-12 grid w-full max-w-sm grid-cols-3 items-start gap-2 font-[family-name:var(--font-geist-mono)] text-[0.58rem] uppercase tracking-[0.12em] text-white/35 sm:mt-14 sm:flex sm:w-auto sm:max-w-none sm:items-center sm:gap-6 sm:text-xs sm:tracking-[0.15em]"
         >
-          <span>
+          <span className="text-balance">
             <AnimatedCounter end={yearsOfExperience} />
             {t.hero.statYears} {t.hero.statCode}
           </span>
-          <span className="text-white/15">/</span>
-          <span>
+          <span className="hidden text-white/15 sm:inline">/</span>
+          <span className="text-balance">
             <AnimatedCounter end={projects.length} />
             {t.hero.statCreated} {t.hero.statProducts}
           </span>
-          <span className="text-white/15">/</span>
-          <span>
+          <span className="hidden text-white/15 sm:inline">/</span>
+          <span className="text-balance">
             <AnimatedCounter end={16} />
             {t.hero.statLived} {t.hero.statCountries}
           </span>

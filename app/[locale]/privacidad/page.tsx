@@ -30,7 +30,7 @@ export default async function PrivacyPage({
 
   return (
     <main id="main-content" className="min-h-screen bg-black text-white">
-      <div className="mx-auto max-w-3xl px-6 pb-24 pt-16 md:pt-24">
+      <div className="mx-auto max-w-3xl px-6 pb-32 pt-16 md:pt-24">
         <Link
           href={`/${locale}`}
           className="text-sm text-white/40 transition hover:text-white/65"

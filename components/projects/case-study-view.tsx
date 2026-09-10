@@ -5,8 +5,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { ArrowUpRight, ExternalLink, GraduationCap, MessageCircle, Palette } from "lucide-react";
-import { DockNav } from "@/components/chrome/dock-nav";
-import { SiteFooterBar } from "@/components/home/site-footer-bar";
 import { Segmented } from "@/components/ui/segmented";
 import { OpenContactButton } from "@/components/contact/open-contact-button";
 import { colorConfig } from "@/lib/colors";
@@ -28,8 +26,6 @@ export function CaseStudyView({ locale, project }: { locale: Locale; project: Pr
 
   return (
     <div className="relative flex h-screen-dvh flex-col overflow-hidden text-white">
-      <DockNav locale={locale} />
-      <SiteFooterBar locale={locale} />
 
       <main
         id="main-content"

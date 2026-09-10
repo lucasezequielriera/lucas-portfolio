@@ -1,7 +1,5 @@
 "use client";
 
-import { DockNav } from "@/components/chrome/dock-nav";
-import { SiteFooterBar } from "@/components/home/site-footer-bar";
 import { getDictionary, type Locale } from "@/lib/dictionaries";
 import { projects } from "@/lib/projects";
 import { ProjectsGallery } from "./projects-gallery";
@@ -11,8 +9,6 @@ export function ProjectsView({ locale }: { locale: Locale }) {
 
   return (
     <div className="relative flex h-screen-dvh flex-col overflow-hidden text-white">
-      <DockNav locale={locale} />
-      <SiteFooterBar locale={locale} />
 
       <main
         id="main-content"

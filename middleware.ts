@@ -3,6 +3,19 @@ import { locales, defaultLocale } from "./lib/dictionaries";
 
 const PUBLIC_FILE = /\.(.*)$/;
 
+// Next generates these from app/icon.tsx, app/apple-icon.tsx, etc. They carry no
+// file extension, so PUBLIC_FILE misses them and they must be listed explicitly
+// or the locale redirect below turns the favicon into a 308 to /es/icon.
+const METADATA_ROUTES = new Set([
+  "/icon",
+  "/apple-icon",
+  "/opengraph-image",
+  "/twitter-image",
+  "/sitemap.xml",
+  "/robots.txt",
+  "/manifest.webmanifest",
+]);
+
 function getPreferredLocale(request: NextRequest): string {
   const cookieLocale = request.cookies.get("locale")?.value;
   if (cookieLocale && locales.includes(cookieLocale as "es" | "en" | "fr")) {
@@ -22,9 +35,7 @@ export function middleware(request: NextRequest) {
     pathname.startsWith("/_next") ||
     pathname.startsWith("/api") ||
     PUBLIC_FILE.test(pathname) ||
-    pathname === "/sitemap.xml" ||
-    pathname === "/robots.txt" ||
-    pathname === "/manifest.webmanifest"
+    METADATA_ROUTES.has(pathname)
   ) {
     return;
   }
@@ -48,6 +59,6 @@ export function middleware(request: NextRequest) {
 
 export const config = {
   matcher: [
-    "/((?!_next|api|icon\\.png|apple-icon\\.png|og-image\\.png|.*\\..*).*)",
+    "/((?!_next|api|icon$|apple-icon$|opengraph-image$|twitter-image$|.*\\..*).*)",
   ],
 };

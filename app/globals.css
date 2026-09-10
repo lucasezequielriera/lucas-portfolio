@@ -150,6 +150,58 @@
   }
 }
 
+/* El rótulo del hero se escribe letra a letra y el cursor parpadea; ambas
+   cosas van en CSS para no montar un componente animado por carácter. */
+@keyframes role-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes caret-blink {
+  0% { opacity: 0; }
+  10%, 60% { opacity: 1; }
+  100% { opacity: 0; }
+}
+.animate-role-in {
+  opacity: 0;
+  animation: role-in 0.12s ease-out forwards;
+}
+.animate-caret {
+  opacity: 0;
+  animation: caret-blink 1.1s steps(1, end) infinite;
+}
+
+/* La entrada del hero va en CSS y no en JavaScript. Con la librería de
+   animación el titular arrancaba en opacity:0 y no aparecía hasta que
+   hidrataba: en un móvil lento eso deja la pantalla en blanco justo sobre el
+   elemento que mide el LCP. */
+@keyframes hero-rise {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: none; }
+}
+@keyframes hero-word {
+  from { transform: translateY(110%); }
+  to { transform: translateY(0); }
+}
+.animate-hero-rise {
+  opacity: 0;
+  animation: hero-rise 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+.animate-hero-word {
+  display: inline-block;
+  animation: hero-word 0.7s cubic-bezier(0.16, 1, 0.3, 1) backwards;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .animate-hero-rise,
+  .animate-hero-word,
+  .animate-role-in,
+  .animate-caret {
+    animation: none;
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .h-screen-dvh {
   height: 100vh;
 }

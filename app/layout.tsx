@@ -4,7 +4,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { headers } from "next/headers";
 import { ContactDrawerProvider } from "@/components/contact/contact-drawer-context";
 import { ContactDrawer } from "@/components/contact/contact-drawer";
-import { NeuralBackgroundLoader } from "@/components/three/neural-background-loader";
+import { StarfieldLoader } from "@/components/background/starfield-loader";
 import { CustomCursor } from "@/components/chrome/custom-cursor";
 import "./globals.css";
 
@@ -38,7 +38,7 @@ export default async function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} bg-black antialiased`}
       >
-        <NeuralBackgroundLoader />
+        <StarfieldLoader />
         <CustomCursor />
         <ContactDrawerProvider>
           {children}

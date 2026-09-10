@@ -11,6 +11,7 @@ export interface Dictionary {
     trabajos: string;
     experiencia: string;
     stack: string;
+    sobreMi: string;
     proyectos: string;
     herramientas: string;
     contacto: string;
@@ -26,6 +27,8 @@ export interface Dictionary {
     h1: string;
     h1Accent: string;
     description: (years: number) => string;
+    pitch: (years: number) => string;
+    showcaseLabel: string;
     ctaPrimary: string;
     ctaSecondary: string;
     presence: string;
@@ -136,6 +139,15 @@ export interface Dictionary {
     cookies: string;
   };
   scrollTop: string;
+  about: {
+    badge: string;
+    title: string;
+    subtitle: string;
+    tabExperience: string;
+    tabStack: string;
+    tabServices: string;
+    tabTestimonials: string;
+  };
   proyectosPage: {
     count: (n: number) => string;
     title: string;
@@ -195,6 +207,7 @@ const es: Dictionary = {
     trabajos: "Trabajos",
     experiencia: "Experiencia",
     stack: "Stack",
+    sobreMi: "Sobre mí",
     proyectos: "Proyectos",
     herramientas: "Herramientas",
     contacto: "Contacto",
@@ -211,7 +224,10 @@ const es: Dictionary = {
     h1Accent: " que vende, escala y dura.",
     description: (years) =>
       `Product Engineer con +${years} años de experiencia construyendo con IA. Ayudo a empresas y startups a lanzar productos digitales y soluciones de IA con calidad premium — y voy camino a especializarme en auditoría y seguridad de sistemas de IA.`,
-    ctaPrimary: "Ver lo que construyo",
+    pitch: (years) =>
+      `+${years} años construyendo producto con IA. De la arquitectura al deploy, con calidad premium.`,
+    showcaseLabel: "Proyectos destacados",
+    ctaPrimary: "Ver proyectos",
     ctaSecondary: "Contactar",
     presence: "Presencia",
     videoAlt: "Video de Lucas Riera",
@@ -336,6 +352,15 @@ const es: Dictionary = {
     cookies: "Cookies",
   },
   scrollTop: "Volver arriba",
+  about: {
+    badge: "Sobre mí",
+    title: "Trayectoria, stack y lo que dicen de mí.",
+    subtitle: "Todo lo que hay detrás del trabajo: dónde construí, con qué y quién lo respalda.",
+    tabExperience: "Experiencia",
+    tabStack: "Stack",
+    tabServices: "Servicios",
+    tabTestimonials: "Testimonios",
+  },
   proyectosPage: {
     count: (n) => `${n} proyectos`,
     title: "Todo lo que construí desde cero.",
@@ -456,6 +481,7 @@ const en: Dictionary = {
     trabajos: "Work",
     experiencia: "Experience",
     stack: "Stack",
+    sobreMi: "About",
     proyectos: "Projects",
     herramientas: "Tools",
     contacto: "Contact",
@@ -472,7 +498,10 @@ const en: Dictionary = {
     h1Accent: " that sells, scales and lasts.",
     description: (years) =>
       `Product Engineer with ${years}+ years of experience building with AI. I help companies and startups ship digital products and AI-powered solutions with premium execution — and I'm on my way to specializing in AI systems auditing and security.`,
-    ctaPrimary: "See my work",
+    pitch: (years) =>
+      `${years}+ years building product with AI. From architecture to deploy, premium execution.`,
+    showcaseLabel: "Featured work",
+    ctaPrimary: "See projects",
     ctaSecondary: "Get in touch",
     presence: "Presence",
     videoAlt: "Video of Lucas Riera",
@@ -597,6 +626,15 @@ const en: Dictionary = {
     cookies: "Cookies",
   },
   scrollTop: "Back to top",
+  about: {
+    badge: "About me",
+    title: "Track record, stack and what people say.",
+    subtitle: "Everything behind the work: where I built, what with, and who backs it.",
+    tabExperience: "Experience",
+    tabStack: "Stack",
+    tabServices: "Services",
+    tabTestimonials: "Testimonials",
+  },
   proyectosPage: {
     count: (n) => `${n} projects`,
     title: "Everything I built from scratch.",
@@ -706,6 +744,7 @@ const fr: Dictionary = {
     trabajos: "Travaux",
     experiencia: "Experience",
     stack: "Stack",
+    sobreMi: "À propos",
     proyectos: "Projets",
     herramientas: "Outils",
     contacto: "Contact",
@@ -723,6 +762,9 @@ const fr: Dictionary = {
     h1Accent: " qui vend, evolue et dure.",
     description: (years) =>
       `Product Engineer avec ${years}+ ans d'experience a construire avec l'IA. J'aide startups et entreprises a creer des produits numeriques et des solutions IA avec une execution premium — et je me dirige vers l'audit et la securite des systemes d'IA.`,
+    pitch: (years) =>
+      `${years}+ ans a construire du produit avec l'IA. De l'architecture au deploiement, execution premium.`,
+    showcaseLabel: "Projets phares",
     ctaPrimary: "Voir mes projets",
     ctaSecondary: "Me contacter",
     presence: "Presence",
@@ -812,6 +854,15 @@ const fr: Dictionary = {
     cookies: "Cookies",
   },
   scrollTop: "Retour en haut",
+  about: {
+    badge: "À propos",
+    title: "Parcours, stack et avis clients.",
+    subtitle: "Tout ce qu'il y a derriere le travail : ou j'ai construit, avec quoi, et qui le confirme.",
+    tabExperience: "Experience",
+    tabStack: "Stack",
+    tabServices: "Services",
+    tabTestimonials: "Temoignages",
+  },
   proyectosPage: {
     ...en.proyectosPage,
     count: (n) => `${n} projets`,

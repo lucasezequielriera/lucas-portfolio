@@ -124,26 +124,36 @@
   }
   a:focus-visible,
   button:focus-visible {
-    @apply outline-none ring-2 ring-emerald-500/70 ring-offset-2 ring-offset-neutral-950 rounded-sm;
+    @apply outline-none ring-2 ring-cyan-400/70 ring-offset-2 ring-offset-black rounded-sm;
+  }
+  ::selection {
+    background-color: rgba(139, 92, 246, 0.35);
+    color: #fff;
+  }
+  ::-webkit-scrollbar {
+    width: 10px;
+    height: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: transparent;
+  }
+  ::-webkit-scrollbar-thumb {
+    background-color: rgba(255, 255, 255, 0.12);
+    border-radius: 999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background-color: rgba(255, 255, 255, 0.22);
   }
 }
 
-@keyframes aurora-drift-a {
-  0%, 100% { transform: translate(-10%, -10%) scale(1); }
-  50% { transform: translate(8%, 6%) scale(1.15); }
+.h-screen-dvh {
+  height: 100vh;
 }
 
-@keyframes aurora-drift-b {
-  0%, 100% { transform: translate(10%, 5%) scale(1.1); }
-  50% { transform: translate(-8%, -8%) scale(0.95); }
-}
-
-.animate-aurora-a {
-  animation: aurora-drift-a 16s ease-in-out infinite;
-}
-
-.animate-aurora-b {
-  animation: aurora-drift-b 20s ease-in-out infinite;
+@supports (height: 100dvh) {
+  .h-screen-dvh {
+    height: 100dvh;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

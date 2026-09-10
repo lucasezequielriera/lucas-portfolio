@@ -1,0 +1,92 @@
+"use client";
+
+import Link from "next/link";
+import { ArrowUpRight } from "lucide-react";
+import { DockNav } from "@/components/chrome/dock-nav";
+import { SiteFooterBar } from "@/components/home/site-footer-bar";
+import { OpenContactButton } from "@/components/contact/open-contact-button";
+import type { LandingEntry, LandingLocale } from "@/lib/seo-landings";
+import { landingEntries } from "@/lib/seo-landings";
+import type { Locale } from "@/lib/dictionaries";
+
+export function ServiceLandingView({
+  locale,
+  entry,
+}: {
+  locale: LandingLocale;
+  entry: LandingEntry;
+}) {
+  const loc = locale;
+
+  return (
+    <div className="relative flex h-screen-dvh flex-col overflow-hidden text-white">
+      <DockNav locale={locale as Locale} />
+      <SiteFooterBar locale={locale as Locale} />
+
+      <main
+        id="main-content"
+        className="relative z-10 mx-auto flex min-h-0 w-full max-w-4xl flex-1 flex-col gap-4 px-4 pb-24 pt-20 sm:px-6 sm:pt-24"
+      >
+        <div className="shrink-0 space-y-2.5">
+          <p className="font-[family-name:var(--font-geist-mono)] text-[0.65rem] uppercase tracking-[0.2em] text-cyan-300/80">
+            {loc === "es" ? "Servicios" : loc === "fr" ? "Services" : "Services"}
+          </p>
+          <h1 className="text-balance font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight sm:text-3xl">
+            {entry.title[loc].replace(" | Lucas Riera", "")}
+          </h1>
+          <p className="max-w-2xl text-sm text-white/50 sm:text-base">{entry.intro[loc]}</p>
+        </div>
+
+        <div className="min-h-0 flex-1 space-y-4 overflow-y-auto">
+          <section className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl sm:p-6">
+            <h2 className="text-lg font-semibold sm:text-xl">{entry.h2[loc]}</h2>
+            <ul className="mt-3 space-y-2.5 text-sm text-white/60">
+              {entry.bulletPoints[loc].map((point) => (
+                <li key={point} className="flex gap-3">
+                  <span className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full bg-cyan-300" />
+                  <span>{point}</span>
+                </li>
+              ))}
+            </ul>
+          </section>
+
+          <section className="rounded-2xl border border-violet-400/20 bg-gradient-to-br from-cyan-400/10 to-violet-500/10 p-5 backdrop-blur-xl sm:p-6">
+            <h2 className="text-lg font-semibold sm:text-xl">
+              {loc === "es" ? "¿Trabajamos juntos?" : loc === "fr" ? "Travaillons ensemble ?" : "Need this for your project?"}
+            </h2>
+            <p className="mt-2 max-w-2xl text-sm text-white/70">
+              {loc === "es"
+                ? "Contame tu objetivo y te propongo una solución técnica clara, escalable y orientada a negocio."
+                : loc === "fr"
+                  ? "Dites-moi votre objectif et je proposerai une solution technique claire, evolutive et orientee business."
+                  : "Tell me your goal and I will propose a clear, scalable, business-focused technical solution."}
+            </p>
+            <OpenContactButton className="mt-4 inline-flex rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-5 py-2.5 text-sm font-semibold text-black transition hover:opacity-90">
+              {loc === "es" ? "Contactar" : loc === "fr" ? "Contact" : "Contact me"}
+            </OpenContactButton>
+          </section>
+
+          <section className="space-y-2.5">
+            <h2 className="font-[family-name:var(--font-geist-mono)] text-xs uppercase tracking-wide text-white/50">
+              {loc === "es" ? "Más servicios" : loc === "fr" ? "Autres services" : "More services"}
+            </h2>
+            <div className="flex flex-wrap gap-2.5">
+              {landingEntries
+                .filter((candidate) => candidate.id !== entry.id)
+                .map((candidate) => (
+                  <Link
+                    key={candidate.id}
+                    href={`/${loc}/services/${candidate.slug[loc]}`}
+                    className="inline-flex items-center gap-1.5 rounded-full border border-white/15 bg-white/[0.03] px-3.5 py-1.5 text-xs text-white/60 transition hover:border-white/40 hover:text-white"
+                  >
+                    {candidate.title[loc].replace(" | Lucas Riera", "")}
+                    <ArrowUpRight className="h-3 w-3" />
+                  </Link>
+                ))}
+            </div>
+          </section>
+        </div>
+      </main>
+    </div>
+  );
+}

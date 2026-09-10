@@ -246,21 +246,21 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
   };
 
   return (
-    <Card className="border-neutral-800 bg-neutral-900/70">
+    <Card className="border-white/10 bg-white/[0.03]">
       <CardContent className="space-y-6 p-6 md:p-8">
         <div className="space-y-2">
-          <div className="inline-flex items-center gap-2 rounded-full border border-emerald-500/30 bg-emerald-500/10 px-3 py-1 text-xs text-emerald-300">
+          <div className="inline-flex items-center gap-2 rounded-full border border-cyan-400/30 bg-cyan-400/10 px-3 py-1 text-xs text-cyan-300">
             <Sparkles className="h-3.5 w-3.5" />
             ATS + LinkedIn
           </div>
-          <h2 className="text-2xl font-semibold text-neutral-100">{t.title}</h2>
-          <p className="text-sm text-neutral-400">{t.subtitle}</p>
+          <h2 className="text-2xl font-semibold text-white">{t.title}</h2>
+          <p className="text-sm text-white/45">{t.subtitle}</p>
         </div>
 
         <div className="grid gap-5 md:grid-cols-2">
           <div className="space-y-2">
-            <label className="text-sm font-medium text-neutral-300">{t.uploadLabel}</label>
-            <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-neutral-700 bg-neutral-950/60 px-4 py-5 text-sm text-neutral-300 transition hover:border-neutral-500">
+            <label className="text-sm font-medium text-white/60">{t.uploadLabel}</label>
+            <label className="flex cursor-pointer items-center justify-center gap-2 rounded-lg border border-dashed border-white/15 bg-black/40 px-4 py-5 text-sm text-white/60 transition hover:border-white/40">
               <Upload className="h-4 w-4" />
               {file ? file.name : t.uploadLabel}
               <input
@@ -273,51 +273,51 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
                 }}
               />
             </label>
-            <p className="text-xs text-neutral-500">{t.uploadHelp}</p>
+            <p className="text-xs text-white/35">{t.uploadHelp}</p>
           </div>
 
           <div className="space-y-2">
-            <label className="text-sm font-medium text-neutral-300">
+            <label className="text-sm font-medium text-white/60">
               {t.linkedinLabel}
             </label>
             <input
               value={linkedinUrl}
               onChange={(event) => setLinkedinUrl(event.target.value)}
               placeholder={t.linkedinPlaceholder}
-              className="w-full rounded-lg border border-neutral-700 bg-neutral-950/60 px-4 py-3 text-sm text-neutral-100 placeholder-neutral-500 outline-none transition focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/25"
+              className="w-full rounded-lg border border-white/15 bg-black/40 px-4 py-3 text-sm text-white placeholder-white/30 outline-none transition focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/25"
             />
-            <p className="text-xs text-neutral-500">{t.linkedinHelp}</p>
+            <p className="text-xs text-white/35">{t.linkedinHelp}</p>
           </div>
         </div>
 
         <div className="flex items-center gap-3">
-          <div className="h-px flex-1 bg-neutral-800" />
-          <span className="text-xs uppercase tracking-[0.16em] text-neutral-500">
+          <div className="h-px flex-1 bg-white/10" />
+          <span className="text-xs uppercase tracking-[0.16em] text-white/35">
             {t.sourceOr}
           </span>
-          <div className="h-px flex-1 bg-neutral-800" />
+          <div className="h-px flex-1 bg-white/10" />
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-neutral-300">
+          <label className="text-sm font-medium text-white/60">
             {t.targetRoleLabel}
           </label>
           <input
             value={targetRole}
             onChange={(event) => setTargetRole(event.target.value)}
             placeholder={t.targetRolePlaceholder}
-            className="w-full rounded-lg border border-neutral-700 bg-neutral-950/60 px-4 py-3 text-sm text-neutral-100 placeholder-neutral-500 outline-none transition focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/25"
+            className="w-full rounded-lg border border-white/15 bg-black/40 px-4 py-3 text-sm text-white placeholder-white/30 outline-none transition focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/25"
           />
         </div>
 
         <div className="space-y-2">
-          <label className="text-sm font-medium text-neutral-300">
+          <label className="text-sm font-medium text-white/60">
             {t.templateLabel}
           </label>
           <select
             value={template}
             onChange={(event) => setTemplate(event.target.value as CvTemplate)}
-            className="w-full rounded-lg border border-neutral-700 bg-neutral-950/60 px-4 py-3 text-sm text-neutral-100 outline-none transition focus:border-emerald-500/50 focus:ring-1 focus:ring-emerald-500/25"
+            className="w-full rounded-lg border border-white/15 bg-black/40 px-4 py-3 text-sm text-white outline-none transition focus:border-cyan-400/50 focus:ring-1 focus:ring-cyan-400/25"
           >
             <option value="ats-clean">{t.templateAts}</option>
             <option value="modern-recruiter">{t.templateModern}</option>
@@ -325,11 +325,11 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
           </select>
         </div>
 
-        <div className="rounded-lg border border-neutral-800 bg-neutral-950/60 p-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-neutral-400">
+        <div className="rounded-lg border border-white/10 bg-black/40 p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/45">
             {t.noteTitle}
           </p>
-          <p className="mt-2 text-sm text-neutral-300">{t.noteText}</p>
+          <p className="mt-2 text-sm text-white/60">{t.noteText}</p>
         </div>
 
         <div className="rounded-lg border border-amber-700/50 bg-amber-950/20 p-4">
@@ -360,7 +360,7 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
           </div>
         ) : null}
         {success ? (
-          <div className="rounded-lg border border-emerald-700/60 bg-emerald-950/30 px-4 py-3 text-sm text-emerald-300">
+          <div className="rounded-lg border border-cyan-400/30 bg-cyan-400/10 px-4 py-3 text-sm text-cyan-200">
             {success}
           </div>
         ) : null}
@@ -369,7 +369,7 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
           type="button"
           onClick={handleGenerate}
           disabled={loading || !paymentSessionId}
-          className="h-11 w-full bg-emerald-600 text-white hover:bg-emerald-500 disabled:opacity-70"
+          className="h-11 w-full bg-gradient-to-r from-cyan-400 to-violet-500 text-black hover:opacity-90 disabled:opacity-50"
         >
           {loading ? (
             <>

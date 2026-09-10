@@ -41,32 +41,30 @@ export function CookieBanner({ locale }: { locale: Locale }) {
     <div
       role="dialog"
       aria-label={t.legal.cookieTitle}
-      className="fixed bottom-0 left-0 right-0 z-50 border-t border-neutral-800 bg-neutral-950/95 px-6 py-4 backdrop-blur-sm"
+      className="fixed bottom-24 left-4 right-4 z-50 mx-auto max-w-sm rounded-2xl border border-white/10 bg-black/70 p-4 backdrop-blur-xl sm:left-auto sm:right-6"
     >
-      <div className="mx-auto flex max-w-4xl flex-col items-start gap-4 sm:flex-row sm:items-center sm:justify-between">
-        <p className="text-sm text-neutral-400">
-          {t.cookieBanner.text}{" "}
-          <Link
-            href={`/${locale}/cookies`}
-            className="text-emerald-400 underline underline-offset-2 hover:text-emerald-300"
-          >
-            {t.cookieBanner.moreInfo}
-          </Link>
-        </p>
-        <div className="flex shrink-0 gap-3">
-          <button
-            onClick={decline}
-            className="rounded-lg border border-neutral-700 px-4 py-2 text-sm font-medium text-neutral-300 transition hover:bg-neutral-800"
-          >
-            {t.cookieBanner.decline}
-          </button>
-          <button
-            onClick={accept}
-            className="rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white transition hover:bg-emerald-500"
-          >
-            {t.cookieBanner.accept}
-          </button>
-        </div>
+      <p className="text-xs text-white/55">
+        {t.cookieBanner.text}{" "}
+        <Link
+          href={`/${locale}/cookies`}
+          className="text-cyan-300 underline underline-offset-2 hover:text-cyan-200"
+        >
+          {t.cookieBanner.moreInfo}
+        </Link>
+      </p>
+      <div className="mt-3 flex justify-end gap-2">
+        <button
+          onClick={decline}
+          className="rounded-full border border-white/15 px-3.5 py-1.5 text-xs font-medium text-white/60 transition hover:bg-white/10"
+        >
+          {t.cookieBanner.decline}
+        </button>
+        <button
+          onClick={accept}
+          className="rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-3.5 py-1.5 text-xs font-semibold text-black transition hover:opacity-90"
+        >
+          {t.cookieBanner.accept}
+        </button>
       </div>
     </div>
   );

@@ -10,6 +10,7 @@ import { SiteFooterBar } from "@/components/home/site-footer-bar";
 import { Segmented } from "@/components/ui/segmented";
 import { OpenContactButton } from "@/components/contact/open-contact-button";
 import { colorConfig } from "@/lib/colors";
+import { logoInsetClass } from "@/lib/logo-inset";
 import { getDictionary, type Locale } from "@/lib/dictionaries";
 import type { Project } from "@/lib/projects";
 
@@ -47,7 +48,13 @@ export function CaseStudyView({ locale, project }: { locale: Locale; project: Pr
           <div className="flex items-center gap-3">
             {project.logo ? (
               <div className={`relative h-12 w-12 shrink-0 overflow-hidden rounded-xl border bg-black/40 ${colors.border}`}>
-                <Image src={project.logo} alt={project.name} fill sizes="48px" className="object-contain p-1.5" />
+                <Image
+                  src={project.logo}
+                  alt={project.name}
+                  fill
+                  sizes="48px"
+                  className={`object-contain ${logoInsetClass(project, "md")}`}
+                />
               </div>
             ) : IconComponent ? (
               <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border bg-black/40 ${colors.border}`}>

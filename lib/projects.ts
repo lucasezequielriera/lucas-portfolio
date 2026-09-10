@@ -20,6 +20,12 @@ export type Project = {
   appCategory: string;
   color: "emerald" | "sky" | "violet" | "amber" | "rose" | "kolibri";
   logo?: string;
+  /**
+   * Some logos bleed to the edge of their canvas while others ship generous
+   * built-in margins. "roomy" adds optical padding so the former do not read as
+   * bigger than the latter when placed in identical boxes.
+   */
+  logoInset?: "roomy";
   icon?: "graduation-cap" | "palette";
 };
 
@@ -112,6 +118,7 @@ export const projects: Project[] = [
     ],
     color: "sky",
     logo: "/fitplan-ai-logo.png",
+    logoInset: "roomy",
   },
   {
     name: "WebEducationLab",

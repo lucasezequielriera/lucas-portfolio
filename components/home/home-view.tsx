@@ -6,6 +6,7 @@ import { ArrowUpRight } from "lucide-react";
 import { DockNav } from "@/components/chrome/dock-nav";
 import { AnimatedCounter } from "./animated-counter";
 import { RoleSignature } from "./role-signature";
+import { SocialLinks } from "./social-links";
 import { useContactDrawer } from "@/components/contact/contact-drawer-context";
 import { getDictionary, type Locale } from "@/lib/dictionaries";
 import { projects } from "@/lib/projects";
@@ -132,6 +133,15 @@ export function HomeView({ locale }: { locale: Locale }) {
             <AnimatedCounter end={16} />
             {t.hero.statLived} {t.hero.statCountries}
           </span>
+        </motion.div>
+
+        <motion.div
+          initial={prefersReduced ? false : { opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.6, delay: 1.45 }}
+          className="mt-7 sm:mt-8"
+        >
+          <SocialLinks />
         </motion.div>
       </main>
     </div>

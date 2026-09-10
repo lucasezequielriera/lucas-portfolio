@@ -7,6 +7,7 @@ import { ArrowUpRight, ExternalLink, GraduationCap, Palette } from "lucide-react
 import { projects, type Project } from "@/lib/projects";
 import { colorConfig, colorMap } from "@/lib/colors";
 import { getDictionary, type Locale } from "@/lib/dictionaries";
+import { logoInsetClass } from "@/lib/logo-inset";
 
 // Static lookup: assigning these through a helper made the lint rule read them
 // as components built during render.
@@ -47,7 +48,13 @@ function ProjectDetail({
           <div className="flex items-center gap-3">
             {project.logo ? (
               <div className="relative h-12 w-12 shrink-0 overflow-hidden rounded-xl border border-white/10 bg-black/40">
-                <Image src={project.logo} alt={project.name} fill sizes="48px" className="object-contain p-1.5" />
+                <Image
+                  src={project.logo}
+                  alt={project.name}
+                  fill
+                  sizes="48px"
+                  className={`object-contain ${logoInsetClass(project, "md")}`}
+                />
               </div>
             ) : Icon ? (
               <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-black/40">
@@ -147,7 +154,13 @@ export function ProjectsGallery({ locale }: { locale: Locale }) {
             >
               {p.logo ? (
                 <div className="relative h-9 w-9 shrink-0 overflow-hidden rounded-lg border border-white/10 bg-black/40">
-                  <Image src={p.logo} alt="" fill sizes="36px" className="object-contain p-1" />
+                  <Image
+                    src={p.logo}
+                    alt=""
+                    fill
+                    sizes="36px"
+                    className={`object-contain ${logoInsetClass(p, "sm")}`}
+                  />
                 </div>
               ) : Icon ? (
                 <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg border border-white/10 bg-black/40">

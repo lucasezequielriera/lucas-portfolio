@@ -34,7 +34,7 @@ export default async function FitTravelPage({
         id="main-content"
         className="relative z-10 mx-auto flex min-h-0 w-full max-w-4xl flex-1 flex-col justify-center gap-4 px-4 py-4 sm:px-6"
       >
-        <h1 className="font-[family-name:var(--font-display)] text-3xl font-normal tracking-normal sm:text-4xl">
+        <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-[-0.02em] sm:text-4xl">
           {t.fitTravel.title}
         </h1>
         <p className="max-w-2xl text-sm text-white/45">{t.fitTravel.description}</p>

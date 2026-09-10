@@ -31,7 +31,7 @@ export function ServiceLandingView({
           <p className="font-[family-name:var(--font-geist-mono)] text-[0.65rem] uppercase tracking-[0.2em] text-cyan-300/80">
             {loc === "es" ? "Servicios" : loc === "fr" ? "Services" : "Services"}
           </p>
-          <h1 className="text-balance font-[family-name:var(--font-display)] text-3xl font-normal tracking-normal sm:text-4xl">
+          <h1 className="text-balance font-[family-name:var(--font-display)] text-3xl font-bold tracking-[-0.02em] sm:text-4xl">
             {entry.title[loc].replace(" | Lucas Riera", "")}
           </h1>
           <p className="max-w-2xl text-sm text-white/50 sm:text-base">{entry.intro[loc]}</p>

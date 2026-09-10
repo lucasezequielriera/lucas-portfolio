@@ -39,7 +39,7 @@ export function AboutView({ locale }: { locale: Locale }) {
           </p>
           <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
             <div>
-              <h1 className="font-[family-name:var(--font-display)] text-3xl font-normal tracking-normal sm:text-4xl">
+              <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-[-0.02em] sm:text-4xl">
                 {t.about.title}
               </h1>
               <p className="mt-1.5 max-w-xl text-sm text-white/45">{t.about.subtitle}</p>

@@ -31,7 +31,7 @@ export function DockNav({ locale }: { locale: Locale }) {
       <div className="fixed left-4 top-4 z-40 sm:left-6 sm:top-6">
         <Link
           href={`/${locale}`}
-          className="font-[family-name:var(--font-display)] text-base font-normal tracking-normal text-white/90 transition hover:text-white"
+          className="font-[family-name:var(--font-display)] text-sm font-extrabold tracking-[-0.02em] text-white/90 transition hover:text-white"
         >
           LR<span className="text-cyan-300">.</span>
         </Link>

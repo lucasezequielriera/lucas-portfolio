@@ -67,7 +67,7 @@ export function HomeView({ locale }: { locale: Locale }) {
           </span>
         </motion.div>
 
-        <h1 className="max-w-4xl font-[family-name:var(--font-display)] text-[2.5rem] font-normal leading-[1.05] tracking-normal text-white sm:text-5xl lg:text-7xl">
+        <h1 className="max-w-4xl font-[family-name:var(--font-display)] text-[2.5rem] font-extrabold leading-[1.02] tracking-[-0.03em] text-white sm:text-5xl lg:text-7xl">
           <RevealWords text={t.hero.h1} startDelay={0.1} />
           <RevealWords text={t.hero.h1Accent} startDelay={0.1 + wordCount * 0.055} accent />
         </h1>

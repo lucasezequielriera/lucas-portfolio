@@ -55,7 +55,7 @@ export function CaseStudyView({ locale, project }: { locale: Locale; project: Pr
               </div>
             ) : null}
             <div>
-              <h1 className="font-[family-name:var(--font-display)] text-2xl font-normal tracking-normal sm:text-2xl">
+              <h1 className="font-[family-name:var(--font-display)] text-2xl font-bold tracking-[-0.02em]">
                 {project.name}
               </h1>
               <p className="text-xs text-white/35">

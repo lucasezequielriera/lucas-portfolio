@@ -35,16 +35,16 @@ export const projects: Project[] = [
       en: "Bilingual (ES/EN) online AI school for absolute beginners. Learn to use ChatGPT, Claude and Gemini in everyday life with a living curriculum, certificates and community.",
     },
     longDescription: {
-      es: "Escuela online bilingüe de inteligencia artificial pensada para gente que parte de cero absoluto. Currículum vivo de 5 cursos entre gratis y pagos, certificados por nivel y una experiencia real de escuela, no una góndola de cursos sueltos.",
-      en: "Bilingual online AI school built for people starting from absolute zero. A living 5-course curriculum, free and paid, level certificates and a real school experience — not just another course dump.",
+      es: "Escuela online de IA en español e inglés para gente que nunca programó. Cinco cursos, certificados por nivel y un currículum que se actualiza cuando cambian las herramientas.",
+      en: "Online AI school in Spanish and English for people who have never written code. Five courses, level certificates and a curriculum that gets updated when the tools change.",
     },
     problem: {
       es: "El mercado de cursos de IA está saturado pero fragmentado: cursos sueltos sin comunidad real, contenido que se desactualiza en meses porque la IA cambia rápido, y teoría que nunca se traduce en algo implementado. Casi nada está pensado de verdad para gente sin ningún conocimiento técnico.",
       en: "The AI course market is saturated but fragmented: standalone courses with no real community, content that goes stale within months because AI moves fast, and theory that never turns into something implemented. Almost nothing is truly built for people with zero technical background.",
     },
     solution: {
-      es: "Construí Kolibrí como una escuela, no una góndola de cursos: currículum vivo que se revisa activamente, aprender haciendo desde la primera lección, y contenido 100% bilingüe pensado y producido en ambos idiomas, no traducido después. Catálogo de 5 cursos (uno gratuito de introducción y cuatro especializados en prompting, herramientas de IA, agentes y contenido multimedia) con certificados por nivel, pagos con Stripe, autenticación y base de datos en Supabase, emails automáticos con Resend y analítica con PostHog.",
-      en: "I built Kolibrí as a school, not a course dump: a living curriculum that's actively reviewed, learning by doing from lesson one, and content that's truly bilingual — thought out and produced in both languages, not translated afterward. A 5-course catalog (one free intro course plus four specialized ones on prompting, AI tools, agents and multimedia content) with level certificates, Stripe payments, Supabase auth and database, automated emails via Resend, and PostHog analytics.",
+      es: "La armé como una escuela y no como un catálogo de cursos sueltos. Cinco cursos: uno gratis de introducción y cuatro sobre prompting, herramientas de IA, agentes y contenido multimedia. Cada uno con certificado por nivel. El contenido se produce en español e inglés por separado, no se traduce. Por debajo: Stripe para los pagos, Supabase para auth y base de datos, Resend para los emails y PostHog para medir qué funciona.",
+      en: "I built it as a school, not a pile of unrelated courses. Five courses: a free intro plus four on prompting, AI tools, agents and multimedia content, each with its own level certificate. Content is produced separately in Spanish and English, never translated after the fact. Underneath: Stripe for payments, Supabase for auth and database, Resend for email and PostHog to see what actually works.",
     },
     tags: ["Next.js", "Supabase", "Stripe", "PostHog"],
     media: [],
@@ -70,8 +70,8 @@ export const projects: Project[] = [
       en: "Most personal finance apps are generic, limited or bloated with unnecessary features. People need a clear, fast and visual tool to understand exactly where their money goes and how to improve their financial habits without needing to be accounting experts.",
     },
     solution: {
-      es: "Construí una plataforma completa de control financiero desde cero: registro intuitivo de ingresos y gastos con categorización automática, dashboard con gráficos interactivos en tiempo real, análisis de hábitos financieros con tendencias mensuales, y exportación de datos. Todo con una interfaz limpia que prioriza la claridad sobre la complejidad.",
-      en: "I built a complete financial control platform from scratch: intuitive income and expense tracking with automatic categorization, dashboard with real-time interactive charts, financial habit analysis with monthly trends, and data export. All with a clean interface that prioritizes clarity over complexity.",
+      es: "Registro de ingresos y gastos que categoriza solo, un dashboard con gráficos que se actualizan en vivo, tendencias mes a mes y exportación de datos. Preferí que hiciera pocas cosas y que se entendieran a la primera.",
+      en: "Income and expense tracking that categorizes itself, a dashboard with charts that update live, month-over-month trends and data export. I'd rather it do a few things and have all of them make sense at first glance.",
     },
     tags: ["React", "Node.js", "Firebase", "Tailwind CSS"],
     media: [
@@ -101,8 +101,8 @@ export const projects: Project[] = [
       en: "Creating personalized training routines and nutrition plans requires specialized knowledge and time. Most people can't afford a personal trainer or nutritionist, and generic apps offer static plans that don't adapt to the user's real progress.",
     },
     solution: {
-      es: "Desarrollé una plataforma que usa inteligencia artificial (OpenAI) para generar rutinas de entrenamiento y planes de nutrición completamente personalizados. El sistema analiza los objetivos, nivel de experiencia y preferencias del usuario, genera planes adaptados y los ajusta según el progreso. Incluye seguimiento de métricas, historial de entrenamientos y recomendaciones adaptativas.",
-      en: "I developed a platform that uses artificial intelligence (OpenAI) to generate fully personalized training routines and nutrition plans. The system analyzes the user's goals, experience level and preferences, generates tailored plans and adjusts them based on progress. It includes metrics tracking, workout history and adaptive recommendations.",
+      es: "El sistema toma los objetivos, el nivel y las preferencias de cada persona, y genera la rutina y el plan de comidas con OpenAI. Después los va corrigiendo con lo que la persona realmente registra: métricas, historial de entrenamientos y qué termina cumpliendo y qué no.",
+      en: "The system takes each person's goals, level and preferences and generates the routine and meal plan with OpenAI. Then it keeps correcting them against what the person actually logs: metrics, workout history, and which parts they stick to and which they don't.",
     },
     tags: ["Next.js", "OpenAI", "PostgreSQL", "Tailwind CSS"],
     media: [
@@ -132,8 +132,8 @@ export const projects: Project[] = [
       en: "Online education is fragmented: there are thousands of platforms, each with their own approach and variable quality. Students waste time searching through scattered resources and lack a unified system covering multiple disciplines with an intelligent tutor guiding them in real time.",
     },
     solution: {
-      es: "Creé una plataforma educativa integral con 14 escuelas temáticas (programación, finanzas, nutrición, marketing y más), cientos de cursos estructurados y un tutor virtual con IA disponible 24/7. El tutor responde preguntas, explica conceptos y adapta las recomendaciones al nivel del estudiante. Todo en una interfaz moderna con soporte bilingüe.",
-      en: "I created a comprehensive educational platform with 14 thematic schools (programming, finance, nutrition, marketing and more), hundreds of structured courses and an AI virtual tutor available 24/7. The tutor answers questions, explains concepts and adapts recommendations to the student's level. All in a modern interface with bilingual support.",
+      es: "Catorce escuelas temáticas —programación, finanzas, nutrición, marketing y más—, cientos de cursos y un tutor con IA que responde a cualquier hora. El tutor no solo contesta: ajusta lo que recomienda al nivel real del estudiante. Todo bilingüe.",
+      en: "Fourteen themed schools — programming, finance, nutrition, marketing and more — hundreds of courses, and an AI tutor available at any hour. The tutor doesn't just answer: it adjusts what it recommends to the student's actual level. All of it bilingual.",
     },
     tags: ["Next.js", "TypeScript", "Tailwind CSS", "Firebase"],
     media: [
@@ -163,8 +163,8 @@ export const projects: Project[] = [
       en: "Distributed development teams use multiple disconnected tools to manage projects, communicate and track work. This creates friction, lost information and slow processes that directly impact productivity.",
     },
     solution: {
-      es: "Construí una plataforma centralizada para equipos de trabajo que unifica gestión de proyectos, comunicación y flujos de trabajo en un solo lugar. Organización visual de tareas, canales de comunicación integrados, automatizaciones de procesos y dashboards de productividad, todo diseñado para equipos que necesitan moverse rápido sin perder el control.",
-      en: "I built a centralized platform for teams that unifies project management, communication and workflows in one place. Visual task organization, integrated communication channels, process automations and productivity dashboards — all designed for teams that need to move fast without losing control.",
+      es: "Gestión de proyectos, comunicación y automatizaciones en el mismo lugar, para que el equipo deje de saltar entre cinco herramientas. Tareas en tablero, canales integrados y dashboards de productividad.",
+      en: "Project management, communication and automations in one place, so the team stops jumping between five tools. Board-style tasks, built-in channels and productivity dashboards.",
     },
     tags: ["React", "Node.js", "MongoDB", "Tailwind CSS"],
     media: [
@@ -186,16 +186,16 @@ export const projects: Project[] = [
       en: "Professional portfolio and custom personal website. Clean design, optimized performance and smooth animations.",
     },
     longDescription: {
-      es: "Portfolio profesional y web personal diseñada a medida. Diseño limpio, rendimiento optimizado y animaciones que cuidan cada detalle de la experiencia de usuario.",
-      en: "Professional portfolio and custom personal website. Clean design, optimized performance and animations that take care of every detail of the user experience.",
+      es: "Portfolio y web personal para una artista. Diseño propio, carga instantánea y animaciones donde hacen falta.",
+      en: "Portfolio and personal site for an artist. Its own design, instant loading and animations only where they belong.",
     },
     problem: {
       es: "Los profesionales creativos necesitan una presencia web que refleje su identidad y nivel de calidad, pero la mayoría termina con templates genéricos que no transmiten quiénes son. Sandra necesitaba un sitio que representara su marca personal con un diseño único, rápido y profesional.",
       en: "Creative professionals need a web presence that reflects their identity and quality standards, but most end up with generic templates that don't convey who they are. Sandra needed a site that represented her personal brand with a unique, fast and professional design.",
     },
     solution: {
-      es: "Diseñé y desarrollé un portfolio completamente a medida: diseño limpio que refleja la estética de Sandra, animaciones fluidas con Framer Motion que elevan la experiencia, rendimiento optimizado con Next.js para carga instantánea, y SEO configurado para posicionamiento orgánico. Cada detalle visual fue pensado para transmitir profesionalismo y personalidad.",
-      en: "I designed and developed a fully custom portfolio: clean design reflecting Sandra's aesthetic, smooth animations with Framer Motion that elevate the experience, optimized performance with Next.js for instant loading, and SEO configured for organic positioning. Every visual detail was crafted to convey professionalism and personality.",
+      es: "Diseño hecho a partir de su trabajo, no de una plantilla. Animaciones con Framer Motion donde suman y en ningún lado más, Next.js para que cargue al instante y el SEO configurado desde el primer día.",
+      en: "The design came out of her own work, not a template. Framer Motion animations where they add something and nowhere else, Next.js so it loads instantly, and SEO set up from day one.",
     },
     tags: ["Next.js", "Tailwind CSS", "Framer Motion"],
     media: [

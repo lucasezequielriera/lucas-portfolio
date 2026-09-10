@@ -218,17 +218,17 @@ const es: Dictionary = {
     skipToContent: "Ir al contenido principal",
   },
   hero: {
-    badge: "Product Engineer con IA · Servicios Remotos Globales",
+    badge: "Product Engineer con IA · Madrid · Remoto",
     location: "España",
-    h1: "Convierto ideas en producto con IA",
-    h1Accent: " que vende, escala y dura.",
+    h1: "Construyo productos con IA",
+    h1Accent: " que la gente usa todos los días.",
     description: (years) =>
-      `Product Engineer con +${years} años de experiencia construyendo con IA. Ayudo a empresas y startups a lanzar productos digitales y soluciones de IA con calidad premium — y voy camino a especializarme en auditoría y seguridad de sistemas de IA.`,
+      `${years} años construyendo software. Tres en United Airlines, el resto en productos propios. Ahora me estoy metiendo en auditoría y seguridad de sistemas de IA.`,
     pitch: (years) =>
-      `+${years} años construyendo producto con IA. De la arquitectura al deploy, con calidad premium.`,
+      `${years} años construyendo software. Tres en United Airlines, el resto en productos propios.`,
     showcaseLabel: "Proyectos destacados",
-    ctaPrimary: "Ver proyectos",
-    ctaSecondary: "Contactar",
+    ctaPrimary: "Ver lo que construí",
+    ctaSecondary: "Escribime",
     presence: "Presencia",
     videoAlt: "Video de Lucas Riera",
     currently: "Actualmente",
@@ -237,26 +237,26 @@ const es: Dictionary = {
     activity3: "Explorando auditoría y seguridad de sistemas de IA",
     activity4:
       "Lic. Informática — UADE · Tec. Programación & Full Stack MERN — UTN",
-    statCode: "Código",
+    statCode: "construyendo",
     statYears: "+ años",
-    statProducts: "Productos",
-    statCreated: "+ creados",
-    statCountries: "Países",
-    statLived: " vividos",
+    statProducts: "en producción",
+    statCreated: " productos",
+    statCountries: "vividos",
+    statLived: " países",
   },
   works: {
     label: "Trabajos",
-    title: "Productos que construí desde cero.",
+    title: "Cosas que construí.",
     description:
-      "Cada proyecto es una solución real, pensada desde la arquitectura hasta el último detalle visual. Esto es lo que pasa cuando combino obsesión por el código con libertad creativa.",
-    ctaTitle: "Tu próximo proyecto",
+      "Todos están online y funcionando. Los hice solo, de la base de datos al diseño.",
+    ctaTitle: "El que falta es el tuyo",
     ctaDescription:
-      "Desarrollo productos a medida con la misma obsesión que pongo en los míos. Plataformas, sistemas, portfolios.",
+      "Si tenés algo en mente, contame de qué se trata.",
     ctaButton: "Hablemos",
   },
   experience: {
     label: "Experiencia profesional",
-    title: "Empresas que confiaron en mí.",
+    title: "Dónde trabajé.",
     years3: "3 años",
     years2: "2 años",
     year1: "1 año",
@@ -267,14 +267,11 @@ const es: Dictionary = {
   stack: {
     label: "Stack",
     title: "Con qué construyo.",
-    description:
-      "Ordenado por lo que más uso, no alfabético: la IA va primero porque es donde construyo hoy.",
+    description: "Ordenado por lo que más uso.",
     aiTitle: "IA en producto",
-    aiDescription:
-      "El stack con el que construyo producto con IA: modelos, editor, automatización e infraestructura.",
+    aiDescription: "Modelos, editor, automatizaciones e infra.",
     coreTitle: "Core de producto",
-    coreDescription:
-      "La base con la que construyo interfaz, estado y lógica de cliente.",
+    coreDescription: "Interfaz, estado y lógica de cliente.",
     backendTitle: "Backend y datos",
     backendDescription: "Autenticación, base de datos y tareas programadas.",
     mobileTitle: "Móvil",
@@ -284,8 +281,7 @@ const es: Dictionary = {
     mediaTitle: "Media y generación de archivos",
     mediaDescription: "Proceso imágenes y genero documentos desde el producto.",
     integrationsTitle: "Integraciones",
-    integrationsDescription:
-      "Conecto el producto con redes sociales, mensajería y email.",
+    integrationsDescription: "Redes sociales, mensajería y email.",
     testingTitle: "Testing",
     testingDescription: "Pruebo lo que construyo antes de que lo pruebe el usuario.",
     analyticsTitle: "Analítica y SEO",
@@ -295,33 +291,33 @@ const es: Dictionary = {
   },
   services: {
     label: "Servicios",
-    title: "Lo que puedo construir para ti.",
+    title: "Lo que hago.",
     description:
-      "Servicios de programación, desarrollo web y consultoría informática para empresas y particulares.",
+      "Desarrollo web, plataformas a medida y consultoría técnica. Para empresas y para quien recién arranca.",
     saasTitle: "Plataformas & SaaS",
     saasDescription:
-      "Productos digitales completos desde la arquitectura hasta el deploy. Autenticación, bases de datos, APIs, panel de control y lógica de negocio.",
+      "Auth, base de datos, API, panel de control y toda la lógica de negocio del medio. Del esquema inicial al deploy.",
     systemsTitle: "Sistemas Web",
     systemsDescription:
-      "Aplicaciones a medida con frontend moderno y backend robusto. Integración con servicios externos, dashboards y lógica compleja.",
+      "Aplicaciones internas, dashboards e integraciones con los servicios que ya usás.",
     websTitle: "Portfolios & Webs",
     websDescription:
-      "Sitios web profesionales con diseño a medida, performance optimizada, animaciones fluidas y atención obsesiva al detalle visual.",
+      "Sitios rápidos, con diseño propio y animaciones que no estorban.",
   },
   testimonials: {
     label: "Testimonios",
-    title: "Lo que dicen quienes trabajaron conmigo.",
+    title: "Gente con la que trabajé.",
     maryContext:
-      "Sobre su rol en el Chase Partnership y el Starlink Wi-Fi Portal — iniciativas enterprise de alto impacto donde lideró el desarrollo frontend, generó POCs para campañas promocionales y logró un aumento del 13% en productividad del equipo.",
+      "Mi supervisora en United Airlines. Trabajamos juntos en el Chase Partnership y en el portal Wi-Fi de Starlink, donde llevé el frontend y el equipo terminó un 13% más productivo.",
     maryRole: "Senior Analyst / Developer · United Airlines",
     maryRelation: "Supervisora directa de Lucas",
     nicolasRole: "Frontend Engineer · Compañero de equipo",
     starsLabel: "5 de 5 estrellas",
   },
   contact: {
-    title: "Hablemos de tu próximo proyecto.",
+    title: "¿Tenés algo en mente?",
     description:
-      "Si necesitás un programador que se involucra de verdad en tu proyecto, un desarrollador web que entienda tu visión o un informático que te resuelva de principio a fin — escribime. Construyamos algo que funcione.",
+      "Contame qué necesitás y te digo si te puedo ayudar, cuánto sale y cuánto tardo. Si no es lo mío, también te lo digo.",
     form: "Formulario",
     formSub: "Contame tu proyecto",
     whatsappSub: "Mensaje directo",
@@ -354,8 +350,8 @@ const es: Dictionary = {
   scrollTop: "Volver arriba",
   about: {
     badge: "Sobre mí",
-    title: "Trayectoria, stack y lo que dicen de mí.",
-    subtitle: "Todo lo que hay detrás del trabajo: dónde construí, con qué y quién lo respalda.",
+    title: "Dónde estuve y con qué trabajo.",
+    subtitle: "Cinco empresas, seis productos propios y bastante código corriendo en producción.",
     tabExperience: "Experiencia",
     tabStack: "Stack",
     tabServices: "Servicios",
@@ -363,9 +359,9 @@ const es: Dictionary = {
   },
   proyectosPage: {
     count: (n) => `${n} proyectos`,
-    title: "Todo lo que construí desde cero.",
+    title: "Cosas que construí.",
     description:
-      "Cada proyecto es una solución real, pensada desde la arquitectura hasta el último detalle visual. Acá están todos.",
+      "Todos están online y funcionando. Los hice solo, de la base de datos al diseño.",
     goToFitTravel: "Ir a FitTravel",
     backHome: "← Volver al inicio",
     inicio: "Inicio",
@@ -376,9 +372,9 @@ const es: Dictionary = {
     techStack: "Stack técnico",
     screenshots: "El producto en acción",
     visitSite: "Visitar sitio",
-    contactCta: "¿Necesitás algo similar?",
+    contactCta: "¿Querés algo parecido?",
     contactCtaSub:
-      "Desarrollo productos a medida con la misma obsesión que pongo en los míos.",
+      "Lo que hice acá lo puedo hacer para tu producto.",
     backToProjects: "← Todos los proyectos",
     builtIn: "Construido en",
     createdBy: "Creado por Lucas Riera",
@@ -392,10 +388,10 @@ const es: Dictionary = {
   meta: {
     title: "Lucas Riera — Product Engineer con IA",
     description: (years) =>
-      `Product Engineer con +${years} años de experiencia construyendo con IA. Desarrollo aplicaciones web, productos digitales y soluciones de IA para empresas y startups — y me especializo en auditoría y seguridad de sistemas de IA.`,
+      `${years} años construyendo software, tres de ellos en United Airlines. Desarrollo web, plataformas a medida y soluciones con IA para empresas y startups desde Madrid.`,
     ogTitle: "Lucas Riera — Product Engineer con IA",
     ogDescription: (years) =>
-      `Product Engineer con +${years} años de experiencia. Desarrollo web, soluciones de IA y consultoría técnica para equipos globales.`,
+      `${years} años construyendo software, tres en United Airlines. Desarrollo web, IA y consultoría técnica para equipos de todo el mundo.`,
     keywords: [
       "Lucas Riera",
       "product engineer",
@@ -492,17 +488,17 @@ const en: Dictionary = {
     skipToContent: "Skip to main content",
   },
   hero: {
-    badge: "Product Engineer with AI · Remote Global Services",
+    badge: "Product Engineer with AI · Madrid · Remote",
     location: "Spain",
-    h1: "I turn ideas into product with AI",
-    h1Accent: " that sells, scales and lasts.",
+    h1: "I build AI products",
+    h1Accent: " people actually use.",
     description: (years) =>
-      `Product Engineer with ${years}+ years of experience building with AI. I help companies and startups ship digital products and AI-powered solutions with premium execution — and I'm on my way to specializing in AI systems auditing and security.`,
+      `${years} years building software. Three of them at United Airlines, the rest on my own products. Lately I've been getting into AI systems auditing and security.`,
     pitch: (years) =>
-      `${years}+ years building product with AI. From architecture to deploy, premium execution.`,
+      `${years} years building software. Three of them at United Airlines, the rest on my own products.`,
     showcaseLabel: "Featured work",
-    ctaPrimary: "See projects",
-    ctaSecondary: "Get in touch",
+    ctaPrimary: "See what I built",
+    ctaSecondary: "Write to me",
     presence: "Presence",
     videoAlt: "Video of Lucas Riera",
     currently: "Currently",
@@ -511,26 +507,26 @@ const en: Dictionary = {
     activity3: "Exploring AI systems auditing and security",
     activity4:
       "B.Sc. Computer Science — UADE · Software Dev & Full Stack MERN — UTN",
-    statCode: "Code",
+    statCode: "building",
     statYears: "+ years",
-    statProducts: "Products",
-    statCreated: "+ built",
-    statCountries: "Countries",
-    statLived: " lived in",
+    statProducts: "in production",
+    statCreated: " products",
+    statCountries: "lived in",
+    statLived: " countries",
   },
   works: {
     label: "Work",
-    title: "Products I built from scratch.",
+    title: "Things I built.",
     description:
-      "Every project is a real solution, thought out from architecture to the last visual detail. This is what happens when I combine code obsession with creative freedom.",
-    ctaTitle: "Your next project",
+      "All of them are online and running. I built them alone, from the database to the design.",
+    ctaTitle: "Yours is the one missing",
     ctaDescription:
-      "I build custom products with the same obsession I put into my own. Platforms, systems, portfolios.",
+      "If you have something in mind, tell me what it is.",
     ctaButton: "Let's talk",
   },
   experience: {
     label: "Professional experience",
-    title: "Companies that trusted me.",
+    title: "Where I worked.",
     years3: "3 years",
     years2: "2 years",
     year1: "1 year",
@@ -541,14 +537,11 @@ const en: Dictionary = {
   stack: {
     label: "Stack",
     title: "What I build with.",
-    description:
-      "Ordered by how much I actually use it, not alphabetically: AI comes first because that's where I build today.",
+    description: "Ordered by how much I actually use it.",
     aiTitle: "AI in product",
-    aiDescription:
-      "The stack I use to build product with AI: models, editor, automation and infrastructure.",
+    aiDescription: "Models, editor, automations and infra.",
     coreTitle: "Product core",
-    coreDescription:
-      "The foundation I use to build interface, state and client logic.",
+    coreDescription: "Interface, state and client logic.",
     backendTitle: "Backend and data",
     backendDescription: "Authentication, database and scheduled jobs.",
     mobileTitle: "Mobile",
@@ -558,8 +551,7 @@ const en: Dictionary = {
     mediaTitle: "Media and file generation",
     mediaDescription: "I process images and generate documents from the product.",
     integrationsTitle: "Integrations",
-    integrationsDescription:
-      "I connect the product to social media, messaging and email.",
+    integrationsDescription: "Social media, messaging and email.",
     testingTitle: "Testing",
     testingDescription: "I test what I build before the user does.",
     analyticsTitle: "Analytics and SEO",
@@ -569,33 +561,33 @@ const en: Dictionary = {
   },
   services: {
     label: "Services",
-    title: "What I can build for you.",
+    title: "What I do.",
     description:
-      "Software development, web development and IT consulting services for businesses and individuals.",
+      "Web development, custom platforms and technical consulting. For companies and for people just starting out.",
     saasTitle: "Platforms & SaaS",
     saasDescription:
-      "Complete digital products from architecture to deployment. Authentication, databases, APIs, admin panels and business logic.",
+      "Auth, database, API, admin panel and all the business logic in between. From the first schema to deploy.",
     systemsTitle: "Web Systems",
     systemsDescription:
-      "Custom applications with modern frontend and robust backend. Integration with external services, dashboards and complex logic.",
+      "Internal apps, dashboards and integrations with the services you already use.",
     websTitle: "Portfolios & Websites",
     websDescription:
-      "Professional websites with custom design, optimized performance, smooth animations and obsessive attention to visual detail.",
+      "Fast sites, with design of their own and animations that stay out of the way.",
   },
   testimonials: {
     label: "Testimonials",
-    title: "What people I've worked with say.",
+    title: "People I've worked with.",
     maryContext:
-      "About his role in the Chase Partnership and the Starlink Wi-Fi Portal — high-impact enterprise initiatives where he led frontend development, built POCs for promotional campaigns and achieved a 13% increase in team productivity.",
+      "My supervisor at United Airlines. We worked together on the Chase Partnership and the Starlink Wi-Fi portal, where I led the frontend and the team ended up 13% more productive.",
     maryRole: "Senior Analyst / Developer · United Airlines",
     maryRelation: "Lucas's direct supervisor",
     nicolasRole: "Frontend Engineer · Teammate",
     starsLabel: "5 out of 5 stars",
   },
   contact: {
-    title: "Let's talk about your next project.",
+    title: "Got something in mind?",
     description:
-      "If you need a developer who truly gets involved in your project, a web developer who understands your vision, or a software engineer who delivers end-to-end — reach out. Let's build something that works.",
+      "Tell me what you need and I'll tell you if I can help, what it costs and how long it takes. If it's not my thing, I'll tell you that too.",
     form: "Form",
     formSub: "Tell me about your project",
     whatsappSub: "Direct message",
@@ -628,8 +620,8 @@ const en: Dictionary = {
   scrollTop: "Back to top",
   about: {
     badge: "About me",
-    title: "Track record, stack and what people say.",
-    subtitle: "Everything behind the work: where I built, what with, and who backs it.",
+    title: "Where I've been and what I work with.",
+    subtitle: "Five companies, six products of my own and a fair amount of code running in production.",
     tabExperience: "Experience",
     tabStack: "Stack",
     tabServices: "Services",
@@ -637,9 +629,9 @@ const en: Dictionary = {
   },
   proyectosPage: {
     count: (n) => `${n} projects`,
-    title: "Everything I built from scratch.",
+    title: "Things I built.",
     description:
-      "Every project is a real solution, thought out from architecture to the last visual detail. Here they all are.",
+      "All of them are online and running. I built them alone, from the database to the design.",
     goToFitTravel: "Go to FitTravel",
     backHome: "← Back to home",
     inicio: "Home",
@@ -650,9 +642,9 @@ const en: Dictionary = {
     techStack: "Tech stack",
     screenshots: "The product in action",
     visitSite: "Visit site",
-    contactCta: "Need something similar?",
+    contactCta: "Want something like this?",
     contactCtaSub:
-      "I build custom products with the same obsession I put into my own.",
+      "What I did here I can do for your product.",
     backToProjects: "← All projects",
     builtIn: "Built in",
     createdBy: "Created by Lucas Riera",
@@ -666,10 +658,10 @@ const en: Dictionary = {
   meta: {
     title: "Lucas Riera — Product Engineer with AI",
     description: (years) =>
-      `Product Engineer with ${years}+ years of experience building with AI. Web app development, AI-powered products and technical consulting for startups and companies — specializing in AI systems auditing and security.`,
+      `${years} years building software, three of them at United Airlines. Web development, custom platforms and AI-powered products for startups and companies, from Madrid.`,
     ogTitle: "Lucas Riera — Product Engineer with AI",
     ogDescription: (years) =>
-      `Product Engineer with ${years}+ years of experience building web apps, AI solutions and scalable systems for global teams.`,
+      `${years} years building software, three at United Airlines. Web development, AI and technical consulting for teams anywhere.`,
     keywords: [
       "Lucas Riera",
       "product engineer",
@@ -756,46 +748,49 @@ const fr: Dictionary = {
   },
   hero: {
     ...en.hero,
-    badge: "Product Engineer avec IA · Services distants globaux",
+    badge: "Product Engineer avec IA · Madrid · Remote",
     location: "Espagne",
-    h1: "Je transforme les idees en produit avec l'IA",
-    h1Accent: " qui vend, evolue et dure.",
+    h1: "Je construis des produits IA",
+    h1Accent: " que les gens utilisent vraiment.",
     description: (years) =>
-      `Product Engineer avec ${years}+ ans d'experience a construire avec l'IA. J'aide startups et entreprises a creer des produits numeriques et des solutions IA avec une execution premium — et je me dirige vers l'audit et la securite des systemes d'IA.`,
+      `${years} ans à construire des logiciels. Trois chez United Airlines, le reste sur mes propres produits. En ce moment je me plonge dans l'audit et la sécurité des systèmes d'IA.`,
     pitch: (years) =>
       `${years}+ ans a construire du produit avec l'IA. De l'architecture au deploiement, execution premium.`,
     showcaseLabel: "Projets phares",
-    ctaPrimary: "Voir mes projets",
-    ctaSecondary: "Me contacter",
+    ctaPrimary: "Voir ce que j'ai construit",
+    ctaSecondary: "Écrivez-moi",
     presence: "Presence",
     videoAlt: "Video de Lucas Riera",
     currently: "Actuellement",
     activity1: "Product engineering avec IA",
     activity2: "Creation de plateformes SaaS et systemes web",
     activity3: "Exploration de l'audit et de la securite des systemes d'IA",
+    statCode: "à construire",
     statYears: "+ ans",
-    statCreated: "+ crees",
-    statLived: " vecus",
+    statProducts: "en production",
+    statCreated: " produits",
+    statCountries: "vécus",
+    statLived: " pays",
   },
   works: {
     ...en.works,
     label: "Travaux",
-    title: "Produits crees de zero.",
-    ctaTitle: "Votre prochain projet",
+    title: "Des choses que j'ai construites.",
+    description:
+      "Tous sont en ligne et fonctionnent. Je les ai construits seul, de la base de données au design.",
+    ctaTitle: "Il ne manque que le vôtre",
+    ctaDescription: "Si vous avez une idée, dites-moi de quoi il s'agit.",
     ctaButton: "Parlons",
   },
   stack: {
     ...en.stack,
     label: "Stack",
     title: "Avec quoi je construis.",
-    description:
-      "Classe par ce que j'utilise le plus, pas par ordre alphabetique : l'IA est en premier car c'est la que je construis aujourd'hui.",
+    description: "Classé par ce que j'utilise le plus.",
     aiTitle: "IA en produit",
-    aiDescription:
-      "La stack avec laquelle je construis du produit avec l'IA : modeles, editeur, automatisation et infrastructure.",
+    aiDescription: "Modèles, éditeur, automatisations et infra.",
     coreTitle: "Coeur de produit",
-    coreDescription:
-      "La base avec laquelle je construis l'interface, l'etat et la logique client.",
+    coreDescription: "Interface, état et logique client.",
     backendTitle: "Backend et donnees",
     backendDescription: "Authentification, base de donnees et taches programmees.",
     mobileTitle: "Mobile",
@@ -805,8 +800,7 @@ const fr: Dictionary = {
     mediaTitle: "Media et generation de fichiers",
     mediaDescription: "Je traite les images et genere des documents depuis le produit.",
     integrationsTitle: "Integrations",
-    integrationsDescription:
-      "Je connecte le produit aux reseaux sociaux, a la messagerie et a l'email.",
+    integrationsDescription: "Réseaux sociaux, messagerie et email.",
     testingTitle: "Tests",
     testingDescription: "Je teste ce que je construis avant que l'utilisateur ne le fasse.",
     analyticsTitle: "Analytique et SEO",
@@ -817,20 +811,20 @@ const fr: Dictionary = {
   services: {
     ...en.services,
     label: "Services",
-    title: "Ce que je peux construire pour vous.",
+    title: "Ce que je fais.",
     description:
-      "Developpement logiciel, applications web et conseil technique pour entreprises et fondateurs.",
+      "Développement web, plateformes sur mesure et conseil technique. Pour les entreprises et pour ceux qui démarrent.",
   },
   testimonials: {
     ...en.testimonials,
     label: "Temoignages",
-    title: "Ce que disent les clients avec qui j'ai travaille.",
+    title: "Des gens avec qui j'ai travaillé.",
   },
   contact: {
     ...en.contact,
-    title: "Parlons de votre prochain projet.",
+    title: "Vous avez une idée en tête ?",
     description:
-      "Si vous cherchez un developpeur implique, orienté resultat et execution premium, ecrivez-moi.",
+      "Dites-moi ce dont vous avez besoin et je vous dirai si je peux aider, combien ça coûte et combien de temps ça prend. Si ce n'est pas pour moi, je vous le dirai aussi.",
     form: "Formulaire",
     formSub: "Parlez-moi de votre projet",
     whatsappSub: "Message direct",
@@ -856,8 +850,8 @@ const fr: Dictionary = {
   scrollTop: "Retour en haut",
   about: {
     badge: "À propos",
-    title: "Parcours, stack et avis clients.",
-    subtitle: "Tout ce qu'il y a derriere le travail : ou j'ai construit, avec quoi, et qui le confirme.",
+    title: "Où j'ai été et avec quoi je travaille.",
+    subtitle: "Cinq entreprises, six produits à moi et pas mal de code qui tourne en production.",
     tabExperience: "Experience",
     tabStack: "Stack",
     tabServices: "Services",
@@ -866,7 +860,9 @@ const fr: Dictionary = {
   proyectosPage: {
     ...en.proyectosPage,
     count: (n) => `${n} projets`,
-    title: "Tout ce que j'ai construit depuis zero.",
+    title: "Des choses que j'ai construites.",
+    description:
+      "Tous sont en ligne et fonctionnent. Je les ai construits seul, de la base de données au design.",
     goToFitTravel: "Aller a FitTravel",
     backHome: "← Retour a l'accueil",
     inicio: "Accueil",
@@ -878,7 +874,8 @@ const fr: Dictionary = {
     techStack: "Stack technique",
     screenshots: "Le produit en action",
     visitSite: "Visiter le site",
-    contactCta: "Besoin de quelque chose de similaire ?",
+    contactCta: "Vous voulez quelque chose de similaire ?",
+    contactCtaSub: "Ce que j'ai fait ici, je peux le faire pour votre produit.",
     backToProjects: "← Tous les projets",
     builtIn: "Construit en",
     createdBy: "Cree par Lucas Riera",
@@ -894,10 +891,10 @@ const fr: Dictionary = {
     ...en.meta,
     title: "Lucas Riera — Product Engineer avec IA",
     description: (years) =>
-      `Product Engineer avec ${years}+ ans d'experience a construire avec l'IA. Applications web, solutions IA et conseil technique pour equipes internationales — vers l'audit et la securite des systemes d'IA.`,
+      `${years} ans à construire des logiciels, trois chez United Airlines. Développement web, plateformes sur mesure et solutions IA, depuis Madrid.`,
     ogTitle: "Lucas Riera — Product Engineer avec IA",
     ogDescription: (years) =>
-      `Product Engineer avec ${years}+ ans d'experience en applications web, IA et systemes scalables.`,
+      `${years} ans à construire des logiciels, trois chez United Airlines. Développement web, IA et conseil technique.`,
     keywords: [
       "Lucas Riera",
       "product engineer",

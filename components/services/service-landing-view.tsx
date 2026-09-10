@@ -31,7 +31,7 @@ export function ServiceLandingView({
           <p className="font-[family-name:var(--font-geist-mono)] text-[0.65rem] uppercase tracking-[0.2em] text-cyan-300/80">
             {loc === "es" ? "Servicios" : loc === "fr" ? "Services" : "Services"}
           </p>
-          <h1 className="text-balance font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h1 className="text-balance font-[family-name:var(--font-display)] text-3xl font-normal tracking-normal sm:text-4xl">
             {entry.title[loc].replace(" | Lucas Riera", "")}
           </h1>
           <p className="max-w-2xl text-sm text-white/50 sm:text-base">{entry.intro[loc]}</p>
@@ -52,14 +52,14 @@ export function ServiceLandingView({
 
           <section className="rounded-2xl border border-violet-400/20 bg-gradient-to-br from-cyan-400/10 to-violet-500/10 p-5 backdrop-blur-xl sm:p-6">
             <h2 className="text-lg font-semibold sm:text-xl">
-              {loc === "es" ? "¿Trabajamos juntos?" : loc === "fr" ? "Travaillons ensemble ?" : "Need this for your project?"}
+              {loc === "es" ? "¿Lo hacemos?" : loc === "fr" ? "On le fait ?" : "Shall we build it?"}
             </h2>
             <p className="mt-2 max-w-2xl text-sm text-white/70">
               {loc === "es"
-                ? "Contame tu objetivo y te propongo una solución técnica clara, escalable y orientada a negocio."
+                ? "Contame qué querés lograr y te digo cómo lo encararía, cuánto sale y cuánto tardo."
                 : loc === "fr"
-                  ? "Dites-moi votre objectif et je proposerai une solution technique claire, evolutive et orientee business."
-                  : "Tell me your goal and I will propose a clear, scalable, business-focused technical solution."}
+                  ? "Dites-moi ce que vous voulez obtenir et je vous dirai comment je m'y prendrais, combien ça coûte et combien de temps ça prend."
+                  : "Tell me what you're trying to get done and I'll tell you how I'd approach it, what it costs and how long it takes."}
             </p>
             <OpenContactButton className="mt-4 inline-flex rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-5 py-2.5 text-sm font-semibold text-black transition hover:opacity-90">
               {loc === "es" ? "Contactar" : loc === "fr" ? "Contact" : "Contact me"}

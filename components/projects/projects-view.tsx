@@ -22,7 +22,7 @@ export function ProjectsView({ locale }: { locale: Locale }) {
           <p className="font-[family-name:var(--font-geist-mono)] text-[0.65rem] uppercase tracking-[0.25em] text-cyan-300/80">
             {t.proyectosPage.count(projects.length)}
           </p>
-          <h1 className="font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h1 className="font-[family-name:var(--font-display)] text-3xl font-normal tracking-normal sm:text-4xl">
             {t.proyectosPage.title}
           </h1>
           <p className="max-w-2xl text-sm text-white/45">{t.proyectosPage.description}</p>

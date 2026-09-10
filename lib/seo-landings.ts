@@ -31,9 +31,9 @@ export const landingEntries: LandingEntry[] = [
       fr: "Developpeur full-stack pour creer des applications web evolutives orientees business, performance et conversion.",
     },
     intro: {
-      es: "Construyo aplicaciones web a medida para empresas, startups y equipos que necesitan velocidad, calidad tecnica y enfoque comercial.",
-      en: "I build custom web applications for startups, companies and teams that need speed, technical quality and business focus.",
-      fr: "Je cree des applications web sur mesure pour startups et entreprises qui ont besoin de vitesse, qualite technique et focus business.",
+      es: "Construyo aplicaciones web a medida. Suelen contratarme cuando ya probaron con una plantilla y se quedaron cortos.",
+      en: "I build custom web applications. People usually come to me after a template got them halfway and then stopped.",
+      fr: "Je crée des applications web sur mesure. On me contacte en général après qu'un template ait montré ses limites.",
     },
     h2: {
       es: "Que incluye el servicio",
@@ -42,19 +42,19 @@ export const landingEntries: LandingEntry[] = [
     },
     bulletPoints: {
       es: [
-        "Arquitectura full-stack preparada para crecimiento real",
-        "UX orientada a conversion y retencion",
-        "Optimizacion SEO tecnica desde el inicio",
+        "Base de datos y arquitectura pensadas para cuando haya diez veces más usuarios",
+        "Pantallas diseñadas alrededor de la acción que querés que la gente haga",
+        "SEO técnico resuelto antes del lanzamiento, no después",
       ],
       en: [
-        "Full-stack architecture ready for real growth",
-        "UX focused on conversion and retention",
-        "Technical SEO optimization from day one",
+        "Database and architecture built for ten times the users you have now",
+        "Screens designed around the one action you want people to take",
+        "Technical SEO sorted before launch, not after",
       ],
       fr: [
-        "Architecture full-stack prete pour une croissance reelle",
-        "UX orientee conversion et retention",
-        "SEO technique optimise des le depart",
+        "Base de données et architecture prévues pour dix fois plus d'utilisateurs",
+        "Des écrans conçus autour de l'action que vous voulez déclencher",
+        "SEO technique réglé avant le lancement, pas après",
       ],
     },
     keywords: {
@@ -93,9 +93,9 @@ export const landingEntries: LandingEntry[] = [
       fr: "Integrations et solutions IA pour automatiser les processus, augmenter la productivite et scaler les operations.",
     },
     intro: {
-      es: "Diseño e implemento soluciones con IA que generan impacto real en tiempo de ejecucion, calidad de decision y rentabilidad.",
-      en: "I design and implement AI solutions that create real impact in execution speed, decision quality and profitability.",
-      fr: "Je conçois et implemente des solutions IA qui generent un impact reel sur la vitesse d'execution, la qualite de decision et la rentabilite.",
+      es: "Meto IA donde ahorra horas de verdad, no donde queda bien en una demo.",
+      en: "I put AI where it actually saves hours, not where it looks good in a demo.",
+      fr: "Je mets l'IA là où elle fait vraiment gagner des heures, pas là où elle fait joli en démo.",
     },
     h2: {
       es: "En que puedo ayudarte con IA",
@@ -104,19 +104,19 @@ export const landingEntries: LandingEntry[] = [
     },
     bulletPoints: {
       es: [
-        "Automatizaciones de procesos con IA",
-        "Asistentes y herramientas internas para equipos",
-        "Integracion de modelos IA en productos digitales",
+        "Procesos que hoy hace alguien a mano y podría hacer solos",
+        "Asistentes internos entrenados con la documentación de tu empresa",
+        "Modelos de IA metidos dentro del producto, no al costado",
       ],
       en: [
-        "AI-powered workflow automation",
-        "Internal assistants and tools for teams",
-        "AI model integration in digital products",
+        "Processes someone does by hand today and could run on their own",
+        "Internal assistants trained on your own company's documentation",
+        "AI models built into the product, not bolted onto the side",
       ],
       fr: [
-        "Automatisation de processus avec IA",
-        "Assistants et outils internes pour equipes",
-        "Integration de modeles IA dans des produits digitaux",
+        "Des processus faits à la main aujourd'hui qui pourraient tourner seuls",
+        "Des assistants internes entraînés sur la documentation de votre entreprise",
+        "Des modèles d'IA intégrés au produit, pas posés à côté",
       ],
     },
     keywords: {
@@ -143,9 +143,9 @@ export const landingEntries: LandingEntry[] = [
       fr: "Conseil technique pour architecture, performance, qualite du code et scalabilite.",
     },
     intro: {
-      es: "Te ayudo a tomar decisiones tecnicas con impacto de negocio, reduciendo riesgo y acelerando ejecucion.",
-      en: "I help you make technical decisions with business impact, reducing risk and accelerating execution.",
-      fr: "Je vous aide a prendre des decisions techniques avec impact business, en reduisant le risque et en accelerant l'execution.",
+      es: "Te digo qué parte de tu sistema te va a doler en seis meses, y qué conviene hacer ahora.",
+      en: "I tell you which part of your system will hurt in six months, and what's worth doing about it now.",
+      fr: "Je vous dis quelle partie de votre système va poser problème dans six mois, et ce qu'il vaut mieux faire maintenant.",
     },
     h2: {
       es: "Consultoria para equipos y founders",
@@ -154,19 +154,19 @@ export const landingEntries: LandingEntry[] = [
     },
     bulletPoints: {
       es: [
-        "Revisiones de arquitectura y deuda tecnica",
-        "Plan de mejora de performance y mantenibilidad",
-        "Acompañamiento en decisiones criticas de producto",
+        "Revisión de arquitectura y del código que nadie quiere tocar",
+        "Un plan de performance con números antes y después",
+        "Segunda opinión cuando hay que decidir algo caro de revertir",
       ],
       en: [
-        "Architecture and technical debt reviews",
-        "Performance and maintainability improvement plan",
-        "Support on critical product decisions",
+        "A review of the architecture and the code nobody wants to touch",
+        "A performance plan with numbers before and after",
+        "A second opinion when the decision is expensive to undo",
       ],
       fr: [
-        "Revues d'architecture et de dette technique",
-        "Plan d'amelioration performance et maintenabilite",
-        "Accompagnement sur les decisions produit critiques",
+        "Revue de l'architecture et du code que personne ne veut toucher",
+        "Un plan de performance avec des chiffres avant et après",
+        "Un deuxième avis quand la décision coûte cher à annuler",
       ],
     },
     keywords: {
@@ -193,9 +193,9 @@ export const landingEntries: LandingEntry[] = [
       fr: "Services de developpement logiciel freelance remote pour startups et entreprises recherchant execution rapide et qualite premium.",
     },
     intro: {
-      es: "Trabajo en remoto con equipos de distintos paises, construyendo software orientado a resultados y crecimiento.",
-      en: "I work remotely with teams across different countries, building software focused on results and growth.",
-      fr: "Je travaille en remote avec des equipes de plusieurs pays, en construisant des produits logiciels orientes resultats et croissance.",
+      es: "Trabajo en remoto desde hace años con equipos en varios husos horarios. Viví en 16 países, así que la parte de coordinarse la tengo resuelta.",
+      en: "I've worked remotely for years with teams across several time zones. I've lived in 16 countries, so the coordination part is already solved.",
+      fr: "Je travaille en remote depuis des années avec des équipes sur plusieurs fuseaux horaires. J'ai vécu dans 16 pays, donc la coordination est déjà réglée.",
     },
     h2: {
       es: "Por que contratarme como freelance",
@@ -204,19 +204,19 @@ export const landingEntries: LandingEntry[] = [
     },
     bulletPoints: {
       es: [
-        "Comunicación clara y entregas consistentes",
-        "Ejecucion end-to-end: idea, desarrollo y lanzamiento",
-        "Calidad de codigo, velocidad y enfoque en ROI",
+        "Sabés en qué ando sin tener que preguntarme",
+        "Me hago cargo desde la idea hasta que está en producción",
+        "Código que el próximo que entre va a poder leer",
       ],
       en: [
-        "Clear communication and consistent delivery",
-        "End-to-end execution: idea, build and launch",
-        "Code quality, speed and strong ROI focus",
+        "You know what I'm working on without having to ask",
+        "I own it from the idea through to production",
+        "Code the next person on the project will be able to read",
       ],
       fr: [
-        "Communication claire et livraisons constantes",
-        "Execution end-to-end: idee, build et lancement",
-        "Qualite du code, vitesse et focus ROI",
+        "Vous savez sur quoi j'avance sans avoir à demander",
+        "Je prends en charge de l'idée jusqu'à la mise en production",
+        "Du code que la personne suivante pourra lire",
       ],
     },
     keywords: {

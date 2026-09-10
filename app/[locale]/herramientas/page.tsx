@@ -69,7 +69,7 @@ export default async function HerramientasPage({
           <p className="font-[family-name:var(--font-geist-mono)] text-[0.65rem] uppercase tracking-[0.2em] text-cyan-300/80">
             {t.nav.herramientas}
           </p>
-          <h1 className="text-balance font-[family-name:var(--font-display)] text-2xl font-semibold tracking-tight sm:text-3xl">
+          <h1 className="text-balance font-[family-name:var(--font-display)] text-3xl font-normal tracking-normal sm:text-4xl">
             {title}
           </h1>
           <p className="max-w-2xl text-sm text-white/50">{subtitle}</p>

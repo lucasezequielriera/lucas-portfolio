@@ -35,11 +35,7 @@ const STACK_GROUPS: StackGroup[] = [
   { key: "infra", icon: Server, color: "cyan", techs: ["Vercel", "GitHub", "ESLint"] },
 ];
 
-const colorText: Record<StackGroup["color"], string> = {
-  cyan: "text-cyan-300",
-  violet: "text-violet-300",
-  fuchsia: "text-fuchsia-300",
-};
+
 
 function Pill({ children }: { children: string }) {
   return (
@@ -65,7 +61,7 @@ export function StackPanel({ locale }: { locale: Locale }) {
         return (
           <div key={group.key} className="flex flex-col gap-1.5 border-b border-white/[0.06] py-2.5 last:border-0 sm:flex-row sm:items-center sm:gap-5">
             <div className="flex shrink-0 items-center gap-2 sm:w-44">
-              <Icon className={`h-3.5 w-3.5 ${colorText[group.color]}`} />
+              <Icon className="h-3.5 w-3.5 text-white/45" />
               <p className="text-xs font-semibold text-white sm:text-sm">{titles[group.key]}</p>
             </div>
             <div className="flex flex-wrap items-center gap-1.5">

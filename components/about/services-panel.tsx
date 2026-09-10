@@ -18,10 +18,10 @@ export function ServicesPanel({ locale }: { locale: Locale }) {
     { href: `/${locale}/services/${consultingSlug}`, icon: Palette, color: "fuchsia", title: t.services.websTitle, desc: t.services.websDescription },
   ] as const;
 
-  const colorClasses = {
-    cyan: { bg: "bg-cyan-400/10", icon: "text-cyan-300", hover: "hover:border-cyan-400/40 hover:shadow-cyan-400/10" },
-    violet: { bg: "bg-violet-400/10", icon: "text-violet-300", hover: "hover:border-violet-400/40 hover:shadow-violet-400/10" },
-    fuchsia: { bg: "bg-fuchsia-400/10", icon: "text-fuchsia-300", hover: "hover:border-fuchsia-400/40 hover:shadow-fuchsia-400/10" },
+  const cardStyle = {
+    bg: "bg-white/[0.06]",
+    icon: "text-white/80",
+    hover: "hover:border-white/25 hover:shadow-white/5",
   };
 
   return (
@@ -29,7 +29,7 @@ export function ServicesPanel({ locale }: { locale: Locale }) {
       <div className="grid gap-3 sm:grid-cols-3">
         {cards.map((card) => {
           const Icon = card.icon;
-          const c = colorClasses[card.color];
+          const c = cardStyle;
           return (
             <Link key={card.href} href={card.href} className="block h-full">
               <div className={`group h-full rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all duration-300 hover:bg-white/[0.05] hover:shadow-lg ${c.hover}`}>

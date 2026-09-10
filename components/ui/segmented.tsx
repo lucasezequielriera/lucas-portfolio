@@ -22,7 +22,7 @@ export function Segmented({
     <div
       role="tablist"
       aria-label={ariaLabel}
-      className="inline-flex w-full flex-wrap items-center gap-1 rounded-full border border-white/10 bg-white/[0.04] p-1 backdrop-blur-xl sm:w-auto"
+      className="inline-flex max-w-full shrink-0 items-center gap-1 overflow-x-auto rounded-full border border-white/10 bg-white/[0.04] p-1 backdrop-blur-xl [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
     >
       {items.map((item) => {
         const active = item.key === value;
@@ -33,7 +33,7 @@ export function Segmented({
             type="button"
             aria-selected={active}
             onClick={() => onChange(item.key)}
-            className={`relative rounded-full px-3.5 py-1.5 font-[family-name:var(--font-geist-mono)] text-[0.7rem] uppercase tracking-wide transition-colors sm:text-xs ${
+            className={`relative shrink-0 whitespace-nowrap rounded-full px-3 py-1.5 font-[family-name:var(--font-geist-mono)] text-[0.68rem] uppercase tracking-wide transition-colors ${
               active ? "text-black" : "text-white/50 hover:text-white/85"
             }`}
           >
@@ -41,7 +41,7 @@ export function Segmented({
               <motion.span
                 layoutId="segmented-active"
                 transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                className="absolute inset-0 rounded-full bg-gradient-to-r from-cyan-300 to-violet-300"
+                className="absolute inset-0 rounded-full bg-white"
               />
             )}
             <span className="relative z-10">{item.label}</span>

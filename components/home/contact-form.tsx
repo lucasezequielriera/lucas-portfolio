@@ -108,14 +108,14 @@ export function ContactForm({ t }: { t: Dictionary }) {
   };
 
   const inputBase =
-    "w-full rounded-lg border bg-neutral-950/60 px-4 py-3 text-sm text-neutral-100 placeholder-neutral-500 outline-none transition-colors focus:ring-1";
+    "w-full rounded-lg border bg-white/[0.03] px-4 py-3 text-sm text-white placeholder-white/30 outline-none transition-colors focus:ring-1";
   const inputOk =
-    "border-neutral-800 focus:border-emerald-500/50 focus:ring-emerald-500/25";
+    "border-white/10 focus:border-cyan-300/50 focus:ring-cyan-300/20";
   const inputErr =
     "border-red-600/60 focus:border-red-500/50 focus:ring-red-500/25";
 
   return (
-    <Card className="h-full border-neutral-800 bg-neutral-900/70">
+    <Card className="h-full border-white/10 bg-white/[0.03]">
       <CardContent className="p-6 md:p-8">
         <form onSubmit={handleSubmit} className="space-y-5" noValidate>
           {/* Honeypot — invisible to real users */}
@@ -134,7 +134,7 @@ export function ContactForm({ t }: { t: Dictionary }) {
             <div className="space-y-1.5">
               <label
                 htmlFor="name"
-                className="text-sm font-medium text-neutral-300"
+                className="text-sm font-medium text-white/70"
               >
                 {t.contact.nameLabel}
               </label>
@@ -163,7 +163,7 @@ export function ContactForm({ t }: { t: Dictionary }) {
             <div className="space-y-1.5">
               <label
                 htmlFor="email"
-                className="text-sm font-medium text-neutral-300"
+                className="text-sm font-medium text-white/70"
               >
                 {t.contact.emailLabel}
               </label>
@@ -196,7 +196,7 @@ export function ContactForm({ t }: { t: Dictionary }) {
           <div className="space-y-1.5">
             <label
               htmlFor="message"
-              className="text-sm font-medium text-neutral-300"
+              className="text-sm font-medium text-white/70"
             >
               {t.contact.messageLabel}
             </label>
@@ -229,7 +229,7 @@ export function ContactForm({ t }: { t: Dictionary }) {
 
           <div role="status" aria-live="polite">
             {status === "success" && (
-              <div className="flex items-center gap-2 rounded-lg border border-emerald-800/50 bg-emerald-950/30 px-4 py-3 text-sm text-emerald-300">
+              <div className="flex items-center gap-2 rounded-lg border border-cyan-300/30 bg-cyan-300/10 px-4 py-3 text-sm text-cyan-200">
                 <CheckCircle2 className="h-4 w-4 shrink-0" /> {t.contact.success}
               </div>
             )}
@@ -244,7 +244,7 @@ export function ContactForm({ t }: { t: Dictionary }) {
           <Button
             type="submit"
             disabled={status === "sending"}
-            className="w-full bg-emerald-600 text-white hover:bg-emerald-500 disabled:opacity-60 h-12 text-sm font-medium transition-all"
+            className="w-full bg-white/10 text-white hover:bg-white/10 disabled:opacity-60 h-12 text-sm font-medium transition-all"
           >
             {status === "sending" ? (
               <>

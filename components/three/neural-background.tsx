@@ -12,7 +12,7 @@ export function NeuralBackground() {
     return (
       <div
         aria-hidden="true"
-        className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(139,92,246,0.12),transparent_70%)]"
+        className="fixed inset-0 -z-10 bg-[radial-gradient(ellipse_60%_50%_at_50%_0%,rgba(255,255,255,0.07),transparent_70%)]"
       />
     );
   }

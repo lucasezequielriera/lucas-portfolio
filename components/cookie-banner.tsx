@@ -61,7 +61,7 @@ export function CookieBanner({ locale }: { locale: Locale }) {
         </button>
         <button
           onClick={accept}
-          className="rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-3.5 py-1.5 text-xs font-semibold text-black transition hover:opacity-90"
+          className="rounded-full bg-white px-3.5 py-1.5 text-xs font-semibold text-black transition hover:bg-white/90"
         >
           {t.cookieBanner.accept}
         </button>

@@ -22,11 +22,11 @@ export function ExperiencePanel({ locale }: { locale: Locale }) {
   const prefersReduced = useReducedMotion();
 
   const entries: Entry[] = [
-    { name: "ITAcademy", period: "2019–2021", duration: t.experience.years3, widthPct: 42.86, leftPct: 0, color: "cyan", bar: "bg-cyan-400/10 border-cyan-400/30", text: "text-cyan-300" },
-    { name: "Terrand", period: "2021–2023", duration: t.experience.years2, widthPct: 28.57, leftPct: 28.57, color: "violet", bar: "bg-violet-400/10 border-violet-400/30", text: "text-violet-300", logo: "/terrand_logo.jpeg", href: "https://www.terrand.app/" },
-    { name: "YPF", period: "2023–2024", duration: t.experience.years2, widthPct: 28.57, leftPct: 57.14, color: "fuchsia", bar: "bg-fuchsia-400/10 border-fuchsia-400/30", text: "text-fuchsia-300", logo: "/ypf-logo.jpeg", href: "https://www.ypf.com/" },
-    { name: "United Airlines", period: "2022–2025", duration: t.experience.years3, widthPct: 42.86, leftPct: 42.86, color: "cyan", bar: "bg-cyan-400/10 border-cyan-400/30", text: "text-cyan-300", logo: "/united-logo.jpeg", href: "https://www.united.com/es/us/" },
-    { name: "Synapsis", period: `2025–${t.experience.present}`, duration: t.experience.year1, widthPct: 14.29, leftPct: 85.71, color: "violet", bar: "bg-violet-400/10 border-violet-400/30", text: "text-violet-300", logo: "/synapsis-logo.png", href: "https://www.synapsis.team" },
+    { name: "ITAcademy", period: "2019–2021", duration: t.experience.years3, widthPct: 42.86, leftPct: 0, color: "cyan", bar: "bg-white/[0.07] border-white/20", text: "text-white/70" },
+    { name: "Terrand", period: "2021–2023", duration: t.experience.years2, widthPct: 28.57, leftPct: 28.57, color: "violet", bar: "bg-white/[0.07] border-white/20", text: "text-white/70", logo: "/terrand_logo.jpeg", href: "https://www.terrand.app/" },
+    { name: "YPF", period: "2023–2024", duration: t.experience.years2, widthPct: 28.57, leftPct: 57.14, color: "fuchsia", bar: "bg-white/[0.07] border-white/20", text: "text-white/70", logo: "/ypf-logo.jpeg", href: "https://www.ypf.com/" },
+    { name: "United Airlines", period: "2022–2025", duration: t.experience.years3, widthPct: 42.86, leftPct: 42.86, color: "cyan", bar: "bg-white/[0.07] border-white/20", text: "text-white/70", logo: "/united-logo.jpeg", href: "https://www.united.com/es/us/" },
+    { name: "Synapsis", period: `2025–${t.experience.present}`, duration: t.experience.year1, widthPct: 14.29, leftPct: 85.71, color: "violet", bar: "bg-white/[0.07] border-white/20", text: "text-white/70", logo: "/synapsis-logo.png", href: "https://www.synapsis.team" },
   ];
 
   return (

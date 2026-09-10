@@ -5,13 +5,15 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { Points, PointMaterial } from "@react-three/drei";
 import * as THREE from "three";
 
-const COUNT = 2200;
+const COUNT = 1600;
 const RADIUS = 4.2;
 
+// Casi todo blanco: sólo el extremo superior lleva una pizca de cyan, para que
+// el acento de marca aparezca en el fondo sin teñirlo.
 const STOPS = [
-  new THREE.Color("#22d3ee"),
-  new THREE.Color("#8b5cf6"),
-  new THREE.Color("#ec4899"),
+  new THREE.Color("#ffffff"),
+  new THREE.Color("#e8f9fd"),
+  new THREE.Color("#67e8f9"),
 ];
 
 function gradientColor(t: number) {
@@ -76,11 +78,11 @@ export function NeuralField() {
         <PointMaterial
           transparent
           vertexColors
-          size={0.028}
+          size={0.022}
           sizeAttenuation
           depthWrite={false}
           blending={THREE.AdditiveBlending}
-          opacity={0.9}
+          opacity={0.45}
         />
       </Points>
     </group>

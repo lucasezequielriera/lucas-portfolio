@@ -37,7 +37,7 @@ export function AboutView({ locale }: { locale: Locale }) {
           <p className="font-[family-name:var(--font-geist-mono)] text-[0.65rem] uppercase tracking-[0.25em] text-cyan-300/80">
             {t.about.badge}
           </p>
-          <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+          <div className="flex flex-col gap-3 lg:flex-row lg:items-end lg:justify-between">
             <div>
               <h1 className="font-[family-name:var(--font-display)] text-3xl font-bold tracking-[-0.02em] sm:text-4xl">
                 {t.about.title}

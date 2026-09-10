@@ -332,16 +332,16 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
           <p className="mt-2 text-sm text-white/60">{t.noteText}</p>
         </div>
 
-        <div className="rounded-lg border border-amber-700/50 bg-amber-950/20 p-4">
-          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-amber-300">
+        <div className="rounded-lg border border-white/10 bg-white/[0.03] p-4">
+          <p className="text-xs font-semibold uppercase tracking-[0.14em] text-white/70">
             {t.payLabel}
           </p>
-          <p className="mt-2 text-sm text-amber-100/90">{t.paymentRequired}</p>
+          <p className="mt-2 text-sm text-white/90">{t.paymentRequired}</p>
           <Button
             type="button"
             onClick={handleStartPayment}
             disabled={paymentLoading}
-            className="mt-3 h-10 bg-amber-600 text-white hover:bg-amber-500 disabled:opacity-70"
+            className="mt-3 h-10 bg-white/10 text-white hover:bg-white/10 disabled:opacity-70"
           >
             {paymentLoading ? (
               <>
@@ -369,7 +369,7 @@ export function CvGeneratorTool({ locale }: { locale: Locale }) {
           type="button"
           onClick={handleGenerate}
           disabled={loading || !paymentSessionId}
-          className="h-11 w-full bg-gradient-to-r from-cyan-400 to-violet-500 text-black hover:opacity-90 disabled:opacity-50"
+          className="h-11 w-full bg-white text-black hover:bg-white/90 disabled:opacity-40"
         >
           {loading ? (
             <>

@@ -48,7 +48,7 @@ export function CustomCursor() {
         style={{ x: ringX, y: ringY }}
         animate={{ scale: hovering ? 2.2 : 1, opacity: hovering ? 0.5 : 0.9 }}
         transition={{ duration: 0.2 }}
-        className="fixed left-0 top-0 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border border-violet-400/70"
+        className="fixed left-0 top-0 h-8 w-8 -translate-x-1/2 -translate-y-1/2 rounded-full border border-white/60"
       />
     </div>
   );

@@ -7,6 +7,7 @@ import { motion } from "framer-motion";
 import { Home, Fingerprint, LayoutGrid, Wrench, MessageCircle } from "lucide-react";
 import { getDictionary, type Locale } from "@/lib/dictionaries";
 import { useContactDrawer } from "@/components/contact/contact-drawer-context";
+import { Logo } from "@/components/brand/logo";
 
 export function DockNav({ locale }: { locale: Locale }) {
   const t = getDictionary(locale);
@@ -31,9 +32,10 @@ export function DockNav({ locale }: { locale: Locale }) {
       <div className="fixed left-4 top-4 z-40 sm:left-6 sm:top-6">
         <Link
           href={`/${locale}`}
-          className="font-[family-name:var(--font-display)] text-sm font-extrabold tracking-[-0.02em] text-white/90 transition hover:text-white"
+          aria-label="Lucas Riera"
+          className="opacity-90 transition hover:opacity-100"
         >
-          LR<span className="text-cyan-300">.</span>
+          <Logo size="md" />
         </Link>
       </div>
 
@@ -60,7 +62,7 @@ export function DockNav({ locale }: { locale: Locale }) {
         aria-label={t.nav.mainNav}
         className="fixed bottom-4 left-1/2 z-40 -translate-x-1/2 sm:bottom-6"
       >
-        <div className="flex items-center gap-0.5 rounded-full border border-white/10 bg-white/[0.04] p-1.5 shadow-[0_0_40px_-12px_rgba(139,92,246,0.4)] backdrop-blur-xl">
+        <div className="flex items-center gap-0.5 rounded-full border border-white/10 bg-white/[0.04] p-1.5 shadow-[0_0_40px_-14px_rgba(255,255,255,0.25)] backdrop-blur-xl">
           {items.map((item) => {
             const Icon = item.icon;
             const active = isActive(item.href);
@@ -77,7 +79,7 @@ export function DockNav({ locale }: { locale: Locale }) {
                   <motion.span
                     layoutId="dock-active"
                     transition={{ type: "spring", stiffness: 400, damping: 32 }}
-                    className="absolute inset-0 rounded-full bg-gradient-to-br from-cyan-400/20 to-violet-500/20"
+                    className="absolute inset-0 rounded-full bg-white/10"
                   />
                 )}
                 <Icon

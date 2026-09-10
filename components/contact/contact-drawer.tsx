@@ -40,7 +40,7 @@ export function ContactDrawer() {
             exit={{ opacity: 0 }}
             transition={{ duration: 0.2 }}
             onClick={close}
-            className="fixed inset-0 z-[90] bg-neutral-950/70 backdrop-blur-sm"
+            className="fixed inset-0 z-[90] bg-black/75 backdrop-blur-sm"
             aria-hidden="true"
           />
           <motion.div
@@ -51,17 +51,17 @@ export function ContactDrawer() {
             animate={{ x: 0 }}
             exit={{ x: "100%" }}
             transition={{ type: "spring", stiffness: 320, damping: 34 }}
-            className="fixed inset-y-0 right-0 z-[95] flex w-full max-w-lg flex-col overflow-y-auto border-l border-neutral-800 bg-neutral-950 p-6 sm:p-8"
+            className="fixed inset-y-0 right-0 z-[95] flex w-full max-w-lg flex-col overflow-y-auto border-l border-white/10 bg-black p-6 sm:p-8"
           >
             <div className="flex items-center justify-between">
               <div>
-                <h2 className="text-xl font-semibold text-neutral-100">{t.contact.title}</h2>
-                <p className="mt-1 text-sm text-neutral-400">{t.contact.description}</p>
+                <h2 className="font-[family-name:var(--font-display)] text-xl font-bold tracking-[-0.02em] text-white">{t.contact.title}</h2>
+                <p className="mt-1 text-sm text-white/45">{t.contact.description}</p>
               </div>
               <button
                 onClick={close}
                 aria-label={locale === "es" ? "Cerrar" : locale === "fr" ? "Fermer" : "Close"}
-                className="shrink-0 rounded-full border border-neutral-800 bg-neutral-900/60 p-2 text-neutral-400 transition hover:text-neutral-100"
+                className="shrink-0 rounded-full border border-white/10 bg-white/[0.04] p-2 text-white/45 transition hover:text-white"
               >
                 <X className="h-4 w-4" />
               </button>
@@ -72,48 +72,48 @@ export function ContactDrawer() {
                 href="https://wa.me/34627043397"
                 target="_blank"
                 rel="noreferrer"
-                className="group flex items-center gap-4 rounded-xl border border-green-900/50 bg-green-950/20 p-4 transition-all hover:border-green-800/50 hover:bg-green-950/30"
+                className="group flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-white/25 hover:bg-white/[0.06]"
               >
-                <div className="shrink-0 rounded-full border border-green-800/50 bg-green-950/40 p-3">
-                  <MessageCircle className="h-5 w-5 text-green-400" />
+                <div className="shrink-0 rounded-full border border-white/10 bg-white/[0.05] p-3">
+                  <MessageCircle className="h-5 w-5 text-white/80" />
                 </div>
                 <div>
-                  <p className="font-medium text-green-300">WhatsApp</p>
-                  <p className="text-xs text-green-400/70">{t.contact.whatsappSub}</p>
+                  <p className="font-medium text-white">WhatsApp</p>
+                  <p className="text-xs text-white/40">{t.contact.whatsappSub}</p>
                 </div>
               </a>
               <a
                 href="https://calendly.com/lucasezequielriera-phfi/30min"
                 target="_blank"
                 rel="noreferrer"
-                className="group flex items-center gap-4 rounded-xl border border-blue-900/50 bg-blue-950/20 p-4 transition-all hover:border-blue-800/50 hover:bg-blue-950/30"
+                className="group flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-white/25 hover:bg-white/[0.06]"
               >
-                <div className="shrink-0 rounded-full border border-blue-800/50 bg-blue-950/40 p-3">
-                  <Calendar className="h-5 w-5 text-blue-400" />
+                <div className="shrink-0 rounded-full border border-white/10 bg-white/[0.05] p-3">
+                  <Calendar className="h-5 w-5 text-white/80" />
                 </div>
                 <div>
-                  <p className="font-medium text-blue-300">{t.contact.scheduleCall}</p>
-                  <p className="text-xs text-blue-400/70">{t.contact.minutes}</p>
+                  <p className="font-medium text-white">{t.contact.scheduleCall}</p>
+                  <p className="text-xs text-white/40">{t.contact.minutes}</p>
                 </div>
               </a>
               <a
                 href="https://instagram.com/lucasezequielriera"
                 target="_blank"
                 rel="noreferrer"
-                className="group flex items-center gap-4 rounded-xl border border-neutral-800 bg-neutral-900/60 p-4 transition-all hover:border-neutral-700 hover:bg-neutral-900/80"
+                className="group flex items-center gap-4 rounded-xl border border-white/10 bg-white/[0.03] p-4 transition-all hover:border-white/25 hover:bg-white/[0.06]"
               >
-                <div className="shrink-0 rounded-full border border-neutral-800 bg-neutral-950 p-3">
-                  <Instagram className="h-5 w-5 text-neutral-300" />
+                <div className="shrink-0 rounded-full border border-white/10 bg-white/[0.05] p-3">
+                  <Instagram className="h-5 w-5 text-white/80" />
                 </div>
                 <div>
-                  <p className="font-medium text-neutral-100">Instagram</p>
-                  <p className="text-xs text-neutral-400">@lucasezequielriera</p>
+                  <p className="font-medium text-white">Instagram</p>
+                  <p className="text-xs text-white/40">@lucasezequielriera</p>
                 </div>
               </a>
             </div>
 
             <div className="mt-6">
-              <p className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-neutral-500">
+              <p className="mb-3 font-[family-name:var(--font-geist-mono)] text-[0.65rem] uppercase tracking-[0.2em] text-cyan-300/80">
                 {t.contact.formSub}
               </p>
               <ContactForm t={t} />

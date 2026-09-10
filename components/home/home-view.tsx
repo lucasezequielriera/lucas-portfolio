@@ -30,7 +30,7 @@ function RevealWords({
             initial={prefersReduced ? false : { y: "110%" }}
             animate={{ y: "0%" }}
             transition={{ duration: 0.7, delay: startDelay + idx * 0.055, ease: [0.16, 1, 0.3, 1] }}
-            className={`inline-block ${accent ? "bg-gradient-to-r from-cyan-300 via-violet-300 to-fuchsia-300 bg-clip-text text-transparent" : ""}`}
+            className={`inline-block ${accent ? "text-white/45" : ""}`}
           >
             {word}
           </motion.span>
@@ -89,7 +89,7 @@ export function HomeView({ locale }: { locale: Locale }) {
         >
           <Link
             href={`/${locale}/proyectos`}
-            className="group inline-flex items-center gap-2 rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-6 py-3 text-sm font-semibold text-black transition hover:opacity-90"
+            className="group inline-flex items-center gap-2 rounded-full bg-white px-6 py-3 text-sm font-semibold text-black transition hover:bg-white/90"
           >
             {t.hero.ctaPrimary}
             <ArrowUpRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />

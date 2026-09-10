@@ -50,7 +50,7 @@ export function ServiceLandingView({
             </ul>
           </section>
 
-          <section className="rounded-2xl border border-violet-400/20 bg-gradient-to-br from-cyan-400/10 to-violet-500/10 p-5 backdrop-blur-xl sm:p-6">
+          <section className="rounded-2xl border border-white/15 bg-white/[0.05] p-5 backdrop-blur-xl sm:p-6">
             <h2 className="text-lg font-semibold sm:text-xl">
               {loc === "es" ? "¿Lo hacemos?" : loc === "fr" ? "On le fait ?" : "Shall we build it?"}
             </h2>
@@ -61,7 +61,7 @@ export function ServiceLandingView({
                   ? "Dites-moi ce que vous voulez obtenir et je vous dirai comment je m'y prendrais, combien ça coûte et combien de temps ça prend."
                   : "Tell me what you're trying to get done and I'll tell you how I'd approach it, what it costs and how long it takes."}
             </p>
-            <OpenContactButton className="mt-4 inline-flex rounded-full bg-gradient-to-r from-cyan-400 to-violet-500 px-5 py-2.5 text-sm font-semibold text-black transition hover:opacity-90">
+            <OpenContactButton className="mt-4 inline-flex rounded-full bg-white px-5 py-2.5 text-sm font-semibold text-black transition hover:bg-white/90">
               {loc === "es" ? "Contactar" : loc === "fr" ? "Contact" : "Contact me"}
             </OpenContactButton>
           </section>

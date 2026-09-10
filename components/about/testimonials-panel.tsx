@@ -31,7 +31,7 @@ export function TestimonialsPanel({ locale }: { locale: Locale }) {
           <p className="text-[0.68rem] text-white/35">{t.testimonials.maryContext}</p>
         </div>
         <div className="flex items-center gap-3 border-t border-white/10 pt-3">
-          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-violet-400/10 text-xs font-semibold text-violet-300">
+          <div className="flex h-8 w-8 items-center justify-center rounded-full bg-white/10 text-xs font-semibold text-white/70">
             MS
           </div>
           <div>

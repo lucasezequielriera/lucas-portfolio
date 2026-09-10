@@ -1,0 +1,55 @@
+# Lucas Riera
+
+AI Product Engineer based in Madrid, working remotely. Six years building
+software — three of them at United Airlines — and six products of my own
+currently in production. Available for freelance and contract work: web
+applications, custom platforms, AI integrations and technical consulting.
+
+Contact: lucasezequielriera@gmail.com
+
+The site is published in Spanish (`/es`), English (`/en`) and French (`/fr`).
+The English paths below are the canonical ones for each page; swap the prefix
+for the other locales.
+
+## Pages
+
+- [Home](https://www.lucasriera.com/en): what I do and the headline figures.
+- [About](https://www.lucasriera.com/en/sobre-mi): career timeline, the stack I
+  build with, the services I offer, and references from people I've worked with.
+- [Projects](https://www.lucasriera.com/en/proyectos): six products, each with
+  the problem it solves, how I solved it and the technologies used.
+- [Tools](https://www.lucasriera.com/en/herramientas): a CV generator that
+  rewrites a résumé into an ATS-friendly PDF.
+
+## Case studies
+
+- [Kolibrí](https://www.lucasriera.com/en/proyectos/kolibri): bilingual online
+  AI school. Next.js, Supabase, Stripe, PostHog.
+- [WebFinanceLab](https://www.lucasriera.com/en/proyectos/webfinancelab):
+  personal finance platform. React, Node.js, Firebase.
+- [FitPlan AI](https://www.lucasriera.com/en/proyectos/fitplan-ai): AI-generated
+  training and nutrition plans. Next.js, OpenAI, PostgreSQL.
+- [WebEducationLab](https://www.lucasriera.com/en/proyectos/webeducationlab):
+  education platform with an AI tutor. Next.js, TypeScript, Firebase.
+- [Synapsis](https://www.lucasriera.com/en/proyectos/synapsis): team
+  collaboration platform. React, Node.js, MongoDB.
+- [Sandra Lorden](https://www.lucasriera.com/en/proyectos/sandra-lorden):
+  portfolio site. Next.js, Tailwind CSS, Framer Motion.
+
+## Services
+
+- [Web application development](https://www.lucasriera.com/en/services/web-application-development)
+- [AI solutions for business](https://www.lucasriera.com/en/services/ai-solutions-for-business)
+- [Technical software consulting](https://www.lucasriera.com/en/services/technical-software-consulting)
+- [Remote freelance developer](https://www.lucasriera.com/en/services/remote-freelance-developer)
+
+## Elsewhere
+
+- [GitHub](https://github.com/lucasezequielriera)
+- [LinkedIn](https://linkedin.com/in/lucasezequielriera)
+
+## Notes for crawlers
+
+- Sitemap: https://www.lucasriera.com/sitemap.xml
+- Every page is server-rendered; no content requires JavaScript to read.
+- `/en/proyectos/fit-travel` is a placeholder and is marked `noindex`.

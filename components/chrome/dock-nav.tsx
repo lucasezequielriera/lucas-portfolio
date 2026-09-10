@@ -72,7 +72,12 @@ export function DockNav({ locale }: { locale: Locale }) {
                 href={item.href}
                 onMouseEnter={() => setHovered(item.key)}
                 onMouseLeave={() => setHovered(null)}
+                onFocus={() => setHovered(item.key)}
+                onBlur={() => setHovered(null)}
                 aria-current={active ? "page" : undefined}
+                // El único contenido es un icono y un tooltip que sólo existe al
+                // pasar el ratón: sin esto el enlace no tiene nombre accesible.
+                aria-label={item.label}
                 className="relative flex h-10 w-10 items-center justify-center rounded-full transition sm:h-11 sm:w-11"
               >
                 {active && (
@@ -83,12 +88,14 @@ export function DockNav({ locale }: { locale: Locale }) {
                   />
                 )}
                 <Icon
+                  aria-hidden="true"
                   className={`relative z-10 h-4 w-4 transition ${
                     active ? "text-cyan-300" : "text-white/50 hover:text-white/90"
                   }`}
                 />
                 {hovered === item.key && (
                   <motion.span
+                    aria-hidden="true"
                     initial={{ opacity: 0, y: 4 }}
                     animate={{ opacity: 1, y: 0 }}
                     className="absolute -top-8 whitespace-nowrap rounded-md bg-black/80 px-2 py-1 font-[family-name:var(--font-geist-mono)] text-[0.62rem] uppercase tracking-wider text-white/80"
@@ -101,14 +108,19 @@ export function DockNav({ locale }: { locale: Locale }) {
           })}
           <div className="mx-1 h-6 w-px bg-white/10" />
           <button
+            type="button"
             onMouseEnter={() => setHovered("contact")}
             onMouseLeave={() => setHovered(null)}
+            onFocus={() => setHovered("contact")}
+            onBlur={() => setHovered(null)}
             onClick={openContact}
+            aria-label={t.nav.contacto}
             className="relative flex h-10 w-10 items-center justify-center rounded-full transition sm:h-11 sm:w-11"
           >
-            <MessageCircle className="h-4 w-4 text-white/50 transition hover:text-white/90" />
+            <MessageCircle aria-hidden="true" className="h-4 w-4 text-white/50 transition hover:text-white/90" />
             {hovered === "contact" && (
               <motion.span
+                aria-hidden="true"
                 initial={{ opacity: 0, y: 4 }}
                 animate={{ opacity: 1, y: 0 }}
                 className="absolute -top-8 whitespace-nowrap rounded-md bg-black/80 px-2 py-1 font-[family-name:var(--font-geist-mono)] text-[0.62rem] uppercase tracking-wider text-white/80"

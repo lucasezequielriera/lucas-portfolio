@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { notFound } from "next/navigation";
 import { getDictionary, locales, type Locale } from "@/lib/dictionaries";
 import { CookieBanner } from "@/components/cookie-banner";
 import { DockNav } from "@/components/chrome/dock-nav";
@@ -82,6 +83,13 @@ export default async function LocaleLayout({
   params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
+
+  // Paths carrying an extension skip the locale redirect in the proxy, so a
+  // request for something like /missing.pdf used to land here with the filename
+  // as the locale and render the home page with a 200. Anything that is not a
+  // real locale is a 404.
+  if (!locales.includes(locale as Locale)) notFound();
+
   const yearsExp = new Date().getFullYear() - 2020;
   const t = getDictionary(locale as Locale);
   const isEs = locale === "es";
